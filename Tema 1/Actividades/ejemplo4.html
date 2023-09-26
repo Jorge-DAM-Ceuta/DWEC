@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo4</title>
+</head>
+<body>
+    <img id="imagen" onclick="cambiaPic()" src="./img/imagen1.jpg" width="150" height="180">
+    <p>Haz click sobre la imagen para cambiarla.</p>
+    <script>
+        function cambiaPic(){
+            let miImagen = document.getElementById('imagen');
+            if(miImagen.src.match("imagen1")){
+                miImagen.src = "./img/imagen2.jpg";
+            }else{
+                miImagen.src = "./img/imagen1.jpg";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio2</title>
+</head>
+<body>
+    <p id="resultado"></p>
+    <script>
+        var numerosPares = [];
+        var resultado = "";
+
+        for(let i = 0; i<=15; i++){
+            if(i % 2 == 0){
+               numerosPares.push(i);
+            }
+            console.log("Iteración: " + i);
+        }
+
+        for(let i = 0; i<numerosPares.length; i++){
+            resultado += numerosPares[i] + ", ";
+        }
+
+        document.getElementById("resultado").innerHTML = resultado;
+        
+        alert(numerosPares.length);
+    </script>
+</body>
+</html>

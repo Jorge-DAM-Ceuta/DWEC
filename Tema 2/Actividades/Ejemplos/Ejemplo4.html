@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es-es">
+<head>
+    <meta http-equiv="content-type" content="text / html; charset = UTF-8">
+    <title>Fila y Tabla</title>
+    <style>
+        table { border-collapse: collapse; /*Borde de la tabla*/
+            width: "100%";
+        }
+
+        td { border: 4px solid black; }
+    </style>
+</head>
+<body>
+    <script>
+        document.write("<table>");
+        for(i = 1; i <= 10; i++){
+            document.write("<tr>");
+            
+            for(j = 1; j <= 10; j++){
+                document.write("<td>columna" + j + ",fila" + i + "</td>");
+            }
+
+            document.write("</tr>");
+        }
+        document.write("</table>");
+    </script>
+</body>
+</html>
