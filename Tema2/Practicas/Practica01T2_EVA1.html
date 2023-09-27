@@ -11,9 +11,17 @@
 
         /*Mediante un bucle while indicamos que mientras el tipo de dato 
         introducido no sea un número se repita la petición por pantalla.
+        
+        También comprueba si en esa vuelta no se ha introducido un número
+        para mostrar un diálogo que lo indique al usuario.
         */
         while(isNaN(numero)){
             numero = prompt("Introduce un número:");
+            
+            if(isNaN(numero)){
+                alert("El valor no corresponde a un número"); 
+            }
+            
         }
 
         //Una vez el valor introducido sea un número válido visualizaremos este mensaje.
