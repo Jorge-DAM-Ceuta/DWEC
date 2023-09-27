@@ -6,12 +6,17 @@
 </head>
 <body>
     <script>
+        //Declaramos la variable donde se alamacenará el número.
         var numero;
 
+        /*Mediante un bucle while indicamos que mientras el tipo de dato 
+        introducido no sea un número se repita la petición por pantalla.
+        */
         while(isNaN(numero)){
             numero = prompt("Introduce un número:");
         }
 
+        //Una vez el valor introducido sea un número válido visualizaremos este mensaje.
         alert("El usuario ha introducido un número correcto");
         
     </script>
