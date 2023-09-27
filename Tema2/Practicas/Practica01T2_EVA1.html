@@ -6,13 +6,14 @@
 </head>
 <body>
     <script>
-        var numero = prompt("Introduce un número:");
-        
-        if(typeof numero == "number"){
-            alert("El usuario ha introducido un número correcto");
-        }else{
+        var numero;
+
+        while(isNaN(numero)){
             numero = prompt("Introduce un número:");
         }
+
+        alert("El usuario ha introducido un número correcto");
+        
     </script>
 </body>
 </html>
