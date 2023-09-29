@@ -1,9 +1,9 @@
 table { 
     border-collapse: collapse; /*Borde de la tabla*/
-    width: "50%";
-    height: "50%";
+    width: "50%"; /*Indico que se ajuste el ancho de la tabla al 50%*/
+    height: "50%"; /*Indico que se ajuste el alto de la tabla al 50%*/
 }
 
 td { 
-    border: 4px solid black; 
+    border: 4px solid black; /*Se indica el tamaño en píxeles del borde a cada celda además del color negro*/
 }
