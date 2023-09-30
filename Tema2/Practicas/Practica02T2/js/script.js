@@ -9,11 +9,11 @@ function tableSize(){
     document.write("<table>");
 
     for(let i = 1; i<=numeroColumnas; i++){
-        document.write("<tr>");
+        document.write("<td>");
         for(let j = 1; j<=numeroFilas; j++){
-            document.write("<td>" + "C" + j + "F" + i + "</td>");
+            document.write("<tr>" + "C" + j + "F" + i + "</tr>");
         }
-        document.write("</tr>");
+        document.write("</td>");
     }
 
     document.write("</table>");
