@@ -22,12 +22,12 @@ function tableSize(){
     */
     document.write("<table>");
 
-    for(let i = 1; i<=numeroColumnas; i++){
-        document.write("<td>");
-        for(let j = 1; j<=numeroFilas; j++){
-            document.write("<tr>" + "C" + j + "F" + i + "</tr>");
+    for(let i = 1; i<=numeroFilas; i++){
+        document.write("<tr>");
+        for(let j = 1; j<=numeroColumnas; j++){
+            document.write("<td>" + "C" + j + "F" + i + "</td>");
         }
-        document.write("</td>");
+        document.write("</tr>");
     }
 
     document.write("</table>");
