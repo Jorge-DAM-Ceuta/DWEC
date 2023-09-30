@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 3</title>
+
+    <!-- 
+        Esta etiqueta style permite aplicar CSS a los elementos HTML 
+        mediante su implementación en la etiqueta head. 
+        
+        En este caso hemos asignado un id al elemento <div> llamado fondo. 
+        A este le aplicaremos el tamaño máximo de ancho y alto para que ocupe toda la pantalla. 
+        Aparentemente no mostrará nada, pero posteriormente se le aplica valor mediante el 
+        atributo de la etiqueta HTML <div>. 
+        
+        También he usado el caracter * para eliminar los espacios en blancos que se producían
+        en el navegador entre el comienzo de la página a la izquierda y arriba; y el color. ??
+    -->
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #fondo {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    
+    <!--
+        Esta etiqueta es la que va a mostrar el color por pantalla con CSS 
+        mediante un atributo accesible desde cualquier etiqueta en JavaScript
+    -->
+    <div id="fondo"></div>
+
+    <!--
+        Este script enlaza una variable a la etiqueta <div> en cuestión. Luego,
+        crea 3 variables para cada color de la paleta rgb, de manera aleatoria.
+        
+        Seguido se almacenan en una variable en forma de cadena de caracteres escrita 
+        con el estándar que sigue el atributo style.backgroundColor. 
+        
+        Por último mediante document.write() se le asigna a la etiqueta <div> mediante 
+        su propia variable que hicimos al principio la cadena de colorAleatorio.
+    -->
+    <script>
+        var contenedorDeBackground = document.getElementById("fondo");
+
+        var valorRojo = Math.random() * 255 + 1;
+        var valorVerde = Math.random() * 255 + 1;
+        var valorAzul = Math.random() * 255 + 1;
+
+        var colorAleatorio = "rgb(" + valorRojo + ", " + valorVerde + ", " + valorAzul + ")";
+
+        document.write(contenedorDeBackground.style.backgroundColor = colorAleatorio);
+    </script>
+    
+</body>
+</html>
