@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 3</title>
+    </head>
+    <body>
+        
+        <!-- En este script se introduce un DNI, posteriormente se separa en dos
+        cadenas, una con sus números y otra con su letra. El resultado del resto entre
+        los números del DNI y 23 debe indicar la letra del DNI mediante la búsqueda
+        con charAt en la cadena comprobacionLetra. Si coincide lo indica, si no también. -->
+        <script>
+            var dni = prompt("Introduce tu DNI con letra mayúscula:");
+            var comprobacionLetra = "TRWAGMYFPDXBNJZSQVHLCKE";
+
+            var numerosDNI = dni.substring(0, 8);
+            var letraDNI = dni.charAt(8);
+
+            var resultado = numerosDNI % 23;
+            
+            if(comprobacionLetra.charAt(resultado) == letraDNI){
+                document.write("La letra " + comprobacionLetra.charAt(resultado) + " es correcta." );
+            }else{
+                document.write("No mientas, la letra correcta es la " + comprobacionLetra.charAt(resultado));
+            }
+
+        </script>
+    </body>
+</html>
