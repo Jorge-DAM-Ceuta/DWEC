@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 4</title>
+</head>
+<body>
+
+    <!-- En este código se crean cuatro variables que obtendrán los datos a partir 
+    de lo que haya introducido el usuario en el cuadro de diálogo prompt. Luego,
+    se hacen una serie de comprobaciones sencillas con if y else if. En función
+    del salario y la edad se modificará el salario mediante la suma de un porcentaje para
+    posteriormente mostrarlas por pantalla mediante document.write(). -->
+
+    <script>
+        var nombre = prompt("Introduce tu nombre:");
+        var apellidos = prompt("Introduce tus apellidos:");
+        var salario = prompt("Introduce tu salario:");    
+        var edad = prompt("Introduce tu edad:");
+
+        if(salario > 2000){
+
+        }else if(salario >= 1000 && salario <= 2000){
+            if(edad > 45){
+                salario = ((3/100)*salario);
+            }else if(edad <= 45){
+                salario = ((10/100)*salario);
+            }
+        }else if(salario < 1000){
+            if(edad < 30){
+                salario = 1100;
+            }else if(edad >= 30 && edad <=45){
+                salario = ((3/100)*salario);
+            }else if(edad >= 45){
+                salario = ((15/100)*salario);
+            }
+        }
+
+        console.log(`Nombre: ${nombre}<br> Apellidos: ${apellidos}<br> Salario: ${salario}<br> Edad: ${edad}`);
+        document.write(`Nombre: ${nombre}<br> Apellidos: ${apellidos}<br> Salario: ${salario}<br> Edad: ${edad}`);
+    </script>
+</body>
+</html>
