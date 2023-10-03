@@ -16,14 +16,12 @@ do {
 
     dni = prompt("Introduce tu DNI:"); 
 
-    for(let i = 0; i<letrasAceptadas.length; i++){
-        if(dni[dni.length-1] != letrasAceptadas[i]){
-            comprobarLetra = false;
-        }
+    if(!letrasAceptadas.includes(dni.length-1)){
+        comprobarLetra = false;
     }
     
     if(isNaN(numerosDNI)){
         comprobarNumeros = false;
     }
 
-}while(dni == undefined || dni == "" || dni == 0 || dni.length != 9 || comprobarLetra == false || comprobarNumeros == false);
+}while(dni == undefined || dni == "" || dni == 0 || dni.length < 9 || comprobarLetra == false || comprobarNumeros == false);
