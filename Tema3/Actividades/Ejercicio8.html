@@ -9,13 +9,32 @@
         
         <script>
             
-            var notasJorge = [];
+            var alumnos = [[],[],[]];
+            var calificacionesAlumno = "";
 
-            for(let i = 0; i<5; i++){
-                notasJorge.push(prompt(`Introduce la nota ${i} de Jorge:`));
+            for(let i = 0; i<3; i++){
+                alumnos[i][0] = prompt("Introduce el nombre del alumno:");
+
+                for(let j = 1; j<6; j++){
+                    alumnos[i][j] = prompt(`Introduce la nota ${j} para el alumno ${alumnos[i][0]}`)    
+                }
             }
 
-            alert(notasJorge);
+            for(let i = 0; i<3; i++){
+                document.write(`<h2>Notas de ${alumnos[i][0]}:</h2>`);
+
+                for(let j = 1; j<6; j++){
+                    if(j == 5){
+                        calificacionesAlumno += `Nota ${j} => ${alumnos[i][j]}.`;
+                    }else{
+                        calificacionesAlumno += `Nota ${j} => ${alumnos[i][j]}, `;
+                    }   
+                }
+
+                document.write(`<p>${calificacionesAlumno}</p>`);
+                calificacionesAlumno = "";
+            }
+
         </script>
     </body>
 </html>
