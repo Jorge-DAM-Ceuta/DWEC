@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 5</title>
+    </head>
+    <body>
+        <script>
+            var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            var resultado = "";
+            
+            alert(meses);
+
+            for(let i = 0; i<meses.length; i++){
+                if(meses[i] == "Diciembre"){
+                    resultado += meses[i] + ".";
+                }else{
+                    resultado += meses[i] + ", "; 
+                }
+            }
+
+            alert(resultado);
+        </script>
+    </body>
+</html>
