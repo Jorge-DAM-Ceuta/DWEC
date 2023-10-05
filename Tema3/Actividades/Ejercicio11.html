@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 11</title>
+    </head>
+    <body>
+        
+        <script>
+            var num1 = [1.15, 2.33, 3.99, 4.50];
+            var num2 = ["cinco", "seis", "siete"];
+
+            var numeros = num1.concat(num2);
+
+            console.log(numeros);
+
+            numeros.shift(); //Eliminar primer elemento.
+            numeros.pop(); //Eliminar último elemento.
+            numeros.unshift("primero"); //Añadir un elemento al principio.
+            numeros.push("otros"); //Añadir un elemento al final.
+            
+            console.log(numeros);
+
+
+        </script>
+    </body>
+</html>

@@ -6,16 +6,25 @@
         <title>Ejercicio 9</title>
     </head>
     <body>
-        <p id="texto"></p>
+        <p id="forin"></p>
+        <p id="forof"></p>
         <script>
             var cadena = "Hola caracola";
             var nuevaCadena = "";
             
+            for(let letra in cadena){
+                nuevaCadena += `${cadena[letra]} `;
+            }
+
+            document.getElementById("forin").innerHTML = nuevaCadena;
+
+            nuevaCadena = "";
+
             for(const letra of cadena){
                 nuevaCadena += letra + " ";
             }
 
-            document.getElementById("texto").innerHTML = nuevaCadena;
+            document.getElementById("forof").innerHTML = nuevaCadena;
         </script>
     </body>
 </html>
