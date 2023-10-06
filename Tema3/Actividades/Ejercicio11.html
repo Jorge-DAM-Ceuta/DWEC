@@ -11,6 +11,7 @@
             var num1 = [1.15, 2.33, 3.99, 4.50];
             var num2 = ["cinco", "seis", "siete"];
 
+            //Unir los arrays
             var numeros = num1.concat(num2);
 
             console.log(numeros);
@@ -20,8 +21,36 @@
             numeros.unshift("primero"); //Añadir un elemento al principio.
             numeros.push("otros"); //Añadir un elemento al final.
             
+            //Convertir los números del array a enteros.
+            for(let i = 0; i<numeros.length; i++){
+                if(typeof(numeros[i]) == "number"){
+                    numeros[i] = parseInt(numeros[i]);
+                }
+            }
+
             console.log(numeros);
 
+            /*Convertir el array a cadena de caracteres y separar 
+            las palabras mediante el caracter 'y' */
+            var arrayACadena = numeros.join(" y ");
+
+            document.write(arrayACadena);
+            
+            //Mostrar por pantalla solo los datos de tipo numérico.
+            var soloNumeros;
+            
+            console.log("Cadena: " + numeros);
+            for(let i = 0; i<numeros.length; i++){
+                console.log("numero: " + typeof(numeros[i]));
+                if(typeof(numeros[i]) == "number"){
+                    soloNumeros += numeros[i] + " y ";
+                }
+                
+            }
+
+
+
+            document.write("<br>" + soloNumeros);
 
         </script>
     </body>
