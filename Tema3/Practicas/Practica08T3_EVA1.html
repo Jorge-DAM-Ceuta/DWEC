@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Práctica 8</title>
+    </head>
+    <body>
+        <script>
+
+            var abecedarioEspanol = "abcdefghijklmnñopqrstuvwxyzáéíóúü"; 
+            var caracter, posicionReemplazo, nuevoCaracter, resultado;
+            
+            var codigo = prompt("Escribe un código del 1 al 100 para cifrar el texto:");
+
+            do{
+                if(isNaN(codigo) || codigo < 1 || codigo > 100){
+                    codigo = prompt("Repite el código de la manera correcta:");
+
+                }
+
+            }while(codigo != undefined || isNaN(codigo));
+
+            var cadena = prompt("Escribe una cadena de caracteres para cifrarla:");
+            
+            do{
+                if(cadena == ""){
+                    cadena = prompt("Repite la cadena correctamente:");
+                }
+            }while(cadena == "");
+            
+            //Comprobar letra a letra.
+            for(let i = 0; i<cadena.length; i++){
+                caracter = cadena[i].toLowerCase();
+
+                if(abecedarioEspanol.includes(caracter)){
+                    posicionReemplazo = (abecedarioEspanol.indexOf(caracter) + codigo) % abecedarioEspanol.length;
+                    nuevoCaracter = abecedarioEspanol[posicionReemplazo];
+                }
+            }
+
+        </script>
+    </body>
+</html>
