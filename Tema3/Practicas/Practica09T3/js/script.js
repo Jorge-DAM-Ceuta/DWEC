@@ -12,6 +12,11 @@ var comprobarMinusPassword = false;
 var comprobarNumerosPassword = false;
 var comprobarNuevoCaracter = false;
 
+/*Mediante un bucle do-while se pregunta al usuario por su nombre de usuario. 
+Con un bucle for of se comprueba por cada caracter de la cadena introducida
+que al menos uno coincida con una letra minuscula y un número. 
+
+Si las dos condiciones se cumplen se pasará al siguiente bucle con un mensaje.*/
 do{
     login = prompt("Introduce tu nombre de usuario:");
 
@@ -25,10 +30,18 @@ do{
 
     if(comprobarLetrasLogin == false || comprobarNumerosLogin == false){
         alert("Nombre de usuario no válido. Introduce al menos una letra y un número.");
+    }else{
+        alert("Bien, ahora escriba su contraseña " + login + ":");
     }
 
 }while((comprobarLetrasLogin == false || comprobarNumerosLogin == false));
 
+/*Mediante otro bucle do-while se pregunta al usuario por su contraseña. 
+Con un bucle for of se comprueba por cada caracter de la cadena introducida
+que al menos uno coincida con una letra minuscula, una letra mayúscula, 
+un número y un caracter especial. 
+
+Si las tres condiciones se cumplen terminará el bucle con un mensaje.*/
 do{
     password = prompt("Introduce tu contraseña:");
 
@@ -45,9 +58,9 @@ do{
     }
 
     if(comprobarMayusPassword == true && comprobarMinusPassword  == true && comprobarNumerosPassword == true && comprobarNuevoCaracter == true){
-        alert("CONTRASEÑA VÁLIDA.");
+        alert("Contraseña correcta");
     }else{
-        alert("CONTRASEÑA NO VÁLIDA");
+        alert("La contraseña no es correcta");
     }
 
 }while(comprobarMayusPassword == false || comprobarMinusPassword  == false || comprobarNumerosPassword == false || comprobarNuevoCaracter == false);
