@@ -2,22 +2,34 @@ const minus = "aábcçdeéfghiìjklmnñoópqrstuúüvwxyz";
 const mayus = "AÁBCÇDEÉFGHIÍJKLMNÑOÓPQRSTUÚÜVWXYZ";
 const num = "0123456789";
 
-var login = prompt("Introduce tu nombre de usuario:"); 
-var comprobarLetrasLogin, comprobarNumerosLogin;
+var login; 
+var comprobarLetrasLogin = false;
+var comprobarNumerosLogin = false;
 
 var password;
-var comprobarMayusPassword, comprobarMinusPassword, comprobarNumerosPassword;
+var comprobarMayusPassword = false;
+var comprobarMinusPassword = false;
+var comprobarNumerosPassword = false;
+var comprobarNuevoCaracter = false;
 
-for(let i of login){
-    if(minus.includes(i)){
-        comprobarLetrasLogin = true;
-    }else if(num.includes(i)){
-        comprobarNumerosLogin = true;
+do{
+    login = prompt("Introduce tu nombre de usuario:");
+
+    for(let i of login){
+        if(minus.includes(i)){
+            comprobarLetrasLogin = true;
+        }else if(num.includes(i)){
+            comprobarNumerosLogin = true;
+        }
     }
-}
 
-if(comprobarLetrasLogin == true && comprobarNumerosLogin == true){
-    alert("Nombre de usuario válido.");
+    if(comprobarLetrasLogin == false || comprobarNumerosLogin == false){
+        alert("Nombre de usuario no válido. Introduce al menos una letra y un número.");
+    }
+
+}while((comprobarLetrasLogin == false || comprobarNumerosLogin == false));
+
+do{
     password = prompt("Introduce tu contraseña:");
 
     for(let i of password){
@@ -27,14 +39,15 @@ if(comprobarLetrasLogin == true && comprobarNumerosLogin == true){
             comprobarMinusPassword = true;
         }else if(num.includes(i)){
             comprobarNumerosPassword = true;
+        }else{
+            comprobarNuevoCaracter = true;
         }
     }
 
-    if(comprobarMayusPassword == true && comprobarMinusPassword  == true && comprobarNumerosPassword == true){
+    if(comprobarMayusPassword == true && comprobarMinusPassword  == true && comprobarNumerosPassword == true && comprobarNuevoCaracter == true){
         alert("CONTRASEÑA VÁLIDA.");
     }else{
         alert("CONTRASEÑA NO VÁLIDA");
     }
-}else{
-    alert("USUARIO NO VÁLIDO");
-}
+
+}while(comprobarMayusPassword == false || comprobarMinusPassword  == false || comprobarNumerosPassword == false || comprobarNuevoCaracter == false);
