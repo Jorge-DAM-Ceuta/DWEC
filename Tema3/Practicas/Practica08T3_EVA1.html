@@ -9,18 +9,21 @@
         <script>
 
             var abecedarioEspanol = "abcdefghijklmnñopqrstuvwxyzáéíóúü"; 
-            var caracter, posicionReemplazo, nuevoCaracter, resultado;
-            
-            var codigo = prompt("Escribe un código del 1 al 100 para cifrar el texto:");
+            var clave, cifrado, resultado = "";
+
+            /*Se le pide al usuario una clave para cifrar el texto, mientras sea 
+            un valor no numérico o una cadena vacía se le seguirá pidiendo.*/
+            clave = prompt("Escribe un código del 1 al 100 para cifrar el texto:");
 
             do{
-                if(isNaN(codigo) || codigo < 1 || codigo > 100){
-                    codigo = prompt("Repite el código de la manera correcta:");
-
+                if(isNaN(clave) || clave < 1 || clave > 100){
+                    clave = prompt("Repite el código de la manera correcta:");
                 }
 
-            }while(codigo != undefined || isNaN(codigo));
+            }while(isNaN(clave) || clave == "");
 
+            /*Se le pide al usuario una cadena de caracteres para cifrar, 
+            mientras esta esté vacía se le seguirá pidiendo.*/
             var cadena = prompt("Escribe una cadena de caracteres para cifrarla:");
             
             do{
@@ -29,16 +32,37 @@
                 }
             }while(cadena == "");
             
-            //Comprobar letra a letra.
-            for(let i = 0; i<cadena.length; i++){
-                caracter = cadena[i].toLowerCase();
+            /*En la variable cifrado se asignan los valores que hay en las posiciones finales 
+            del alfabeto delimitadas por la clave que hemos creado. Acto seguido se añaden el
+            resto de valores del alfabeto justo detras de las que ya se han tomado del final. 
+            
+            Es decir, se intercambian ciertas posiciones de orden.*/
+            cifrado = abecedarioEspanol.slice(-clave);
+            cifrado += abecedarioEspanol.slice(0, abecedarioEspanol.length - clave);
 
-                if(abecedarioEspanol.includes(caracter)){
-                    posicionReemplazo = (abecedarioEspanol.indexOf(caracter) + codigo) % abecedarioEspanol.length;
-                    nuevoCaracter = abecedarioEspanol[posicionReemplazo];
+            /*Se comprueba caracter a caracter si es un espacio, una coma o un punto, en 
+            ese caso se deje igual.
+
+            De lo contrario se busca el caracter en el abecedario español y lo intercambia por
+            el caracter que se encuentra en la misma posición del array del alfabeto cifrado.*/
+            for(let i = 0; i<cadena.length; i++){
+                let caracter = cadena[i].toLowerCase();
+
+                if(caracter == " "){
+                    caracter = " ";
+                }else if(caracter == ","){
+                    caracter = ",";
+                }else if(caracter == "."){
+                    caracter = ".";   
+                }else{
+                    caracter = cifrado[abecedarioEspanol.indexOf(caracter)];
                 }
+
+                resultado += caracter;
             }
 
+            document.write(resultado);
+            
         </script>
     </body>
 </html>

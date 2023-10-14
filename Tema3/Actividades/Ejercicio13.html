@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 13</title>
+    </head>
+    <body>  
+
+        <script>
+            var nombreUsuario = "";
+            
+            do{
+                nombreUsuario = prompt("Introduce tu nombre de usuario:");
+                
+                if(!nombreUsuario.match(/^[a-zA-Z0-9]+$/)){
+                    alert("Bien!");
+                }
+
+            }while(!nombreUsuario.match(/^[a-zA-Z0-9]+$/));
+        </script>
+    </body>
+</html>

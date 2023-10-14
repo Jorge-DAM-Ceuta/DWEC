@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Práctica 5</title>
 
+        <!-- Mediante la etiqueta <style> le asignamos a los cuadros que se van a formar
+        con la etiqueta <div> un tamaño de alto y de ancho de 50px a cada uno. Y la posición 
+        relative para que se puedan colocar mediante una posición aleatoria. -->
         <style>
             .cuadro {
                 position: relative;
@@ -15,15 +18,21 @@
     </head>
     <body>
         
+        <!-- En el script creamos un elemento div con las características CSS anteriores mediante 
+        el nombre de la clase 'cuadro' y mediante las variables top y left indicamos aleatoriamente
+        con Math.random() una posición en la pantalla en píxeles, de la misma manera que haremos con 
+        el color, al cual se le asignan los colores red, green y blue de manera aleatoria. -->
         <script>
+
+            var left, top, color;
 
             for(let i = 0; i<2000; i++){
                 
-                var left = ((Math.random()*1920)+1) + "px";
+                left = (Math.random()*90) + "%";
 
-                var top = ((Math.random()*1080)+1) + "px";
+                top = (Math.random()*90) + "%";
 
-                var color = "rgb(" + ((Math.random()*255)+1) + ", " + ((Math.random()*255)+1) + ", "+ ((Math.random()*255)+1) + ")"; 
+                color = "rgb(" + ((Math.random()*255)+1) + ", " + ((Math.random()*255)+1) + ", "+ ((Math.random()*255)+1) + ")"; 
 
                 document.write(`<div class='cuadro' style="top:${top}; left:${left}; background-color:${color};"></div>`);
             }
