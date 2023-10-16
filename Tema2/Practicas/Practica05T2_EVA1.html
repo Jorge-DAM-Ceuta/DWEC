@@ -24,7 +24,7 @@
         el color, al cual se le asignan los colores red, green y blue de manera aleatoria. -->
         <script>
 
-            var left, top, color;
+            var left, top, color, cuadros = '';
 
             for(let i = 0; i<2000; i++){
                 
@@ -32,11 +32,12 @@
 
                 top = (Math.random()*100) + "%";
 
-                color = "rgb(" + ((Math.random()*255)+1) + ", " + ((Math.random()*255)+1) + ", "+ ((Math.random()*255)+1) + ")"; 
+                color = "rgb(" + ((Math.random()*255)+1) + "," + ((Math.random()*255)+1) + ","+ ((Math.random()*255)+1) + ")"; 
 
-                document.write(`<div class='cuadro' style="top:${top}; left:${left}; background-color:${color};"></div>`);
+                cuadros += `<div class="cuadro" style="top:${top}; left:${left}; background-color:${color};"></div>`;
             }
 
+            document.write(cuadros);
         </script>
     </body>
 </html>
