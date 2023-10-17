@@ -11,68 +11,82 @@
             var alfabetoEspanol = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZàèìòùÀÈÌÒÙáéíóúÁÉÍÓÚñÑïöüÏÖÜçÇ";
             var clave, cadenaOriginal = "", cadenaCifrada = "";
 
-            /*Se le pide al usuario una clave para cifrar el texto, mientras sea 
-            un valor no numérico o una cadena vacía se le seguirá pidiendo.*/
+            /*Para empezar se le pide al usuario una clave y se comprueba que el valor no sea null.
+            Si el valor es null se muestra un mensaje por pantalla y finaliza la ejecución. Si ese 
+            no es el caso, mediante un bucle while se comprueba que mientras sea un valor no numérico, 
+            una cadena vacía o un número que no esté entre 1 y 100 se le seguirá pidiendo la clave.
+            
+            Dentro del bucle se comprueba si el nuevo valor es null porque se ha pulsado cancelar, 
+            en ese caso se escribe por pantalla un mensaje y se sale del bucle con break; */
             clave = prompt("Escribe un código del 1 al 100 para cifrar el texto:");
 
-            do{
-                if(isNaN(clave) || clave < 1 || clave > 100){
+            if(clave != null){
+                while(isNaN(clave) || clave == "" || clave < 1 || clave > 100){
                     clave = prompt("Repite el código de la manera correcta:");
-                }
 
-            }while(isNaN(clave) || clave == "");
-
-            //Se convierte el número a entero en caso de ser decimal.
-            parseInt(clave);
-
-            /*Se le pide al usuario una cadena de caracteres para cifrar, 
-            mientras esta esté vacía se le seguirá pidiendo.*/
-            cadenaOriginal = prompt("Escribe una cadenaOriginal de caracteres para cifrarla:");
-            
-            do{
-                if(cadenaOriginal == ""){
-                    cadenaOriginal = prompt("Repite la cadenaOriginal correctamente:");
-                }
-            }while(cadenaOriginal == "");
-            
-            /*Mediante un bucle for se obtiene el valor de cada posición de la cadena uno a uno y se
-            almacena en la variable 'caracter' se comprueba que esté incluido en el alfabeto español 
-            de la variable 'alfabetoEspanol'. En caso de que ese caracter no esté en el alfabeto se 
-            muestra tal cual, ya que puede tratarse de un espacio en blanco, una coma, etc... 
-            
-            Si el valor es correcto se obtiene la posición que ocupa el caracter obtenido en la 
-            variable del alfabeto y se almacena en la variable 'posicion'. Luego, en un bucle while
-            se recorre la variable 'alfabetoEspanol' hasta que la clave sea 0. En el bucle se comprueba
-            que si la posición es la última del alfabeto y la clave aún no es 0 se siga recorriendo el 
-            alfabeto desde el principio, asignandole la posición 0. Si no es la última posición se seguirá
-            aumentando el valor de la posición y decrementando el valor de la clave.
-            
-            Por último se añade el valor obtenido de la nueva posición a la variable 'cadenaCifrada'. */
-            for(let i = 0; i<cadenaOriginal.length; i++){
-                let caracter = cadenaOriginal[i];
-                
-                if(alfabetoEspanol.includes(caracter)){
-                    let posicion = alfabetoEspanol.indexOf(caracter);
-
-                    while(clave > 0){
-                        if(posicion == alfabetoEspanol.length){
-                            posicion = 0;
-                        }else{
-                            posicion++;
-                        }
-                        
-                        clave--;
+                    if(clave == null){
+                        document.write("Se ha cancelado la ejecución del programa.");
+                        break;
                     }
-
-                    cadenaCifrada += alfabetoEspanol[posicion];
-
-                }else{
-                    cadenaCifrada += caracter;
                 }
-            }
-            
-            document.write(cadenaCifrada);
-            
+                
+                /*Si el valor de la clave ha salido del bucle y no es null se sigue ejecutando el 
+                programa, si no es el caso se sigue ejecutando el resto del código. */
+                if(clave != null){
+                    //Se convierte el número a entero en caso de ser decimal.
+                    parseInt(clave);
+
+                    /*Se le pide al usuario una cadena de caracteres para cifrar, 
+                    mientras esta esté vacía se le seguirá pidiendo.*/
+                    cadenaOriginal = prompt("Escribe una cadena de caracteres para cifrarla:");
+                    
+                    do{
+                        if(cadenaOriginal == ""){
+                            cadenaOriginal = prompt("Repite la cadena, no puede estar vacía:");
+                        }
+                    }while(cadenaOriginal == "");
+                    
+                    /*Mediante un bucle for se obtiene el valor de cada posición de la cadena uno a uno y se
+                    almacena en la variable 'caracter' se comprueba que esté incluido en el alfabeto español 
+                    de la variable 'alfabetoEspanol'. En caso de que ese caracter no esté en el alfabeto se 
+                    muestra tal cual, ya que puede tratarse de un espacio en blanco, una coma, etc... 
+                    
+                    Si el valor es correcto se obtiene la posición que ocupa el caracter obtenido en la 
+                    variable del alfabeto y se almacena en la variable 'posicion'. Luego, en un bucle while
+                    se recorre la variable 'alfabetoEspanol' hasta que la clave sea 0. En el bucle se comprueba
+                    que si la posición es la última del alfabeto y la clave aún no es 0 se siga recorriendo el 
+                    alfabeto desde el principio, asignandole la posición 0. Si no es la última posición se seguirá
+                    aumentando el valor de la posición y decrementando el valor de la clave.
+                    
+                    Por último se añade el valor obtenido de la nueva posición a la variable 'cadenaCifrada'. */
+                    for(let i = 0; i<cadenaOriginal.length; i++){
+                        let caracter = cadenaOriginal[i];
+                        
+                        if(alfabetoEspanol.includes(caracter)){
+                            let posicion = alfabetoEspanol.indexOf(caracter);
+
+                            while(clave > 0){
+                                if(posicion == alfabetoEspanol.length){
+                                    posicion = 0;
+                                }else{
+                                    posicion++;
+                                }
+                                
+                                clave--;
+                            }
+
+                            cadenaCifrada += alfabetoEspanol[posicion];
+
+                        }else{
+                            cadenaCifrada += caracter;
+                        }
+                    }
+                    
+                    document.write(cadenaCifrada);
+                }
+            }else{
+                document.write("Se ha cancelado la ejecución del programa.");
+            }    
         </script>
     </body>
 </html>
