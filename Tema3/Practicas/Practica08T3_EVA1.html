@@ -9,7 +9,7 @@
         <script>
 
             var alfabetoEspanol = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZàèìòùÀÈÌÒÙáéíóúÁÉÍÓÚñÑïöüÏÖÜçÇ";
-            var clave, cadenaOriginal = "", cadenaCifrada = "";
+            var clave, claveOriginal, cadenaOriginal = "", cadenaCifrada = "";
 
             /*Para empezar se le pide al usuario una clave y se comprueba que el valor no sea null.
             Si el valor es null se muestra un mensaje por pantalla y finaliza la ejecución. Si ese 
@@ -34,7 +34,10 @@
                 programa, si no es el caso se sigue ejecutando el resto del código. */
                 if(clave != null){
                     //Se convierte el número a entero en caso de ser decimal.
-                    parseInt(clave);
+                    clave = parseInt(clave);
+                    
+                    //Se crea una copia de la clave para usarse posteriormente en un bucle anidado.
+                    claveOriginal = clave;
 
                     /*Se le pide al usuario una cadena de caracteres para cifrar, 
                     mientras esta esté vacía se le seguirá pidiendo.*/
@@ -59,20 +62,25 @@
                     aumentando el valor de la posición y decrementando el valor de la clave.
                     
                     Por último se añade el valor obtenido de la nueva posición a la variable 'cadenaCifrada'. */
+                    
+                    
                     for(let i = 0; i<cadenaOriginal.length; i++){
                         let caracter = cadenaOriginal[i];
                         
+                        clave = claveOriginal; //Se restaura el valor de la clave en cada vuelta para calcular la letra de cada posición. 
+
                         if(alfabetoEspanol.includes(caracter)){
                             let posicion = alfabetoEspanol.indexOf(caracter);
 
                             while(clave > 0){
-                                if(posicion == alfabetoEspanol.length){
+                                if(posicion == alfabetoEspanol.length - 1){
                                     posicion = 0;
                                 }else{
                                     posicion++;
                                 }
-                                
+                                console.log("Posicion: " + posicion);
                                 clave--;
+                                console.log("Clave: " + clave);
                             }
 
                             cadenaCifrada += alfabetoEspanol[posicion];
