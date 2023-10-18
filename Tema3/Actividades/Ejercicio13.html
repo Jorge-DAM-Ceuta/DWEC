@@ -8,16 +8,13 @@
     <body>  
 
         <script>
-            var nombreUsuario = "";
-            
-            do{
-                nombreUsuario = prompt("Introduce tu nombre de usuario:");
+            var nombreUsuario = prompt("Introduce tu nombre de usuario:");
                 
-                if(!nombreUsuario.match(/^[a-zA-Z0-9]+$/)){
-                    alert("Bien!");
-                }
+            while(!nombreUsuario.match(/^[a-zA-Z0-9]+$/)){
+                nombreUsuario = prompt("Introduce un usuario válido: Sólo puede contener minúsculas, mayúsculas y números");
+            }
 
-            }while(!nombreUsuario.match(/^[a-zA-Z0-9]+$/));
+            document.write("Bienvenido " + nombreUsuario + "!");
         </script>
     </body>
 </html>
