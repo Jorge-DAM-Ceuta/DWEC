@@ -9,6 +9,80 @@
         
         <script>
             
+            var clave, indiceClave = 0, cadenaOriginal = "", cadenaCifrada = "";
+
+            /*Para empezar se le pide al usuario una clave y se comprueba que el valor no sea null.
+            Si el valor es null se muestra un mensaje por pantalla y finaliza la ejecución. Si ese 
+            no es el caso, mediante un bucle while se comprueba que mientras sea un valor no numérico, 
+            una cadena vacía o un número que no esté entre 1 y 100 se le seguirá pidiendo la clave.
+            
+            Dentro del bucle se comprueba si el nuevo valor es null porque se ha pulsado cancelar, 
+            en ese caso se escribe por pantalla un mensaje y se sale del bucle con break; */
+            clave = prompt("Escribe un código del 1 al 100 para cifrar el texto:");
+
+            if(clave != null){
+                while(isNaN(clave) || clave == "" || clave < 1 || clave > 1000000){
+                    clave = prompt("Repite el código de la manera correcta:");
+
+                    if(clave == null){
+                        document.write("Se ha cancelado la ejecución del programa.");
+                        break;
+                    }
+                }
+                
+                /*Si el valor de la clave ha salido del bucle y no es null se sigue ejecutando el 
+                programa, si no es el caso se sigue ejecutando el resto del código. */
+                if(clave != null){
+
+                    /*Se le pide al usuario una cadena de caracteres para cifrar, 
+                    mientras esta esté vacía se le seguirá pidiendo.*/
+                    cadenaOriginal = prompt("Escribe una cadena de caracteres para cifrarla:");
+                    
+                    do{
+                        if(cadenaOriginal == ""){
+                            cadenaOriginal = prompt("Repite la cadena, no puede estar vacía:");
+                        }
+                    }while(cadenaOriginal == "");
+                    
+
+                    /*En este bucle se comprueba que si se usa el último dígito de la clave para cifrar 
+                    una letra el índice del que se obtiene el dígito de la clave se establezca de nuevo a 0, 
+                    así se podrá seguir cifrando si quedan caracteres en la cadena. 
+
+                    Como en el otro cifrado se recoge el valor UNICODE del caracter y se suma al dígito correspondiente 
+                    en esa vuelta de la clave. Ambos se suman y ahora se aumenta el rango de caracteres a 65536, lo que 
+                    permite la aparición de cualquier caracter de la tabla UNICODE. Por último se añade el valor de esa 
+                    posición UNICODE a la cadena cifrada y se aumenta en uno el valor del índice que recorre la clave. */
+                    for(let i = 0; i<cadenaOriginal.length; i++){
+                        let caracter = cadenaOriginal[i];
+
+                        //Si en la vuelta se usa el ultimo digito de la clave, se reinicia su índice y continúa cifrando.
+                        if(indiceClave >= clave.length){
+                            indiceClave = 0;
+                        }
+
+                        let valorUnicode = caracter.charCodeAt(0);
+
+                        let numeroClave = parseInt(clave[indiceClave]);
+
+                        //console.log("CLAVE: " + clave + ", INDICECLAVE: " + indiceClave + ", NUMERO_POSICION: " + numeroClave);
+
+                        let nuevoValor = (valorUnicode + numeroClave) % 65536;
+                            
+                        cadenaCifrada += String.fromCharCode(nuevoValor);
+
+                        indiceClave++;
+                    }
+
+                    alert("Texto original: " + cadenaOriginal + "<br>Texto cifrado: " + cadenaCifrada);
+                    document.write("Texto original: " + cadenaOriginal + "<br>Texto cifrado: " + cadenaCifrada);
+                
+                }
+                
+                    
+            }else{
+                document.write("Se ha cancelado la ejecución del programa.");
+            }    
         </script>
     </body>
 </html>
