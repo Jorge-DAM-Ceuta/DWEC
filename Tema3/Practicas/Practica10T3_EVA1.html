@@ -18,7 +18,7 @@
             
             Dentro del bucle se comprueba si el nuevo valor es null porque se ha pulsado cancelar, 
             en ese caso se escribe por pantalla un mensaje y se sale del bucle con break; */
-            clave = prompt("Escribe un código del 1 al 100 para cifrar el texto:");
+            clave = prompt("Escribe un código del 1 a 1000000 para cifrar el texto:");
 
             if(clave != null){
                 while(isNaN(clave) || clave == "" || clave < 1 || clave > 1000000){
@@ -74,7 +74,7 @@
                         indiceClave++;
                     }
 
-                    alert("Texto original: " + cadenaOriginal + "<br>Texto cifrado: " + cadenaCifrada);
+                    alert("Texto original: " + cadenaOriginal + " - Texto cifrado: " + cadenaCifrada);
                     document.write("Texto original: " + cadenaOriginal + "<br>Texto cifrado: " + cadenaCifrada);
                 
                 }
