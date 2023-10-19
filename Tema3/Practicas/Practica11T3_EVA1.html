@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Práctica 11</title>
+    </head>
+    <body>
+    
+        <script>
+
+            /*En cada bucle while se añade la comprobación de que si el valor introducido es
+            null el bucle finaliza, si es distinto de null se comprueba la expresión regular. 
+
+            De manera que si esa expresión es igual a null seguirá en el bucle, ya que si no
+            se encuentran coincidencias devolverá null. */
+
+            var nombreUsuario = prompt("Ejercicio 13: Nombre de usuario");
+
+            while(nombreUsuario !== null && nombreUsuario.match(/^[a-zA-Z0-9]+$/) == null){
+                nombreUsuario = prompt("(No válido) - Ejercicio 13: Nombre de usuario"); 
+            }
+            
+            var dni = prompt("Ejercicio 14: DNI");
+
+            while(dni !== null && dni.match(/^[0-9KLXYZ][0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKE]$/) == null){
+                dni = prompt("(No válido) - Ejercicio 14: DNI");
+            }
+
+            var codigoPostal = prompt("Ejercicio 15: Código postal (01000 - 52999)");
+
+            while(codigoPostal !== null && codigoPostal.match(/^(0[1-9]|[1-4][0-9]|5[0-2])[0-9]{3}$/) == null){
+                codigoPostal = prompt("(No válido) - Ejercicio 15: Código postal (01000 - 52999)");
+            }
+
+            var direccionIP = prompt("Ejercicio 17: Dirección IP");
+            
+            while(direccionIP !== null && direccionIP.match(/((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}/) == null){
+                direccionIP = prompt("(No válido) - Ejercicio 17: Dirección IP");
+            }
+        </script>
+    </body>
+</html>

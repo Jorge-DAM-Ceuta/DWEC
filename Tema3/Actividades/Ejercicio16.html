@@ -10,7 +10,7 @@
         <script>
             var direccionIP = prompt("Introduce una dirección IP válida: x.x.x.x (x puede variar entre 0 y 255)");
             
-            while(!direccionIP.match(/^(([0-2][0-5][0-5]\.) | ([0-1][0-9][0-9]\.)){3} (([0-2][0-5][0-5]) | ([0-1][0-9][0-9]))$/)){
+            while(direccionIP.match(/((25[0-5]|2[0-4][0-9]|[01][0-9][0-9])(\.|$)){4}/) == null){
                 direccionIP = prompt("Introduce una dirección IP válida: x.x.x.x (x puede variar entre 0 y 255)");
             }
 
