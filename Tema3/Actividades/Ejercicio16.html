@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 16</title>
+    </head>
+    <body>
+
+        <script>
+            var direccionIP = prompt("Introduce una dirección IP válida: x.x.x.x (x puede variar entre 0 y 255)");
+            
+            while(!direccionIP.match(/^(([0-2][0-5][0-5]\.) | ([0-1][0-9][0-9]\.)){3} (([0-2][0-5][0-5]) | ([0-1][0-9][0-9]))$/)){
+                direccionIP = prompt("Introduce una dirección IP válida: x.x.x.x (x puede variar entre 0 y 255)");
+            }
+
+            document.write("Bien! La dirección " + direccionIP + " es una dirección válida.");
+        </script>
+    </body>
+</html>
