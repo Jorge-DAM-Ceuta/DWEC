@@ -10,7 +10,7 @@
         <script>
             var codigoPostal = prompt("Introduce un código postal válido para España: (01000 - 52999)");
 
-            while(!codigoPostal.match(/^(0[1-9]|[1-4][0-9]|5[0-2])[0-9]{3}$/)){
+            while(codigoPostal.match(/^(0[1-9]|[1-4][0-9]|5[0-2])[0-9]{3}$/) == null){
                 codigoPostal = prompt("Introduce un código postal válido para España: (01000 - 52999)");
             }
 

@@ -10,7 +10,7 @@
         <script>
             var dni = prompt("Introduce tu DNI:");
 
-            while(!dni.match(/^[0-9KLXYZ][0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKE]$/)){
+            while(dni.match(/^[0-9KLXYZ][0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKE]$/) == null){
                 dni = prompt("Introduce tu DNI correctamente:");
             }
 
