@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 24</title>
+    </head>
+    <body>
+        <script>
+            var email = "";
+            var regex = /^[a-zA-Z0-9\.\%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/;
+
+            while(!regex.test(email)) {
+                email = prompt("Por favor, ingresa tu dirección de correo electrónico:");
+                
+                if (!regex.test(email)) {
+                    alert("Email no válido");
+                }
+            }
+
+            alert("El email es válido: " + email);
+                
+        </script>
+    </body>
+</html>
