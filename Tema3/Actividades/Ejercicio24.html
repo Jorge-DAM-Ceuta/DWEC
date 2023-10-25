@@ -10,11 +10,13 @@
             var email = "";
             var regex = /^[a-zA-Z0-9\.\%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/;
 
-            while(!regex.test(email)) {
+            while(regex.test(email) == false) {
                 email = prompt("Por favor, ingresa tu dirección de correo electrónico:");
                 
-                if (!regex.test(email)) {
+                if (regex.test(email) == false) {
                     alert("Email no válido");
+                }else{
+                    alert("El email es válido: " + email);
                 }
             }
 

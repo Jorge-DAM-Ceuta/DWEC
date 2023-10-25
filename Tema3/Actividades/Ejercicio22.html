@@ -7,15 +7,13 @@
     </head>
     <body>
         <script>
-            var usuario = prompt("Por favor, ingresa tu nombre y apellidos:");
 
             var regex = /^[A-Za-z]+ [A-Za-z]+$/;
-
-            // Comprueba si el valor cumple con la expresión regular
-            if (regex.test(userInput)) {
-                var [nombre, apellidos] = userInput.split(" ");
-                alert("Bienvenido: " + nombre + ", " + apellidos);
-                
+            var usuario = prompt("Por favor, ingresa tu nombre y apellidos:");
+            
+            if (regex.test(usuario) == true) {
+                var [nombre, apellidos] = usuario.split(" ");
+                alert("Bienvenido: " + nombre + " " + apellidos);
             } else {
                 alert("El formato no es válido.");
             }

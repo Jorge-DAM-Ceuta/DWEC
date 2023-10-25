@@ -3,11 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ejercicio 24</title>
+        <title>Ejercicio 25</title>
     </head>
     <body>
         <script>
-            
+            var url = prompt("Por favor, ingresa una URL:");
+
+            var regex = /^(https?:\/\/)?([a-zA-Z0-9\.\-]+)\.([a-zA-Z]{2,6})(\/[a-zA-Z0-9\.\/\-]*)\/?$/;
+
+            if (regex.test(url) == true) {
+                alert("La URL es válida.");
+            } else {
+                alert("La URL no es válida.");
+            }
         </script>
     </body>
 </html>

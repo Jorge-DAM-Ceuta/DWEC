@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Práctica 12</title>
+    </head>
+    <body>
+        <script>
+
+            /*En cada bucle while se añade la comprobación de que si el valor introducido es
+            null el bucle finaliza, si es distinto de null se comprueba la expresión regular. 
+
+            El método .test devuelve verdadero si se cumple la expresión, en caso contrario 
+            devuelve false por lo que hasta que el valor introducido sea distinto de null o vacío
+            y se cumpla la expresión no finalizará el bucle. */
+
+
+            var usuario = prompt("Ejercicio 22: Nombre y apellidos:");
+            var regex = /^[A-Za-z]+ [A-Za-z]+$/;
+            
+            while(usuario !== null && regex.test(usuario) == false){
+                usuario = prompt("(No válido) - Ejercicio 22: Nombre y apellidos:");
+            }
+
+            var fecha = prompt("Ejercicio 23: Fecha (dd/mm/aaaa)");
+            regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+
+            while (fecha !== null && regex.test(fecha) == false) {
+                fecha = prompt("(No válido) - Ejercicio 23: Fecha (dd/mm/aaaa)");
+            }
+
+            var email = prompt("Ejercicio 24: E-mail");
+            regex = /^[a-zA-Z0-9\.\%\+\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}$/;
+
+            while(email !== null && regex.test(email) == false) {
+                email = prompt("(No válido) - Ejercicio 24: E-mail");
+            }
+
+            var url = prompt("Ejercicio 25: URL");
+            regex = /^(https?:\/\/)?([a-zA-Z0-9\.\-]+)\.([a-zA-Z]{2,6})(\/[a-zA-Z0-9\.\/\-]*)\/?$/;
+            
+            while(url !== null && regex.test(url) == false){
+                url = prompt("(No válido) - Ejercicio 25: URL");
+            }
+
+        </script>
+    </body>
+</html>

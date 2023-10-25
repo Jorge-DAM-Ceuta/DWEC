@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 26</title>
+    </head>
+    <body>
+        <script>
+            var password1Regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+            var password2Regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
+
+            var password1 = prompt("Primera contraseña: (Al menos 8 caracteres con una letra, un dígito y un caracter especial)");
+            var password2 = prompt("Segunda contraseña: (Al menos 8 caracteres con un dígito, una mayúscula y una minúscula)");
+
+            var comp = false;
+
+            while(comp != true){
+                if (password1Regex.test(password1) && password2Regex.test(password2)) {
+                    alert("Las contraseñas son válidas");
+                    comp = true;
+                } else {
+                    alert("Las contraseñas no cumplen con los requisitos");
+                    password1 = prompt("Primera contraseña: (Al menos 8 caracteres con una letra, un dígito y un caracter especial)");
+                    password2 = prompt("Segunda contraseña: (Al menos 8 caracteres con un dígito, una mayúscula y una minúscula)");
+                }
+            }
+        </script>
+    </body>
+</html>
