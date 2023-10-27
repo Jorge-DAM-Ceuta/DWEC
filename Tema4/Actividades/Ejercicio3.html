@@ -8,8 +8,14 @@
     <body>
         <script>
             const funcionFlecha = (numero) => {
-                numero % 2 == 0 ? return true; : return false;
+                if(numero % 2 == 0){
+                    return true;
+                }else{
+                    return false;
+                }
             }
+
+            console.log(funcionFlecha(2));
         </script>
     </body>
 </html>

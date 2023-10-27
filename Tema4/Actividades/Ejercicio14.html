@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 14</title>
+    </head>
+    <body>
+        <script>
+            var personas = [
+                {"nombre": "Magnus", "apellido1": "Ámdeath", "DNI": "45.999.444X"},
+                {"nombre": "Seth", "apellido1": "Unknown", "DNI": "44.922.123S"},
+                {"nombre": "Pickles", "apellido1": "Unknown", "DNI": "X5.112.674P"},   
+            ]
+
+            console.log(personas.sort(function(a,b){
+                
+                if(a.apellido1.localeCompare(b.apellido1) == 0){
+                    return a.nombre.localeCompare(b.nombre); 
+                
+                }else{
+                    return a.apellido1.localeCompare(b.apellido1);
+                }
+            }));
+        </script>
+    </body>
+</html>
