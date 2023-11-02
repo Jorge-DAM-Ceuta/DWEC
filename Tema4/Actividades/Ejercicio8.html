@@ -6,6 +6,14 @@
         <title>Ejercicio 8</title>
     </head>
     <body>
-        
+        <script>
+            var array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
+            
+            (function(numeros){
+                for(numero of numeros){
+                    numero % 2 == 0 ? console.log(numero) : console.log();
+                }
+            })(array);
+        </script>
     </body>
 </html>

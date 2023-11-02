@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 10</title>
+    </head>
+    <body>
+        <script>
+
+            //Se le pasa una lista de elementos en su llamada y lo acepta.
+            function suma(...mas){
+                let total = 0;
+
+                for(numero of mas){
+                    total += numero;
+                }
+
+                return total;
+            }
+
+            console.log(suma(5, 8));
+            console.log(suma(5, 8, 2));
+
+
+        </script>
+    </body>
+</html>

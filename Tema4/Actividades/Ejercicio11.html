@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 11</title>
+    </head>
+    <body>
+        <script>
+            function mediaAritmetica(...numeros){
+                var media = 0;
+
+                for(const numero of numeros){
+                    media += numero; 
+                }
+
+                console.log(media / mediaAritmetica.arguments.length);
+            }
+
+            mediaAritmetica(1,5,2,76,3,8,2,10,36);
+        </script>
+    </body>
+</html>
