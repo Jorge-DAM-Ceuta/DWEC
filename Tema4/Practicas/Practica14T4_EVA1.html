@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Práctica 14</title>
+    </head>
+    <body>
+        <script>
+            function fibonacci(numero){
+                if(numero <= 1){
+                    return numero;
+                }else{
+                    return fibonacci(numero - 1) + fibonacci(numero - 2);
+                }
+            }
+            
+            var numero = prompt("Introduce un número para realizar la secuencia Fibonacci: ");
+            
+            if(!isNaN(numero) && numero >= 0){
+                document.write(`<p>El resultado de la secuencia Fibonacci del número ${numero} es: ${fibonacci(numero)}</p>`);
+            }
+        </script>
+    </body>
+</html>
