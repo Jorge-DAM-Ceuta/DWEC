@@ -7,6 +7,9 @@
     </head>
     <body>
         <script>
+            /*Esta función comprueba si el número introducido es menor o igual a 1 para el caso
+            base. En caso contrario realiza una llamada recursiva a sí misma para calcular la 
+            suma de los dos números anteriores al número introducido.*/
             function fibonacci(numero){
                 if(numero <= 1){
                     return numero;
@@ -18,7 +21,7 @@
             var numero = prompt("Introduce un número para realizar la secuencia Fibonacci: ");
             
             if(!isNaN(numero) && numero >= 0){
-                document.write(`<p>El resultado de la secuencia Fibonacci del número ${numero} es: ${fibonacci(numero)}</p>`);
+                alert(`El resultado de la secuencia Fibonacci del número ${numero} es: ${fibonacci(numero)}`);
             }
         </script>
     </body>
