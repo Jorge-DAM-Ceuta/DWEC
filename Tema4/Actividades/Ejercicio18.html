@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 18</title>
+    </head>
+    <body>
+        <script>
+            var dethlock = ["Nathan", "Toki", "Pickles", "Skwisgaar", "Murderface"];
+
+            function esCadena(valor, indice, array){
+                return typeof valor === "string";
+            }
+
+            function menorDe10Caracteres(valor, indice, array){
+                return valor.length < 10; 
+            }
+
+            function mayorDe5Caracteres(valor, indice, array){
+                return valor.length > 5; 
+            }
+
+            console.log("Son todos los elementos cadenas de caracteres? " + dethlock.every(esCadena));
+            console.log("Tienen todos los elementos menos de 10 caracteres? " + dethlock.every(menorDe10Caracteres));
+            console.log("Tienen todos los elementos más de 5 caracteres? " + dethlock.every(mayorDe5Caracteres));
+        
+        </script>
+    </body>
+</html>

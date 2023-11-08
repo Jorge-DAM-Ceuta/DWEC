@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 15</title>
+    </head>
+    <body>
+        <script>
+            function suma(dato1, dato2){
+                return dato1 + dato2;
+            }
+
+            function resta(dato1, dato2){
+                return dato1 - dato2;
+            }
+
+            function multiplicacion(dato1, dato2){
+                return dato1 * dato2;
+            }
+
+            function division(dato1, dato2){
+                return dato1 / dato2;
+            }
+
+            function resto(dato1, dato2){
+                return dato1 % dato2;
+            }
+
+            function operacion(opCB, dato1, dato2){
+                return opCB(dato1, dato2);
+            }
+
+            console.log(operacion(suma, 8, 8));
+            console.log(operacion(resta, 8, 8));
+            console.log(operacion(multiplicacion, 8, 8));
+            console.log(operacion(division, 8, 8));
+            console.log(operacion(resto, 8, 8));
+        </script>
+    </body>
+</html>

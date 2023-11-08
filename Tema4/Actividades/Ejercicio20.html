@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 20</title>
+    </head>
+    <body>
+        <script>
+            var array = [["Magnus", "Ámdeath", "45.999.444X"],
+                         ["Seth", "Unknown", "44.922.123S"],
+                         ["Pickles", "Unknown", "X5.112.674P"]];
+
+            var nuevoArray = [];
+            
+            nuevoArray.push(array.reduce(function(anterior, actual){
+                return "" + anterior + ", [" + actual + "]";
+            }));
+
+            console.log(nuevoArray);
+        </script>
+    </body>
+</html>

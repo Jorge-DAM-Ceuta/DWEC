@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 17</title>
+    </head>
+    <body>
+        <script>
+            var array = [{"nombre": "Magnus", "apellido1": "Ámdeath", "DNI": "45.999.444X"},
+                         {"nombre": "Seth", "apellido1": "Unknown", "DNI": "44.922.123S"},
+                         {"nombre": "Pickles", "apellido1": "Unknown", "DNI": "X5.112.674P"}
+                        ];
+
+            array.forEach(function(valor, indice){
+                console.log(`Persona ${indice} --> Nombre: ${valor.nombre}, Apellido: ${valor.apellido1}, DNI: ${valor.DNI}`);
+            });
+
+        </script>
+    </body>
+</html>

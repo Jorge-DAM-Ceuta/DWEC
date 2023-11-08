@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 16</title>
+    </head>
+    <body>
+        <script>
+            var array = [{"nombre": "Magnus", "apellido1": "Ámdeath", "baremo": 8.2, "concurso": "no admitido"},
+                         {"nombre": "Seth", "apellido1": "Wasted", "baremo": 3.1, "concurso": "no admitido"},
+                         {"nombre": "Pickles", "apellido1": "Wasted", "baremo": 6, "concurso": "no admitido"},
+                         {"nombre": "William", "apellido1": "Murderface", "baremo": 9.1, "concurso": "no admitido"}
+                        ];
+            
+            var mediaBaremo = (8.2 + 3.1 + 6 + 9.1) / 4; 
+                    
+            function calcularBaremo(valor, indice, array){
+                if(valor['baremo'] >= mediaBaremo){
+                    valor['concurso'] = "ADMITIDO";
+                }
+
+                return valor;
+            }
+
+            var nuevoArray = array.map(calcularBaremo);
+            console.log(nuevoArray);
+        </script>
+    </body>
+</html>

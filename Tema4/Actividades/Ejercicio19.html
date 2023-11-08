@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 19</title>
+    </head>
+    <body>
+        <script>
+            var dethlock = ["Nathan", "Toki", "Pickles", "Skwisgaar", "Murderface"];
+
+            function mayorDe6Caracteres(valor, indice, array){
+                if(valor.length > 6){
+                    return valor;
+                }
+            };
+
+            var arrayMayorDe6Caracteres = dethlock.filter(mayorDe6Caracteres);
+            console.log(arrayMayorDe6Caracteres);
+
+            function comienzaPor(valor, indice, array){
+                if(valor.charAt(0) == 'M' || valor.charAt(0) == 'N'){
+                    return valor;
+                }
+            }
+            
+            var arrayComienzaPor = dethlock.filter(comienzaPor);
+            console.log(arrayComienzaPor);
+        </script>
+    </body>
+</html>
