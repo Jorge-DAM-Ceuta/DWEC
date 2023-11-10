@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 2</title>
+    </head>
+    <body>
+        <script>
+            function Coche(){
+                this.marca = 0;
+                this.combustible = 0;
+                this.cantidad = 0;
+
+                //Getters y setters
+                this.getMarca = function(){
+                    return this.marca;
+                }
+
+                this.setMarca = function(marca){
+                    this.marca = marca;
+                }
+
+                this.getCombustible = function(){
+                    return this.combustible;
+                }
+
+                this.setCombustible = function(combustible){
+                    this.combustible = combustible;
+                }
+
+                this.getCantidad = function(){
+                    return this.cantidad;
+                }
+
+                this.setCantidad = function(cantidad){
+                    this.cantidad = cantidad;
+                }
+
+                this.rellenarDeposito = this.setCantidad;
+
+                this.muestraConf = function(){
+                    console.log(`Marca: ${this.getMarca()}, Combustible: ${this.getCombustible()}, Cantidad ${this.getCantidad()}`);
+                };
+                
+            };
+
+            var miCoche = new Coche();
+            miCoche.rellenarDeposito(83);
+            miCoche.muestraConf();
+            
+        </script>
+    </body>
+</html>
