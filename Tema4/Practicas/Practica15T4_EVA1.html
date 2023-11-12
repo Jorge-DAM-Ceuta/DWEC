@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Práctica 15</title>
+    </head>
+    <body>
+        <script>
+            const json = `{
+                "personajes": [
+                    {
+                    "nombre": "Eric",
+                    "apellidos": "Cartman",
+                    "profesión": "Estudiante",
+                    "edad": 13
+                    },
+                    {
+                    "nombre": "Stan",
+                    "apellidos": "Marsh",
+                    "profesión": "Estudiante",
+                    "edad": 9
+                    },
+                    {
+                    "nombre": "Kyle",
+                    "apellidos": "Broflovski",
+                    "profesión": "Estudiante",
+                    "edad": 9
+                    },
+                    {
+                    "nombre": "Kenny",
+                    "apellidos": "McCormick",
+                    "profesión": "Estudiante",
+                    "edad": 13
+                    },
+                    {
+                    "nombre": "Butters",
+                    "apellidos": "Stotch",
+                    "profesión": "Estudiante",
+                    "edad": 9
+                    },
+                    {
+                    "nombre": "Wendy",
+                    "apellidos": "Testaburger",
+                    "profesión": "Estudiante",
+                    "edad": 12
+                    },
+                    {
+                    "nombre": "Randy",
+                    "apellidos": "Marsh",
+                    "profesión": "Geólogo",
+                    "edad": 45
+                    },
+                    {
+                    "nombre": "Sharon",
+                    "apellidos": "Marsh",
+                    "profesión": "Recepcionista",
+                    "edad": 42
+                    },
+                    {
+                    "nombre": "Chef",
+                    "apellidos": "",
+                    "profesión": "Cocinero",
+                    "edad": 45
+                    },
+                    {
+                    "nombre": "Mr. Garrison",
+                    "apellidos": "",
+                    "profesión": "Maestro",
+                    "edad": 50
+                    },
+                    {
+                    "nombre": "Mr. Mackey",
+                    "apellidos": "",
+                    "profesión": "Consejero escolar",
+                    "edad": 45
+                    },
+                    {
+                    "nombre": "Ms. Choksondik",
+                    "apellidos": "",
+                    "profesión": "Maestra",
+                    "edad": 40
+                    },
+                    {
+                    "nombre": "Tweek",
+                    "apellidos": "Tweak",
+                    "profesión": "Estudiante",
+                    "edad": 9
+                    },
+                    {
+                    "nombre": "Craig",
+                    "apellidos": "Tucker",
+                    "profesión": "Estudiante",
+                    "edad": 15
+                    },
+                    {
+                    "nombre": "Token",
+                    "apellidos": "Black",
+                    "profesión": "Estudiante",
+                    "edad": 12
+                    },
+                    {
+                    "nombre": "Bebe",
+                    "apellidos": "Stevens",
+                    "profesión": "Estudiante",
+                    "edad": 9
+                    },
+                    {
+                    "nombre": "Clyde",
+                    "apellidos": "Donovan",
+                    "profesión": "Estudiante",
+                    "edad": 12
+                    },
+                    {
+                    "nombre": "Timmy",
+                    "apellidos": "Burch",
+                    "profesión": "Estudiante",
+                    "edad": 9
+                    },
+                    {
+                    "nombre": "Jimmy",
+                    "apellidos": "Valmer",
+                    "profesión": "Estudiante",
+                    "edad": 9
+                    },
+                    {
+                    "nombre": "Heidi",
+                    "apellidos": "Turner",
+                    "profesión": "Estudiante",
+                    "edad": 12
+                    }
+                ]
+            }`
+
+            /*Se obtienen los datos del json y se selecciona 
+            únicamente el array personajes.*/
+            var datos = JSON.parse(json);
+            var personajes = datos.personajes;
+
+        //Mostrar el contenido
+            /*Con forEach recorremos cada elemento del array y mostramos sus valores.*/
+            document.write("<h2>Array personajes: </h2>");
+            
+            personajes.forEach(function(valor, indice){
+                document.write(`Persona ${indice} --> Nombre: ${valor.nombre}, Apellidos: ${valor.apellidos}, Profesión: ${valor.profesión}, Edad: ${valor.edad}<br/>`);
+            });
+
+        //Mostrar promedio de edad
+            /*Con reduce indicamos que empiece en 0 y sume las edades de sus elementos. El valor
+            obtenido se divide con la longitud del array y se obtiene la media de las edades.*/
+            var mediaEdad = 0;    
+            var sumaEdades = personajes.reduce(function(anterior, actual){
+                    return parseInt(anterior + actual.edad);
+            }, 0);
+
+            mediaEdad = sumaEdades / personajes.length;
+
+            document.write(`<h2>Media de edades: ${mediaEdad}</h2>`);
+
+        //Array con nombre y profesión
+            /*Con esta función se obtiene un nuevo elemento del array con el nombre y la profesión,
+            en su asignación a un nuevo array mediante la función map se añaden todas las posiciones
+            con esos dos valores.*/
+            function obtenerNombreYProfesion(valor){
+                return {nombre: valor.nombre, profesión: valor.profesión};
+            }
+            
+            document.write("<h2>Array con nombre y profesión: </h2>");
+
+            var nuevoArray = personajes.map(obtenerNombreYProfesion);
+            
+            /*Se recorre el array con forEach para obtener y mostrar todos sus elementos.*/
+            nuevoArray.forEach(function(valor, indice){
+                document.write(`Persona ${indice} --> Nombre: ${valor.nombre}, Profesión: ${valor.profesión}<br/>`);
+            });
+
+        //Mostrar los estudiantes con más de 11 años
+            /*Con esta función se obtiene el valor profesión y edad de cada elemento, si cumple
+            con la especificación se devuelve true para guardar ese elemento mediante la función 
+            filter*/
+            function estudianteMayorDe11(valor){
+                if(valor.profesión == 'Estudiante' && valor.edad > 11){
+                    return true;
+                }
+            }
+            
+            document.write("<h2>Estudiantes con más de 11 años: </h2>");
+
+            var arrayEstudiantes = personajes.filter(estudianteMayorDe11);
+            
+            /*Se recorre el array con forEach para obtener y mostrar todos sus elementos.*/
+            arrayEstudiantes.forEach(function(valor, indice){
+                document.write(`Estudiante ${indice} --> Nombre: ${valor.nombre}, Apellidos: ${valor.apellidos}, Profesión: ${valor.profesión}, Edad: ${valor.edad}<br/>`);
+            });
+
+        </script>
+    </body>
+</html>
