@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 3</title>
+    </head>
+    <body>
+        <script>
+            function Coche(){
+                this.marca = 0;
+                this.combustible = 0;
+                this.cantidad = 0;
+
+                //Getters y setters
+                this.getMarca = function(){
+                    return this.marca;
+                }
+
+                this.setMarca = function(marca){
+                    this.marca = marca;
+                }
+
+                this.getCombustible = function(){
+                    return this.combustible;
+                }
+
+                this.setCombustible = function(combustible){
+                    this.combustible = combustible;
+                }
+
+                this.getCantidad = function(){
+                    return this.cantidad;
+                }
+
+                this.setCantidad = function(cantidad){
+                    this.cantidad = cantidad;
+                }
+
+                this.rellenarDeposito = this.setCantidad;
+
+                this.muestraConf = function(){
+                    console.log(`Marca: ${this.getMarca()}, Combustible: ${this.getCombustible()}, Cantidad ${this.getCantidad()}`);
+                };
+                
+            };
+
+            var marca = prompt("¿Cuál es la marca del coche?");
+            var combustible = prompt("¿Qué tipo de combustible usa?");
+            var cantidad = prompt("Cantidad de combustible actual:")
+            var numeroCoches = prompt("¿Cuántos coches quieres?");
+            var coches = [];
+
+            for(let i = 0; i < numeroCoches; i++){
+                var miCoche = new Coche();
+                miCoche.setMarca(marca);
+                miCoche.setCombustible(combustible);
+                miCoche.setCantidad(cantidad);
+
+                coches.push(miCoche);
+            }
+            
+            document.write("<table border='1'><tr><th>Marca</th><th>Combustible</th><th>Cantidad</th></tr>");
+
+            for(let i = 0; i < coches.length; i++){
+                document.write(`<tr><td align='center'>${miCoche.getMarca()}</td><td align='center'>${miCoche.getCombustible()}</td><td align='center'>${miCoche.getCantidad()}</td></tr>`);
+            }
+
+            document.write("</table>");
+            
+        </script>
+    </body>
+</html>
