@@ -13,13 +13,16 @@
                 this.nombre = nombre;
 
                 this.getRadio = function(){ return this.diametro/2; }
-                this.getTemp = function(){ return `${(this.temperatura * 1.8) + 32} Farenheit`; }
+                this.getTemp = function(){ return (this.temperatura * 1.8) + 32; }
             }
 
-            function CometaPrototype(){
-                this.getPrototypeOf() = "";
+            function CometaPrototype(diametro, temperatura, nombre){
+                this.__proto__ = new Cometa(diametro, temperatura, nombre);
+                this.def = function(){ return `Nombre: ${this.nombre}, Diámetro: ${this.diametro}, Radio: ${this.getRadio()}, Temperatura Celsius: ${this.temperatura}, Temperatura Farenheit: ${this.getTemp()}`}
             }
-            
+
+            var cometa1 = new CometaPrototype(18, 25, "MiPrimeraCometa");
+            document.write(cometa1.def());
         </script>
     </body>
 </html>
