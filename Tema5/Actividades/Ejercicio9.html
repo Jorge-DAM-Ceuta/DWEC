@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 9</title>
+    </head>
+    <body>
+        <script>
+            var map = new Map();
+
+            map.set("45124434K", "Jorge");
+            map.set("45124653H", "Adrián");
+            map.set("45124236J", "Lidia");
+
+            var dni = prompt("Escribe un DNI para comprobar si existe:");
+
+            for([clave, valor] of map){
+                if(dni == clave){
+                    alert("El DNI está en el registro con el nombre " + valor);
+                }
+            }
+
+            // if(map.has(dni)){
+            //     alert(`EL DNI ${dni} ESTÁ EN EL REGISTRO`);
+            //     map.get(dni);
+            // }else{
+            //     alert(`EL DNI ${dni} NO ESTÁ REGISTRADO`);
+            // }
+
+            console.log(map);
+        </script>
+    </body>
+</html>

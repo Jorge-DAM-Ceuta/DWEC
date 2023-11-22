@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 7</title>
+    </head>
+    <body>
+        <script>
+            const unicos = new Set();
+
+            unicos.add(4);
+            unicos.add(6);
+            unicos.add("cinco");
+            unicos.add(2);
+            unicos.add([2, 2]);
+            unicos.add({p1:"valor1", p2:"valor2"});
+            unicos.add(3);
+
+            console.log(unicos);
+            console.log(`Tamaño: ${unicos.size}`);
+        </script>
+    </body>
+</html>
