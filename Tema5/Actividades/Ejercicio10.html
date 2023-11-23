@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 10</title>
+    </head>
+    <body>
+        <script>
+            const json = `{
+                "idPedido":"faa-844",
+                "pedidos":[
+                    {
+                        "idProducto":"info005",
+                        "nombre":"Placa_Arduino_one",
+                        "destinoPostal":"abarcable"
+                    },
+                    {
+                        "idProducto":"info041",
+                        "nombre":"Placa_Raspberry_3",
+                        "destinoPostal":"No abarcable"
+                    },
+                    {
+                        "idProducto":"gadget024",
+                        "nombre":"usb_Multi_5puertos",
+                        "destinoPostal":"abarcable"
+                    }
+                ]
+            }`;
+
+            var map = new Map(Object.entries(JSON.parse(json)));
+            console.log(map);
+        </script>
+    </body>
+</html>

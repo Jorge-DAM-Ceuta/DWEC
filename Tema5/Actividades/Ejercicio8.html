@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 8</title>
+    </head>
+    <body>
+        <script>
+            var a = new Set([1, 2, 3]);
+            var b = new Set([2, 3, 4]);
+
+            var array = [];
+
+            function union(set1, set2){
+                return new Array(set1, set2);
+            }
+            
+            array = union(a, b);
+            console.log(array);
+
+            // function obtenerArray(set1, set2){
+            //     array.filter(valor.has(valor) => valor);  
+            // }
+
+            // array = obtenerArray(a, b); 
+            // console.log(array);
+        </script>
+    </body>
+</html>

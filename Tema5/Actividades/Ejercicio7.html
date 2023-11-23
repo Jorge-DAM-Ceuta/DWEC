@@ -18,7 +18,13 @@
             unicos.add(3);
 
             console.log(unicos);
-            console.log(`Tamaño: ${unicos.size}`);
+            console.log(`Tamaño: ${unicos.size} elementos.`);
+            console.log(unicos.has(6));
+            unicos.delete(6);
+
+            for(const valor of unicos){
+                console.log(valor);
+            }
         </script>
     </body>
 </html>
