@@ -1,0 +1,13 @@
+table{
+    border-collapse: collapse 3px;
+    
+    & tr{
+        &.filaVerde{
+            background-color: rgb(65, 240, 30);
+        }
+
+        &.filaRoja{
+            background-color: rgb(240, 45, 40);
+        }
+    }
+}

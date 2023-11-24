@@ -29,7 +29,25 @@
             }`;
 
             var map = new Map(Object.entries(JSON.parse(json)));
-            console.log(map);
+            
+            document.write(`<h2>idPedido: ${map.get("idPedido")}</h2>`);
+
+            document.write(`<table border='10'>`);
+            document.write(`<tr><th></th><th>ID producto</th><th>Nombre</th><th>Destino Postal</th></tr>`);
+
+            var i = 1;
+
+            for(pedido of map.get("pedidos")){
+                if(pedido.destPostal == "Abarcable"){
+                    document.write(`<tr><th>Producto ${i}</th><td>${pedido.idProducto}</td><td>${pedido.nombre}</td><td>${pedido.destinoPostal}</td></tr>`);
+                }else{
+                    document.write(`<tr><th>Producto ${i}</th><td>${pedido.idProducto}</td><td>${pedido.nombre}</td><td>${pedido.destinoPostal}</td></tr>`);
+                }
+
+                i++;
+            }
+
+            document.write(`</table>`);
         </script>
     </body>
 </html>

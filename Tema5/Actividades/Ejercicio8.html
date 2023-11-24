@@ -17,14 +17,23 @@
             }
             
             array = union(a, b);
-            console.log(array);
 
-            // function obtenerArray(set1, set2){
-            //     array.filter(valor.has(valor) => valor);  
-            // }
+            var interseccion = [];
 
-            // array = obtenerArray(a, b); 
-            // console.log(array);
+            for(let i = 0; i<array[0].length; i++){
+                if(array[0][i].has(array[1])){
+                    interseccion.push(array[0][i]);
+                }
+            }
+
+            // var interseccion = array.filter((valor, indice) => {
+            //     console.log("INDICE: " + indice + " VALOR: " + valor);
+            //     if(valor.has(indice+1)){
+            //         return valor;
+            //     }
+            // });
+
+            console.log(interseccion);
         </script>
     </body>
 </html>
