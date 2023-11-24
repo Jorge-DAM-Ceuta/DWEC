@@ -7,14 +7,55 @@
     </head>
     <body>
         <script>
-            function Ordenador(marca, modelo, memoriaRAM, capacidadDisco, pulgadas){
-                
+            /*Mediante function Ordenador creamos la clase que tiene los siguientes atributos:
+            De los cuales serán obligatorios la marca y el modelo, recibiendo el resto un 
+            valor por defecto en los parámetros. 
+            
+            Mediante this indicamos el atributo propio del objeto, al que asignaremos el 
+            valor obtenido del parámetro. También declaramos una función propia de la 
+            clase llamada toString que devuelve una cadena de caracteres con el estado
+            del objeto desde el que se llame, con sus propios valores. */
+            function Ordenador(marca, modelo, memoriaRAM = "4GB", capacidadDisco = "512GB", pulgadas = `17"`){
+                this.marca = marca;
+                this.modelo = modelo;
+                this.memoriaRAM = memoriaRAM;
+                this.capacidadDisco = capacidadDisco;
+                this.pulgadas = pulgadas;
+
+                this.toString = function(){ return `Marca: ${this.marca}, Modelo: ${this.modelo}, Memoria RAM: ${this.memoriaRAM}, Capacidad Disco: ${this.capacidadDisco}, Pulgadas: ${this.pulgadas}`; }
             }
 
-            function Portatil(autonomia){
+            /*Mediante la función Portatil obtenemos los mismos atributos que la clase Ordenador
+            ya que esta debe heredar todas sus características. Para esta se añade un atributo 
+            más llamado autonomia. 
+            
+            Mediante this.__proto__ se crea un objeto Ordenador con los valores obtenidos por 
+            parámetros excepto el que es propio de la clase Portatil. Este último se asigna
+            como los atributos de una clase independiente con this.autonomia = autonomia.
+            
+            Por último redefinimos la función toString para mostrar el estado del objeto con 
+            todos los atributos de la clase Ordenador y añadiendo el atributo autonomia que 
+            es propio de la clase Portatil.*/
+            function Portatil(marca, modelo, memoriaRAM = "4GB", capacidadDisco = "256GB", pulgadas = `13"`, autonomia = "4 horas"){
+                this.__proto__ = new Ordenador(marca, modelo, memoriaRAM, capacidadDisco, pulgadas);
                 this.autonomia = autonomia;
-                this.__proto__ = "";
+
+                this.toString = function(){ return `Marca: ${this.marca}, Modelo: ${this.modelo}, Memoria RAM: ${this.memoriaRAM}, Capacidad Disco: ${this.capacidadDisco}, Pulgadas: ${this.pulgadas}, Autonomía: ${this.autonomia}`; }
             }
+
+            /*Creamos los objetos de la clase Ordenador y llamamos a su propio método 
+            .toString() para mostrar la información del objeto.*/
+            var hp_PC = new Ordenador("HP", "X SERIES");
+            var lenovo_PC = new Ordenador("LENOVO", "EDGE", "16GB", "1TB", `24"`);
+            console.log("Ordenador HP: " + hp_PC.toString());
+            console.log("Ordenador Lenovo: " + lenovo_PC.toString());
+
+            /*Creamos los objetos de la clase Portatil que hereda los atributos de ordenador
+            y llamamos a su propio método .toString() para mostrar la información del objeto.*/
+            var portatil1 = new Portatil("MSI", "YXZ MODEL");
+            var portatil2 = new Portatil("AOC", "BETTER SG", "8GB", "2TB", `20"`, "2 horas");
+            console.log("Portátil MSI: " + portatil1.toString());
+            console.log("Portátil AOC: " + portatil2.toString());
         </script>
     </body>
 </html>
