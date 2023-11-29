@@ -1,4 +1,5 @@
-var tableroSize = prompt("Introduce un tamaño para el tablero: ");
+var numeroFilas = prompt("Introduce el número de filas para el tablero: ");
+var numeroColumnas = prompt("Introduce el número de columnas para el tablero: ");
 var numeroMinas = prompt("Introduce un número de minas a colocar: ");
 
 //DEBEMOS MOSTRAR EL TABLERO CON LAS PIEZAS SOLAMENTE.
@@ -30,15 +31,18 @@ function getNumMinasPos(tablero, fila, columna){
 
 }
 
-//Devuelve las dimensiones del tablero
-function getDimensiones(){
-    return tableroSize;
-}
-
-//Devuelve el número de minas que hay en el tablero
-function getNumMinas(){
-    return numeroMinas;
-}
-
 //Para la lógica usar onClick
 //preventDefault() para anular el comportamiento por defecto de un elemento y reset() para restaurarlo. 
+
+function Buscaminas(tableroSize, numeroMinas){
+    this.tableroSize = tableroSize;
+    this.numeroMinas = numeroMinas;
+
+    this.getDimensiones = function(){
+        return tableroSize;
+    }
+
+    this.getNumMinas = function(){
+        return numeroMinas;
+    }
+}
