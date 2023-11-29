@@ -1,34 +1,39 @@
 var tableroSize = prompt("Introduce un tamaño para el tablero: ");
 var numeroMinas = prompt("Introduce un número de minas a colocar: ");
 
-function nMinasPos(tablero, fila, columna){
+//Dibuja el tablero en el documento HTML
+function dibujaTablero(tablero, nFilas, nColumnas){
+    //
+    nFilas = tableroSize;
+    nColumnas = tableroSize;
+}
+
+//Coloca un número de minas en el tablero
+function colocaMinas(tablero, nMinas){
 
 }
 
-function colocaRelleno(tablero){
+//Coloca espacios en blanco en el tablero
+function colocaEspacios(tablero){
 
 }
 
-function colocaMinas(tablero, minas){
+//Coloca números en el tablero
+function colocarNumeros(tablero){
 
 }
 
-function dibujaTableroWeb(tablero){
+//Contar minas adyacentes a una posición específica.
+function getNumMinasPos(tablero, fila, columna){
 
 }
 
-function getN_Filas(){
-
+//Devuelve las dimensiones del tablero
+function getDimensiones(){
+    return tableroSize;
 }
 
-function getN_Columnas(){
-
-}
-
-function getN_Minas(nFilas, nColumnas){
-
-}
-
-function nMinasPos(tablero, filas, columnas){
-
+//Devuelve el número de minas que hay en el tablero
+function getNumMinas(){
+    return numeroMinas;
 }

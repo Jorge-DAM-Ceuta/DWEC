@@ -6,8 +6,14 @@
         <title>Ejercicio 13</title>
     </head>
     <body>
+        <h1 id="hora">Hora actual: </h1>
         <script>
-            
+            function getHora(){
+                var hora = new Date();
+                return `${hora.getHours()}:${hora.getMinutes()}:${hora.getSeconds()}`;
+            }
+//-------------------------------
+            setInterval(document.getElementById("hora").innerHTML = getHora(), 20);
         </script>
     </body>
 </html>
