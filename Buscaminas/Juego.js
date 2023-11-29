@@ -1,6 +1,8 @@
 var tableroSize = prompt("Introduce un tamaño para el tablero: ");
 var numeroMinas = prompt("Introduce un número de minas a colocar: ");
 
+//DEBEMOS MOSTRAR EL TABLERO CON LAS PIEZAS SOLAMENTE.
+
 //Dibuja el tablero en el documento HTML
 function dibujaTablero(tablero, nFilas, nColumnas){
     //
@@ -37,3 +39,6 @@ function getDimensiones(){
 function getNumMinas(){
     return numeroMinas;
 }
+
+//Para la lógica usar onClick
+//preventDefault() para anular el comportamiento por defecto de un elemento y reset() para restaurarlo. 
