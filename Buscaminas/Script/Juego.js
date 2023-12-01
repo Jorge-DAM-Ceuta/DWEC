@@ -1,10 +1,11 @@
 function Buscaminas(){
+//Atributos de la clase
     this.tablero = [];
     this.numFilas = 0;
     this.numColumnas = 0;
     this.numMinas = 0;
 
-    //Setters
+//Setters
     this.setNumFilas = function(numFilas){
         this.numFilas = numFilas;
     }
@@ -17,7 +18,7 @@ function Buscaminas(){
         this.numMinas = numMinas;
     }
 
-    //Getters
+//Getters
     this.getNumFilas = function(){
         return this.numFilas;
     }
@@ -45,11 +46,21 @@ function Buscaminas(){
 
                 if(valor != " " && valor != "*"){
                     if (valor == "1") {
-                        color = "blue";
-                    } else if (valor == "2") {
-                        color = "green";
-                    } else if (valor == "3") {
-                        color = "red";
+                        color = "rgb(135, 206, 250)";
+                    }else if (valor == "2") {
+                        color = "rgb(0, 128, 0)";
+                    }else if (valor == "3") {
+                        color = "rgb(255, 0, 0)";
+                    }else if (valor == "4") {
+                        color = "rgb(0, 0, 139)";
+                    }else if (valor == "5") {
+                        color = "rgb(255, 165, 0)";
+                    }else if (valor == "6") {
+                        color = "rgb(0, 100, 0)";
+                    }else if (valor == "7") {
+                        color = "rgb(139, 0, 0)";
+                    }else if (valor == "8") {
+                        color = "rgb(128, 0, 128)";
                     }
                 }
 
@@ -63,7 +74,7 @@ function Buscaminas(){
         document.write(tableroBuscaminas);
     }
 
-    //Rellenar con espacios en blanco el tablero
+    //Rellenar con espacios en blanco el tablero.
     this.rellenarTablero = function(){
         for(let i = 0; i < this.getNumFilas(); i++){
             var fila = [];
@@ -76,7 +87,7 @@ function Buscaminas(){
         }
     }
 
-    //Coloca un número de minas en el tablero
+    //Colocar tantas minas como numMinas aleatoriamente en el tablero.
     this.colocarMinas = function(){
         let minasColocadas = 0;
 
@@ -97,7 +108,6 @@ function Buscaminas(){
 
         for(let i = fila - 1; i <= fila + 1; i++){
             for(let j = columna - 1; j <= columna + 1; j++){
-
                 if(i >= 0 && i < this.getNumFilas() && j >= 0 && j < this.getNumColumnas()){
                     if(this.tablero[i][j] == "*"){
                         contador++;
@@ -109,11 +119,10 @@ function Buscaminas(){
         return contador;
     }
 
-    //Coloca números en el tablero
+    //Coloca números en posiciones adyacentes a las minas en el tablero.
     this.colocarNumeros = function(){
         for(let i = 0; i < this.getNumFilas(); i++){
             for(let j = 0; j < this.getNumColumnas(); j++){
-
                 if(this.tablero[i][j] != "*"){
                     let numMinas = this.getNumMinasPos(i, j);
 

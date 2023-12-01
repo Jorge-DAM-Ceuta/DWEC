@@ -9,37 +9,46 @@
     <body>
         <script src="./Script/Juego.js"></script>
         <script>
-            //Comprobamos que los valores obtenidos sean correctos, en caso contrario volvemos a pedirlos.
-            var numeroFilas = prompt("Introduce el número de filas para el tablero: ");
-            var numeroColumnas = prompt("Introduce el número de columnas para el tablero: ");
-            var numeroMinas = prompt("Introduce un número de minas a colocar: ");
+            var numeroFilas;
+            var numeroColumnas;
+            var numeroMinas;
 
             //Las filas y columnas deben ser entre 10 y 20.
-            
-            /*El número de minas no puede ser igual o superior a columnas * filas / 3
-            Ni superior a columnas * filas * 2 / 3 */
+            while(isNaN(numeroFilas) || numeroFilas < 10 || numeroFilas > 20){
+                numeroFilas = prompt("Introduce un número de filas entre 10 y 20: ");
+            }
 
+            while(isNaN(numeroColumnas) || numeroColumnas < 10 || numeroColumnas > 20){
+                numeroColumnas = prompt("Introduce un número de columnas entre 10 y 20: ");
+            }
 
+            //Comprobamos que el número de minas no supere ambas excepciones.
+            var maximoMinas1 = numeroColumnas * numeroFilas / 3;
+            var maximoMinas2 = numeroColumnas * numeroFilas * 2 / 3;
 
-            //Primero se crea un objeto de la clase Buscaminas.
-            var partida = new Buscaminas();
+            while(isNaN(numeroMinas) || numeroMinas >= maximoMinas1 || numeroMinas > maximoMinas2){
+                numeroMinas = prompt("Introduce un número de minas a colocar: ");
+            }
+
+            //Se crea un objeto de la clase Buscaminas.
+            var tablero = new Buscaminas();
 
             //Se asignan los tres valores obtenidos por prompt().
-            partida.setNumFilas(numeroFilas);
-            partida.setNumColumnas(numeroColumnas);
-            partida.setNumMinas(numeroMinas);
+            tablero.setNumFilas(numeroFilas);
+            tablero.setNumColumnas(numeroColumnas);
+            tablero.setNumMinas(numeroMinas);
 
             //Se rellena el tablero con las dimensiones dadas en filas y columnas con espacios en blanco.
-            partida.rellenarTablero();
+            tablero.rellenarTablero();
 
             //Se colocan tantas minas como numeroMinas aleatoriamente.
-            partida.colocarMinas();
+            tablero.colocarMinas();
 
             //Se obtienen las posiciones de las minas y se colocan los números de proximidad.
-            partida.colocarNumeros();
+            tablero.colocarNumeros();
 
             //Se imprime el tablero por pantalla.
-            partida.dibujarTablero();
+            tablero.dibujarTablero();
 
         </script>
     </body>
