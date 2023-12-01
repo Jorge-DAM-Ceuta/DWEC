@@ -3,11 +3,44 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./Style/Style.css">
         <title>Buscaminas</title>
     </head>
     <body>
-        <script src="./Juego.js">
+        <script src="./Script/Juego.js"></script>
+        <script>
+            //Comprobamos que los valores obtenidos sean correctos, en caso contrario volvemos a pedirlos.
+            var numeroFilas = prompt("Introduce el número de filas para el tablero: ");
+            var numeroColumnas = prompt("Introduce el número de columnas para el tablero: ");
+            var numeroMinas = prompt("Introduce un número de minas a colocar: ");
+
+            //Las filas y columnas deben ser entre 10 y 20.
             
+            /*El número de minas no puede ser igual o superior a columnas * filas / 3
+            Ni superior a columnas * filas * 2 / 3 */
+
+
+
+            //Primero se crea un objeto de la clase Buscaminas.
+            var partida = new Buscaminas();
+
+            //Se asignan los tres valores obtenidos por prompt().
+            partida.setNumFilas(numeroFilas);
+            partida.setNumColumnas(numeroColumnas);
+            partida.setNumMinas(numeroMinas);
+
+            //Se rellena el tablero con las dimensiones dadas en filas y columnas con espacios en blanco.
+            partida.rellenarTablero();
+
+            //Se colocan tantas minas como numeroMinas aleatoriamente.
+            partida.colocarMinas();
+
+            //Se obtienen las posiciones de las minas y se colocan los números de proximidad.
+            partida.colocarNumeros();
+
+            //Se imprime el tablero por pantalla.
+            partida.dibujarTablero();
+
         </script>
     </body>
 </html>
