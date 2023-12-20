@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 3</title>
+    </head>
+    <body>
+        <button onclick="datosScreen()">Púlsame</button>
+        <p id="datos"></p>
+
+        <script>
+            function datosScreen(){
+                document.getElementById("datos").innerHTML = `Píxeles de altura del DOM: ${screen.availHeight}<br/>
+                Píxeles de anchura del DOM: ${screen.availWidth}<br/>
+                Píxeles totales de altura de la pantalla: ${screen.height}<br/>
+                Píxeles totales de anchura de la pantalla: ${screen.width}<br/>
+                Orientación de la pantalla: ${screen.orientation.type}<br/>
+                Profundidad en bits de los colores de la pantalla: ${screen.colorDepth}`;
+            }
+        </script>
+    </body>
+</html>
