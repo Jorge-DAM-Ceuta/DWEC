@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 12</title>
+    </head>
+    <body>
+        <script>
+            function Circulo(radio){
+                this.radio = radio;
+
+                this.circunferencia = function(){
+                    return 3.14 * (radio * 2);
+                }
+            }
+
+            var circulo = new Circulo(24);
+            document.write(circulo.circunferencia());
+        </script>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 4</title>
+    </head>
+    <body>
+        <script>
+
+            var refranes = [];
+            var contador = 0;
+            var refran = "";
+            
+            do{
+                refran = prompt("Introduce un refrán o un caracter vacío para terminar:");
+                
+                if(refran.match(/[a-zA-Z\s.áéíóúÁÉÍÓÚñÑ]{20,}/)){
+                    refranes[contador] = refran;
+                    contador++;
+                }else{
+                    alert("No hay 20 caracteres como mínimo o se han usado otro tipo de caracteres no admitidos.");
+                }
+
+            }while(refran != "" && refran != null);
+
+            for(let i = 0; i< refranes.length; i++){
+                console.log(refranes[i]);
+            }
+
+            while(true){
+                contador = Math.random()*(refranes.length()-1);
+                document.write(contador);
+                document.write(setInterval(refranes[contador], 200));
+            }
+            
+
+        </script>
+    </body>
+</html>

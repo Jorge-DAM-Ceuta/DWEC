@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 5</title>
+    </head>
+    <body>
+        <script>
+            var array1 = [[1, 2, 3], [4, 5, 6], 7, 8];
+            var array2 = [];
+
+            /*Para copiar un array en profundidad hay que usar slice en caso de 
+            tener arrays en su interior, en caso contrario añadimos el elemento*/
+            for(let i of array1){
+                if(typeof i === "object"){
+                    array2.push(i.slice());
+                }else{
+                    array2.push(i);
+                }
+            }
+
+            //Comprobar si hay elementos repetidos en el array.
+            //if(new Set(array1).size < array1.length);
+
+            //Ahora si se modifica el primer array el segundo no se ve afectado.
+            array1[0][0] = "Hola caracola";
+
+            console.log(array1);
+            console.log(array2);
+        </script>
+    </body>
+</html>

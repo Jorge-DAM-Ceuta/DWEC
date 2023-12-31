@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 1</title>
+    </head>
+    <body>
+        <p id="info"></p>
+        
+        <script>
+            document.getElementById("info").innerHTML =
+                `¿Están las cookies activadas en el navegador? ${navigator.cookieEnabled}<br/>
+                ¿Y Java? ${navigator.javaEnabled()}<br/>
+                ¿Qué lenguaje usa? ${navigator.language}<br/>
+                ¿Está el navegador trabajando online? ${navigator.onLine}`
+            ;
+        </script>
+    </body>
+</html>

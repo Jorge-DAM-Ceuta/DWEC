@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 4</title>
+    </head>
+    <body>
+        <button id="Empezar" onclick="muestraJson()">Empezar</button>
+        <button id="Parar" onclick="detieneJson()">Parar</button>
+
+        <p id="datos"></p>
+        
+        <script>
+            var json = `{
+                "personajes": [
+                    {"nombre": "Éric","apellidos": "artman","profesión": "Estudiante","edad": 13},
+                    {"nombre": "Stan","apellidos": "Marsh","profesión": "Estudiante","edad": 9},
+                    {"nombre": "Kyle","apellidos": "Broflovski","profesión": "Estudiante","edad": 9},
+                    {"nombre": "Kenny","apellidos": "McCormick","profesión": "Estudiante","edad": 13},
+                    {"nombre": "útters","apellidos": "Stotch","profesión": "Estudiante","edad": 9},
+                    {"nombre": "Úendy","apellidos": "Testaburger","profesión": "Estudiante","edad": 12},
+                    {"nombre": "Randy","apellidos": "arsh","profesión": "Geólogo","edad": 45},
+                    {"nombre": "Sharon","apellidos": "Marsh","profesión": "Recepcionista","edad": 42},
+                    {"nombre": "Chef","apellidos": "","profesión": "Cocinero","edad": 45},
+                    {"nombre": "Mr. Garrison","apellidos": "","profesión": "Maestro","edad": 50},
+                    {"nombre": "Mr. Mackey","apellidos": "","profesión": "Consejero escolar","edad": 45},
+                    {"nombre": "Ms. Choksondik","apellidos": "","profesión": "Maestra","edad": 40},
+                    {"nombre": "Tweek","apellidos": "Tweak","profesión": "Estudiante","edad": 9},
+                    {"nombre": "Craig","apellidos": "Tucker","profesión": "Estudiante","edad": 15},
+                    {"nombre": "Token","apellidos": "Black","profesión": "Estudiante","edad": 12},
+                    {"nombre": "bebe","apellidos": "Évens","profesión": "Estudiante","edad": 9},
+                    {"nombre": "Clyde","apellidos": "Donovan","profesión": "Estudiante","edad": 12},
+                    {"nombre": "Timmy","apellidos": "burch","profesión": "Estudiante","edad": 9},
+                    {"nombre": "Jimmy","apellidos": "Valmer","profesión": "Estudiante","edad": 9},
+                    {"nombre": "Heidi","apellidos": "Turner","profesión": "Estudiante","edad": 12}
+                ]
+            }`;
+
+            /*Se usa una variable de identificación a la 
+            llamada de la función setInterval().*/
+            var idInterval;
+
+            /*Este método usa setInterval() con la llamada al método para mostrar 
+            el contenido cada 2 segundos cuando se pulse el botón Empezar.*/
+            function iniciarIntervalo() {
+                muestraJson();
+                idInterval = setInterval(muestraJson, 2000);
+            }
+
+            /*Este método usa clearInterval() con el id de la llamada a 
+            setInterval() para detener la ejecución del mismo.*/
+            function detieneJson() {
+                clearInterval(idInterval);
+            }
+
+            /*Este método se usa para convertir el json a array y escribir en un párrafo
+            cada entrada del array con un forEach().*/
+            function muestraJson(){
+                let datos = JSON.parse(json);
+                let personajes = datos.personajes;
+
+                let info = document.getElementById("datos");
+                   
+                personajes.forEach(function(valor, indice){
+                    info.innerHTML += `<br/>Nombre -> ${valor.nombre}<br/>Apellidos -> ${valor.apellidos}<br/>Profesión -> ${valor.profesión}<br/>Edad -> ${valor.edad}<br/>`;
+                });
+            }
+        </script>
+    </body>
+</html>

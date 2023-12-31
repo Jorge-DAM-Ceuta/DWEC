@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 4</title>
+    </head>
+    <body>
+        <script>
+
+            //Muestra la URL
+            console.log(document.location.href);
+
+            //Redirige a la web en cuestión
+            location = "https://drive.google.com";
+            //location.assign("https://drive.google.com");
+            //document.location.href = "https://drive.google.com";
+
+            //Muestra información
+            console.log(`Dirección: ${location.href}
+                         Protocolo: ${location.protocol}
+                         Hostname: ${location.hostname}
+                         Pathname: ${location.pathname}
+                         Hash: ${location.hash}
+                         Dirección canónica: ${location.toString()}`);
+        </script>
+    </body>
+</html>

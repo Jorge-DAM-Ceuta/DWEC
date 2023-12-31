@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 14</title>
+    </head>
+    <body>
+        <ul>
+            <li class="verdura">Lechuga</li>
+            <li class="verdura">Tomates</li>
+            <li class="carne">Pollo</li>
+            <li class="verdura">Remolacha</li>
+            <li class="carne">Ternera</li>
+            <li class="legumbre">Garbanzos</li>
+            <li class="legumbre">Lentejas</li>
+            <li class="carne">Cerdo</li>
+            <li class="verdura">Berenjena</li>
+            <li class="legumbre">Habas</li>
+        </ul>
+
+        <script>
+            //---     *      Ejercicio 13      *      ---
+            
+            //Seleccionado entre todos los elementos:
+            //console.log(document.querySelectorAll("ul li").item(6));
+            
+            //Seleccionado entre los elementos con clase legumbre:
+            //console.log(document.getElementsByClassName("legumbre").item(1));
+
+            //---     *      Ejercicio 14      *      ---
+            var lista = document.querySelectorAll("ul li");
+            lista.getAttribute();
+            for(clase of lista){
+                console.log(clase.getAttribute("class"))
+            }
+
+        </script>
+    </body>
+</html>
