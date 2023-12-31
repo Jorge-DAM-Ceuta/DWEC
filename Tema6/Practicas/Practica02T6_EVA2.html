@@ -63,7 +63,7 @@
 
             Primero se obtiene la altura del scroll del documento y se crea una variable para indicar la 
             coordenada 'y' actual de desplazamiento. Después se declara una variable que usará 
-            setInterval() que a su vez con otra función que aumentará el desplazamiento en 1. 
+            setInterval() que a su vez con otra función que aumentará el desplazamiento en 10. 
             
             Si la variable de desplazamiento llega al final de la altura del documento se detendrá el 
             intervalo con clearInterval(), si no se da el caso se usa la función scroll() indicando el
@@ -73,7 +73,7 @@
                 let desplazamiento = 0;
 
                 let intervalo = setInterval(function() {
-                    desplazamiento += 1;
+                    desplazamiento += 10;
 
                     if(desplazamiento >= alto){
                         clearInterval(intervalo);
