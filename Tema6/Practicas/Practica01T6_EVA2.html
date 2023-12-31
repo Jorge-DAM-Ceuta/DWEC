@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Práctica 1 Tema 6</title>
+    </head>
+    <body>
+        <!-- Se declara el botón con un id para su identificación. -->
+        <input type="button" id="boton" value="¡¡Nos vamos!!">
+
+        <script>
+            /*Refiriéndonos al botón en cuestión asignamos un comportamiento a la propiedad
+            onclick. En este caso ejecutará una función que usa el objeto location para 
+            redirigir a google.com con la propiedad href.*/
+            document.getElementById("boton").onclick = function(){
+                location.href = "https://www.google.com/";
+            };
+
+            /*En caso de que no se pulse el botón, con la función setTimeout() pasen 5000 ms se 
+            ejecutará otra función que también usará location.href para redirigir a otra web.*/
+            setTimeout(function (){ 
+                location.href = "https://duckduckgo.com/";
+            }, 5000);
+        </script>
+    </body>
+</html>
