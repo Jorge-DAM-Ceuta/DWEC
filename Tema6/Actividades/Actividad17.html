@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 17</title>
+    </head>
+    <body>
+        <input type="button" id="boton" name="boton" value="¡Púlsame!">
+        
+        <script>    
+            function deshabilitarBoton(){
+                let boton = document.querySelector("input#boton");
+                boton.toggleAttribute("disabled");
+            } 
+
+            document.getElementById("boton").addEventListener("click", deshabilitarBoton);
+
+        </script>
+    </body>
+</html>

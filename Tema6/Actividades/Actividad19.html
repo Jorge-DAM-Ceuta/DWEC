@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 19</title>
+    </head>
+    <body>
+        <input value="Escribe aquí...">
+        <button onclick="soloLee()">Solo lectura</button>
+
+        <script>
+            let entrada = document.querySelector("input");
+            let boton = document.querySelector("button");
+
+            function soloLee(){
+                entrada.toggleAttribute("readonly");
+
+                if(entrada.getAttribute("readonly") != null){
+                    boton.innerHTML = "Escritura";
+                    entrada.setAttribute("value", "No se permite escritura");
+                }else{
+                    boton.innerHTML = "Solo lectura";
+                    entrada.setAttribute("value", "Escribe aquí...");
+                }
+
+                console.log(entrada.getAttribute("value"));
+            }
+        </script>
+    </body>
+</html>

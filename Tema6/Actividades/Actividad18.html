@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 18</title>
+    </head>
+    <body>
+        <input type="button" id="boton" name="boton" value="¡Mírame!">
+        <input type="button" id="desactiva" name="desactiva" value="Desactiva">
+        
+        <script>    
+            function deshabilitarBoton(){
+                let boton = document.querySelector("input#boton");
+                boton.toggleAttribute("disabled");
+            } 
+
+            function cambiarNombreBoton(){
+                let boton = document.querySelector("input#boton");
+                let accionador = document.querySelector("input#desactiva");
+
+                if(boton.getAttribute("disabled") != null){
+                    accionador.setAttribute("value", "Activa");
+                }else{
+                    accionador.setAttribute("value", "Desactiva");
+                }
+            }
+
+            document.getElementById("desactiva").addEventListener("click", deshabilitarBoton);
+            document.getElementById("desactiva").addEventListener("click", cambiarNombreBoton);
+
+        </script>
+    </body>
+</html>
