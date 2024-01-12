@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 23</title>
+    </head>
+    <body>
+        <section id="s1">
+            <h1 id="titulo">Texto del título</h1>
+            <p id="parrafo1">Texto del <strong> párrafo1 </strong>completo.</p>
+            <p id="parrafo2">Texto del párrafo2</p>
+            <p id="parrafo3">Texto del párrafo3</p>
+        </section>
+
+        <script>
+            //Consola: atributo id del padre del hermano del primer nodo hijo del parrafo1.
+            let parrafo1 = document.getElementById("parrafo1");
+            console.log(parrafo1.firstChild.nextSibling.parentElement.getAttribute("id"));
+        </script>
+    </body>
+</html>

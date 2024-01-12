@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 24</title>
+    </head>
+    <body>
+        <section id="s1">
+            <h1 id="titulo">Texto del título</h1>
+            <p id="parrafo1">Texto del <strong> párrafo1 </strong>completo.</p>
+            <p id="parrafo2">Texto del párrafo2</p>
+            <p id="parrafo3">Texto del párrafo3</p>
+        </section>
+
+        <script>
+            // //Consola: atributo id del padre del hermano del primer nodo hijo del parrafo1.
+            // let parrafo1 = document.getElementById("parrafo1");
+            // console.log(parrafo1.firstChild.nextSibling.parentElement.getAttribute("id"));
+
+            let s1 = document.getElementById("s1");
+
+            //¿Cuántos nodos tiene la sección s1?
+            document.write("<br/><strong>1.</strong> La sección 1 tiene " + s1.childNodes.length + " nodos.<br/>");
+
+            //¿Cuántos elementos tiene la sección s1?
+            document.write("<br/><strong>2.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+
+            //Crea una variable el1 que contenga el primer elemento hijo de s1.
+            let el1 = document.getElementById("titulo");
+
+            //¿Cuál es el nombre del primer elemento hijo de s1?----------- HASTA AQUí --------------
+            document.write("<br/><strong>4.</strong>" + s1.firstElementChild.nodeName + "<br/>");
+
+            //Obtén el nombre de todos los elementos hijo de s1.
+            document.write("<br/><strong>5.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+
+            //Crea una variable llamada elHermano que contenga el hermano siguiente de el1.
+            document.write("<br/><strong>6.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+
+            //Deberías estar en parrafo1, ¿cuántos elementos hijo tiene?
+            document.write("<br/><strong>7.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+
+            //Muestra el nombre y valor de sus elementos.
+            //s1.firstElementChild.nodeName, s1.firstElementChild.nodeValue
+            document.write("<br/><strong>8.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+
+            //Muestra el nombre y valor de sus nodos.
+            document.write("<br/><strong>9.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+            
+
+        </script>
+    </body>
+</html>
