@@ -33,13 +33,21 @@
             document.write("<br/><strong>4.</strong>" + s1.firstElementChild.nodeName + "<br/>");
 
             //Obtén el nombre de todos los elementos hijo de s1.
-            document.write("<br/><strong>5.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+            document.write("<br/><strong>5.</strong> Nombres de los elementos hijos del elemento s1:<br/>");
 
+            for(let hijo of s1.childNodes){
+                document.write(", " + hijo.nodeName);
+            }
+
+            document.write("<br/>");
+            
             //Crea una variable llamada elHermano que contenga el hermano siguiente de el1.
-            document.write("<br/><strong>6.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+            let elHermano = el1.nextElementSibling;
+            document.write("<br/><strong>6.</strong> El hermano de la variable el1 o h1 con id titulo es: " + elHermano.nodeName + " con id " + elHermano.getAttribute("id") + "<br/>");
 
             //Deberías estar en parrafo1, ¿cuántos elementos hijo tiene?
-            document.write("<br/><strong>7.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+            let numeroHijos = elHermano.childElementCount;
+            document.write("<br/><strong>7.</strong> El elemento p con id parrafo1 tiene " + numeroHijos + " elementos.<br/>");
 
             //Muestra el nombre y valor de sus elementos.
             //s1.firstElementChild.nodeName, s1.firstElementChild.nodeValue
