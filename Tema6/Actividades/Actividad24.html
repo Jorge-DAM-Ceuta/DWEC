@@ -47,15 +47,25 @@
 
             //Deberías estar en parrafo1, ¿cuántos elementos hijo tiene?
             let numeroHijos = elHermano.childElementCount;
-            document.write("<br/><strong>7.</strong> El elemento p con id parrafo1 tiene " + numeroHijos + " elementos.<br/>");
+            document.write("<br/><strong>7.</strong> El elemento p con id parrafo1 tiene " + numeroHijos + " elementos hijos.<br/>");
 
             //Muestra el nombre y valor de sus elementos.
-            //s1.firstElementChild.nodeName, s1.firstElementChild.nodeValue
-            document.write("<br/><strong>8.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+            let resultado8 = "";
 
-            //Muestra el nombre y valor de sus nodos.
-            document.write("<br/><strong>9.</strong> La sección 1 tiene " + s1.childElementCount + " elementos.<br/>");
+            for(let hijo of elHermano.children){
+                resultado8 += `<br/><strong>8.</strong> Elemento hijo de Párrafo 1: Nombre "${hijo.nodeName}", Valor "${hijo.nodeValue}"<br/>`;
+            }
+
+            document.write(resultado8);
             
+            //Muestra el nombre y valor de sus nodos.
+            let resultado9 = "";
+
+            for(let hijo of elHermano.childNodes){
+                resultado9 += `<br/><strong>9.</strong> Nodo hijo de Párrafo 1: Nombre "${hijo.nodeName}", Valor "${hijo.nodeValue}"<br/>`;
+            }
+
+            document.write(resultado9);
 
         </script>
     </body>
