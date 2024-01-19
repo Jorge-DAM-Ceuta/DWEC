@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Práctica 3</title>
+
+        <style>
+            .contenidoInquietante{
+                color: crimson;
+                font-size: 1.5em;
+                box-shadow: 10px 10px 10px black;
+            }
+        </style>
+    </head>
+    <body>
+        <p>
+            Esta es la introducción a la adolescencia.
+            Hablar sobre El Sexo es bastante habitual.
+            Hay que estudiar diariamente para que no te suceda lo que a tu primo.
+            Si has tenido sexo, no debes dejarte llevar, hay cosas más importantes que eso.
+            El sexo me gustó mucho, fue DOMinante.
+        </p>
+        
+        <input type="button" name="bloquearContenido" value="Bloquear contenido" onclick="bloquearContenido()">
+
+        <script>
+            function bloquearContenido(){
+                //Obtenemos en una variable el elemento body.
+                let body = document.body;
+
+                /*Se recorren los elementos hijo del body mediante su longitud menos 2. Esto evita 
+                que se supervise la etiqueta <input> y la etiqueta <script> que, al ser el último 
+                elemento del body también se incluye y al contener la palabra "sexo" en la función 
+                añadiría un nuevo párrafo reemplazando el elemento <script>.*/
+                for(let i = 0; i<body.children.length - 2; i++){
+
+                    //Obtenemos el elemento hijo de body actual y su texto en minúsculas.
+                    let elementoActual = body.children[i];
+                    let textoElemento = elementoActual.textContent.toLowerCase();
+
+                    //Si el texto del elemento incluye la palabra "sexo":
+                    if(textoElemento.includes("sexo")){
+                        //Obtenemos el texto del elemento y sustituimos la palabra "sexo".
+                        let nuevoTexto = textoElemento.replace("sexo", "*Contenido bloqueado*");
+                        //Creamos un array mediante split del caracter "*" para separar el texto que obtendrá los estilos CSS.
+                        let separador = nuevoTexto.split("*");
+
+                        //Creamos un elemento <p> resultado.
+                        let resultado = document.createElement("p");
+    
+                        //Recorremos cada elemento del array.
+                        for(let frase of separador){
+                            /*Si el texto del elemento no contiene el texto clave, se añadirá a 
+                            resultado mediante innerHTML. En caso contrario se creará un elemento
+                            <strong> con el texto en cuestión y se le aplican los estilos CSS.*/
+                            if(!frase.toString().includes("Contenido bloqueado")){
+                                resultado.innerHTML += frase.toString();
+                            }else{
+                                let contenidoInquietante = document.createElement("strong");
+                                contenidoInquietante.innerHTML = frase.toString();
+                                contenidoInquietante.classList.add("contenidoInquietante");
+                                
+                                //Se añade el elemento como hijo al resultado.
+                                resultado.appendChild(contenidoInquietante);
+                            }
+                        }
+
+                        //?????????????????????????????????
+                        /*let mayuscula = resultado.textContent.charAt(0).toUpperCase();
+                        resultado.textContent = resultado.textContent.charAt(0) = mayuscula;
+                        console.log(resultado.textContent);
+                        */
+
+                        //Mediante replaceChild() reemplazamos el elemento actual por el nuevo elemento.
+                        body.replaceChild(resultado, elementoActual);
+                    }
+                }
+            }
+
+            //Si no se encuentra contenido que incluya la palabra "sexo" no supondrá ningún cambio en el documento.
+        </script>
+    </body>
+</html>
