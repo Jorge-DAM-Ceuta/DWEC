@@ -14,13 +14,11 @@
         </style>
     </head>
     <body>
-        <p>
-            Esta es la introducción a la adolescencia.
-            Hablar sobre El Sexo es bastante habitual.
-            Hay que estudiar diariamente para que no te suceda lo que a tu primo.
-            Si has tenido sexo, no debes dejarte llevar, hay cosas más importantes que eso.
-            El sexo me gustó mucho, fue DOMinante.
-        </p>
+        <h2>Esta es la introducción a la adolescencia.</h2>
+        <p>Hablar sobre El Sexo es bastante habitual.</p>
+        <p>Hay que estudiar diariamente para que no te suceda lo que a tu primo.</p>
+        <p>Si has tenido sexo, no debes dejarte llevar, hay cosas más importantes que eso.</p>
+        <p id="sexo">El sexo me gustó mucho, fue DOMinante</p>
         
         <input type="button" name="bloquearContenido" value="Bloquear contenido" onclick="bloquearContenido()">
 
@@ -71,7 +69,7 @@
                         resultado.textContent = resultado.textContent.charAt(0) = mayuscula;
                         console.log(resultado.textContent);
                         */
-
+                       
                         //Mediante replaceChild() reemplazamos el elemento actual por el nuevo elemento.
                         body.replaceChild(resultado, elementoActual);
                     }
