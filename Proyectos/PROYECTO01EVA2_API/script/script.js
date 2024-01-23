@@ -34,7 +34,15 @@ function mostrarArchivo(ev){
             //Añadimos el elemento al body:
             document.body.appendChild(textoArchivo);
         }
-
-        
     }
+}
+
+function iniciarListener(){
+    //Se obtiene el elemento input.
+    let inputArchivo = document.getElementById("archivo");
+
+    /*Se usa addEventListener que usa el evento change para detectar una alteración del valor
+    del elemento y el método mostrarArchivo() que recoge el archivo y escribe dos elementos 
+    con su título y contenido mediante files y FileReader respectivamente*/
+    inputArchivo.addEventListener("change", mostrarArchivo);
 }
