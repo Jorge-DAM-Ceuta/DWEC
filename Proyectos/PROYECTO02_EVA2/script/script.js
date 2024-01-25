@@ -13,10 +13,18 @@ function crearBoton(){
 }
 
 function guardarFichero(){
+    //Obtenemos el elemento raíz <html> del documento HTML.
     let elementoRaiz = document.documentElement;
+
+    //Obtiene todos los nodos del elemento raíz. 
     let elementosDocumento = elementoRaiz.outerHTML;
 
-    console.log(elementosDocumento);
+    let blob = new Blob([elementosDocumento], { type: "text/html" });
+
+    let url = URL.createObjectURL(blob);
+
+    console.log("BLOB: " + blob.text().toString());
+    console.log("URL" + url);
 }
 
 function iniciarListener(){
