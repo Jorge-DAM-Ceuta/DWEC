@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Práctica05 Tema6 EVA2</title>
+    </head>
+    <body>
+        <section id="s1">
+            <h1>Título</h1>
+            <p>Ejemplo de documento <strong>DOM</strong>Visión de árbol</p>
+        </section>        
+        <section id="s2">
+            <p>Aquí sólo hay texto</p>
+        </section>        
+        
+        <script>
+            function mostrarAtributos(elemento){
+                let atributos = elemento.attributes;
+                let resultado = "";
+
+                for(atributo of atributos){
+                    resultado += `${atributo.name}="${atributo.value}" `;
+                }
+
+                return resultado;
+            }
+
+            //Recorrer elementos
+        </script>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Práctica06Tema6_EVA2</title>
+    </head>
+    <body>
+        <ol>
+            <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt saepe soluta eos libero ratione nihil voluptates sequi corporis nobis pariatur repudiandae architecto tempore repellendus quidem, vitae ab quibusdam similique asperiores.</li>
+            <li>Debitis voluptatibus optio officiis. Corrupti hic pariatur nemo est magni eligendi dolor ad. Dolor unde itaque qui molestiae fugiat, cum quibusdam tenetur, provident ducimus dolorum ipsam libero recusandae est hic.</li>
+            <li>Adipisci, repellat, vitae possimus, omnis odit quod deserunt quaerat obcaecati est ad cum id quos beatae labore numquam amet officia dolorem architecto assumenda incidunt consequatur odio veritatis a enim. Odit.</li>
+            <li>Necessitatibus sit sequi nam. Facere reiciendis non esse odio hic! Error magnam facilis, hic earum asperiores ipsam vero cumque voluptas consequatur, mollitia dolorem itaque praesentium necessitatibus laudantium repudiandae, rem id.</li>
+            <li>Cum, odio iure? Alias animi laborum quisquam laudantium cumque quaerat, doloremque molestias distinctio accusantium. Tempora delectus excepturi nam dolores ad error impedit numquam labore hic libero, eum, omnis quidem dolorum.</li>
+            <li>Quidem voluptas illo voluptatum illum nostrum tempora, doloremque saepe quae explicabo modi a neque accusantium minima impedit numquam aut molestias odio non ut, ipsam magnam itaque? Sunt ipsum ad eaque!</li>
+            <li>Harum deleniti amet cumque reprehenderit ad! Saepe repellendus totam ex! Adipisci vitae eum tempora similique, a sequi officia nemo tempore modi, quaerat explicabo quidem eligendi quisquam impedit in quasi optio.</li>
+            <li>Iste quas hic nisi dolor, dolorum ipsum cupiditate consequuntur tempore! Dicta blanditiis unde iure nulla rem doloribus nihil distinctio eveniet impedit quam ducimus esse nisi incidunt eaque, repellat minus praesentium!</li>
+            <li>Dolorem unde enim distinctio necessitatibus! Quidem expedita accusamus modi deleniti, iusto nam quod adipisci repudiandae tempore, natus veritatis mollitia sequi rerum doloremque pariatur repellat animi facere placeat laudantium illum. Laborum!</li>
+        </ol>
+
+        <script>
+            let texto = "";
+            let numero;
+
+            //Se comprueba que el texto no esté vacío y que no contenga solo espacios en blanco.
+            while(texto.length == 0 || texto.trim().length == 0){
+                texto = prompt("Escribe un texto:");
+            
+                //Si se pulsa cancelar se crea un elemento informativo en negrita y se detendrá la ejecución del bucle.
+                if(texto == null){
+                    let resultado = document.createElement("strong");
+                    resultado.textContent = "Se ha cancelado la ejecución del programa. Saliendo de la aplicación...";
+                    
+                    document.body.appendChild(resultado);
+                    break;
+                }
+            }
+
+            //Si el prompt() del texto no se ha cancelado se prosigue con la ejecución.
+            if(texto != null){
+               //Se comprueba que se introduce un número y esté entre 1 y 10.
+                while(isNaN(numero) || !(numero >= 1 && numero <= 10)){
+                    numero = prompt("Introduce un número del 1 al 10:");
+                
+                    //Si se pulsa cancelar se crea un elemento informativo en negrita y se detendrá la ejecución del bucle.
+                    if(numero == null){
+                        let resultado = document.createElement("strong");
+                        resultado.textContent = "Se ha cancelado la ejecución del programa. Saliendo de la aplicación...";
+                        
+                        document.body.appendChild(resultado);
+                        break;
+                    }
+                }
+            }
+
+            //Si se han obtenido ambos valores:
+            if(texto != null && numero != null){
+                //Obtenemos la lista de elementos li.
+                let listaElementos = document.body.querySelector("ol");
+
+                //Creamos un elemento li con el texto del prompt().
+                let nuevoElemento = document.createElement("li");
+                nuevoElemento.textContent = texto;
+
+                //Declaramos un contador que nos ayudará a saber en qué posición está el elemento.
+                let indice = 1;
+
+                for(let elemento of listaElementos.children){
+                    //Si la posición coincide con el número del prompt() se usa insertBefore() para añadirlo antes.
+                    if(indice == numero){
+                        listaElementos.insertBefore(nuevoElemento, elemento);
+                    }
+                    
+                    indice++;
+                }
+
+                //Si el número de posición es mayor o igual que el índice se agrega al final.
+                if(indice <= numero){
+                    listaElementos.appendChild(nuevoElemento);
+                }
+            }
+        </script>
+    </body>
+</html>
