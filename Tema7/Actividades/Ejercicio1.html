@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 1</title>
+    </head>
+    <body>
+        <p id="parrafo1" onclick="hazClick()">Soy "clickeable"</p>
+        <p id="parrafo2">Yo no</p>
+
+        <script>
+            function hazClick(){
+                alert("Me has hecho click");
+            }
+
+            let parrafo1 = document.getElementById("parrafo1");
+            parrafo1.onclick = () => {alert("Me has hecho click");}
+        </script>
+    </body>
+</html>
