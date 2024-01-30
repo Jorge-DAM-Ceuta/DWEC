@@ -14,18 +14,55 @@
         </section>        
         
         <script>
+            //Creamos el elemento que contendrá el resultado.
+            var resultado = document.createElement("div");
+
+            //Recibimos el elemento actual en la función.
             function mostrarAtributos(elemento){
+                //Obtenemos los atributos del elemento.
                 let atributos = elemento.attributes;
                 let resultado = "";
 
+                //Recorremos los atributos del elemento.
                 for(atributo of atributos){
-                    resultado += `${atributo.name}="${atributo.value}" `;
+                    //Añadimos a una variable string el nombre del atributo junto al valor.
+                    resultado += `<strong>${atributo.name}</strong> = "${atributo.value}" `;
                 }
 
+                //Devolvemos la cadena.
                 return resultado;
             }
 
-            //Recorrer elementos
+            //Recorremos cada elemento a partir del elemento raíz <html>.
+            function recorrerElementos(elemento){
+                //Creamos un elemento.
+                let elementoActual = document.createElement("div");
+                
+                /*Mediante innerHTML para interpretar las etiquetas <strong> le asignamos una cadena 
+                con el nombre de la etiqueta y el resultado obtenido de la función anterior. 
+                
+                Usamos los valores HTML para representar las etiquetas de apertura y cierre de etiquetas 
+                para que no sean representadas como un elemento al escribir la cadena en el documento.*/
+                elementoActual.innerHTML = `&lt;${elemento.tagName.toLowerCase()}&gt; ${mostrarAtributos(elemento)}`;
+
+                //Recorremos cada hijo del elemento raíz.
+                for(let i = 0; i < elemento.children.length; i++){
+                    //Obtenemos el próximo hijo y llamamos de nuevo a la función.
+                    let hijo = recorrerElementos(elemento.children[i]);
+
+                    //Se agrega el hijo al elemento actual.
+                    elementoActual.appendChild(hijo);
+                }
+
+                //Devolvemos el elemento que contiene todos los hijos del elemento raíz. 
+                return elementoActual;
+            }
+
+            //Obtenemos el cada elemento del documento y lo añadimos al elemento que hemos creado.
+            resultado.appendChild(recorrerElementos(document.documentElement));
+
+            //Añadimos el elemento al body.
+            document.body.appendChild(resultado);
         </script>
     </body>
 </html>
