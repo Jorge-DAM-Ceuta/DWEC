@@ -15,7 +15,7 @@
         
         <script>
             //Creamos el elemento que contendrá el resultado.
-            var resultado = document.createElement("div");
+            var resultado = document.createElement("p");
 
             //Recibimos el elemento actual en la función.
             function mostrarAtributos(elemento){
@@ -35,8 +35,7 @@
 
             //Recorremos cada elemento a partir del elemento raíz <html>.
             function recorrerElementos(elemento){
-                //Creamos un elemento.
-                let elementoActual = document.createElement("div");
+                let elementoActual = document.createElement("p");
                 
                 /*Mediante innerHTML para interpretar las etiquetas <strong> le asignamos una cadena 
                 con el nombre de la etiqueta y el resultado obtenido de la función anterior. 
@@ -61,8 +60,11 @@
             //Obtenemos el cada elemento del documento y lo añadimos al elemento que hemos creado.
             resultado.appendChild(recorrerElementos(document.documentElement));
 
-            //Añadimos el elemento al body.
-            document.body.appendChild(resultado);
+            //Obtenemos el primer elemento del documento.
+            let primerElemento = document.body.firstChild;
+
+            //Añadimos el elemento al princio del documento.
+            document.body.insertBefore(resultado, primerElemento);
         </script>
     </body>
 </html>
