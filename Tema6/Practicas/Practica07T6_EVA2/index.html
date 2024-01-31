@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./script.js"></script>
+        <link rel="stylesheet" href="./style.css">
         <title>Práctica 7</title>
     </head>
     <body>
@@ -16,17 +18,17 @@
             <thead>
                 <tr><th>Contenido</th><th>Operación1</th><th>Operación2</th></tr>
             </thead>
-            <tbody>
-                <tr id="bodyTabla">
+            <tbody id="bodyTabla">
+                <tr id="fila1">
                     <td>Ejemplo de contenido</td>
-                    <td>Mayúsculas</td>
-                    <td>Formato chachi</td>
+                    <td><button onclick="convertirMayusculas(this)">Mayúsculas</button></td>
+                    <td><button onclick="aplicarFormatoChachi(this)">Formato chachi</button></td>
                 </tr>
             </tbody>
         </table>
 
         <script>
-            
+            iniciarListener();
         </script>
     </body>
 </html>

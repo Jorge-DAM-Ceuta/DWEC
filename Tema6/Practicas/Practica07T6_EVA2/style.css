@@ -1,0 +1,34 @@
+body{
+    text-align: center;
+
+    & table{
+        border: 3px solid black;
+        border-collapse: collapse;
+        margin-top: 20px;
+        margin-left: 40vw;
+        margin-right: 35vw;
+        
+        & thead{
+            & tr{
+
+                & th{
+                    border: 3px solid black;
+                }
+            }
+        }
+
+        & tbody{
+            & tr{
+
+                & td{
+                    border: 3px solid black;
+                }
+            }
+        }
+    }
+}
+
+.formatoChachi{
+    background-color: #7e1477;
+    color: orange;
+}
