@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 8</title>
+    </head>
+    <body>
+        <script>
+            document.addEventListener("mousedown", function(ev){
+                if(ev.button == 0){
+                    console.log("Se ha pulsado el botón izquierdo del ratón");
+                }else if(ev.button == 1){
+                    console.log("Se ha pulsado el botón central del ratón");
+                }else if(ev.button == 2){
+                    console.log("Se ha pulsado el botón derecho del ratón");
+                }else if(ev.button == 3){
+                    console.log("Se ha pulsado el botón retorceder del ratón");
+                }else if(ev.button == 4){
+                    console.log("Se ha pulsado el botón avanzar del ratón");
+                }
+            });
+        </script>
+    </body>
+</html>

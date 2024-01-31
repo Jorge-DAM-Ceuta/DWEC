@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 9</title>
+        <style>
+            .cuadro{
+                background-color: rgb(13, 66, 119);
+                width: 500px;
+                height: 500px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="cuadro" id="cuadro"></div>
+        
+        <script>
+            let cuadro = document.getElementById("cuadro");
+
+            cuadro.addEventListener("mouseover", function(ev){
+                console.log("Te has posicionado sobre el cuadrado con el ratón");
+            });
+
+            cuadro.addEventListener("mousemove", function(ev){
+                console.log("Estás recorriendo el cuadrado con el ratón");
+            });
+
+            cuadro.addEventListener("dblclick", function(ev){
+                console.log("Has hecho doble click sobre el cuadrado con el ratón");
+            });
+        </script>
+    </body>
+</html>
