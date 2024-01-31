@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 5</title>
+    </head>
+    <body>
+        <script>
+            document.addEventListener("mouseover", function(ev){
+                posiciones = `xyNAV: ${ev.clientX}, ${ev.clientY}\nxyPant: ${ev.screenX}, ${ev.screenY}\nxyScroll: ${ev.pageX}, ${ev.pageY}`;
+                document.write(posiciones);
+
+                document.addEventListener("click", function(){
+                    document.write(posiciones);
+                });
+            });
+
+            
+        </script>
+    </body>
+</html>
