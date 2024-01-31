@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Práctica 8 Tema 6</title>
+    </head>
+    <body>
+        <p id="tiempoS"></p>
+        <p id="tiempoM"></p>
+
+        <script>
+            function timer(minutos, segundos){
+
+                /*Si no se le han pasado los segundos, se le pasa el valor de los 
+                minutos a los segundos y se pone a 0 los minutos.*/ 
+                if(segundos == undefined){
+                    segundos = minutos;
+                    minutos = 0;
+                }
+
+                //Si los datos no son números o son menores que 0 no se realiza ninguna acción.
+                if(isNaN(minutos) || isNaN(segundos) || minutos < 0 || segundos < 0) {
+                    document.write("Los valores deben ser números de tipo entero.");
+
+                }else{
+                    let tiempoTotal;
+
+                    //Si solo se reciben los segundos:
+                    if(minutos == 0 && segundos > 0){
+                        tiempoTotal = segundos;
+
+                        //Mostramos el tiempo la primera vez antes de que empiece el intervalo, sino tarda un segundo de retardo.
+                        mostrarTemporizadorSegundos(tiempoTotal);
+
+                        /*Creamos un setInterval que se ejecutará cada segundo haciendo uso de la función 
+                        mostrarTemporizadorSegundos(), decrementando el tiempo en cada llamada.*/ 
+                        let intervaloSegundos = setInterval(function(){
+                            tiempoTotal--;
+
+                            //Mostramos el tiempo restante
+                            mostrarTemporizadorSegundos(tiempoTotal);
+
+                            //Si el tiempo llega a cero y detenemos el intervalo.
+                            if(tiempoTotal <= 0){
+                                clearInterval(intervaloSegundos);
+                            }
+                        }, 1000);
+
+                    }else if(minutos > 0 && segundos > 0){
+                        //Obtenemos el tiempo total pasando los minutos a segundos y sumándole los segundos.
+                        tiempoTotal = minutos * 60 + segundos;
+
+                        //Mostramos el tiempo la primera vez antes de que empiece el intervalo, sino tarda un segundo de retardo.
+                        mostrarTemporizadorMinutosSegundos(tiempoTotal);
+                        
+                        /*Creamos un setInterval que se ejecutará cada segundo haciendo uso de la función 
+                        mostrarTemporizadorMinutosSegundos(), decrementando el tiempo en cada llamada.*/ 
+                        let intervaloMinutosSegundos = setInterval(function(){
+                            tiempoTotal--;
+
+                            //Mostramos el tiempo restante
+                            mostrarTemporizadorMinutosSegundos(tiempoTotal);
+
+                            //Si el tiempo llega a cero y detenemos el intervalo.
+                            if(tiempoTotal <= 0){
+                                clearInterval(intervaloMinutosSegundos);
+                            }
+                        }, 1000);
+                    }   
+                }
+            }
+
+            function mostrarTemporizadorSegundos(tiempoTotal){
+                let segundos = document.getElementById("tiempoS");
+
+                segundos.textContent = tiempoTotal; 
+            }
+
+            function mostrarTemporizadorMinutosSegundos(tiempoTotal){
+                let minutos = document.getElementById("tiempoM");
+
+                minutos.textContent = tiempoTotal;
+            }
+
+            timer(77);
+            timer(2, 50);
+        </script>
+    </body>
+</html>
