@@ -71,16 +71,18 @@
                 }
             }
 
+            //Obtiene el valor de los minutos + segundos y los muestra en el elemento "tiempoS".
             function mostrarTemporizadorSegundos(tiempoTotal){
                 let segundos = document.getElementById("tiempoS");
 
-                segundos.textContent = tiempoTotal; 
+                segundos.innerHTML = "<h2>" + tiempoTotal + "</h2>";
             }
 
+            //Obtiene el valor de los minutos + segundos y los muestra en el elemento "tiempoM".
             function mostrarTemporizadorMinutosSegundos(tiempoTotal){
                 let minutos = document.getElementById("tiempoM");
 
-                minutos.textContent = tiempoTotal;
+                minutos.innerHTML = "<h2>" + tiempoTotal + "</h2>";
             }
 
             timer(77);
