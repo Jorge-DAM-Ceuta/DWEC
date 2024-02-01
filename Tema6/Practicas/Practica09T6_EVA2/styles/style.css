@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+h1{
+    margin-left: 3vw;
+}
+
+#panelCookies {
+    background-color: #f9f9f9;
+    width: 25vw;
+    margin-left: 3vw;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+#resultado{
+    margin-left: 3vw;
+}
+
+#botonCierraSesion{
+    margin-left: 3vw;
+}
