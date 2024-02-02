@@ -1,0 +1,19 @@
+body{
+    margin: 0;
+    overflow: hidden;
+
+    & p{
+        font-weight: bold;
+    }
+
+    & div{
+        position: fixed;
+        background-color: yellow;
+        background-image: url("../imagenes/monkey.png");
+        background-size: 100% 100%;
+        width: 100px;
+        height: 100px;
+        border: 2px solid black;
+        pointer-events: none;
+    }
+}
