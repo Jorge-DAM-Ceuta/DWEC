@@ -6,7 +6,6 @@ function permiteCookie() {
     //Se oculta el panel de las cookies y se muestra el resultado y el botón de cerrar sesión
     document.getElementById("panelCookies").setAttribute("hidden", "");
     document.getElementById("resultado").removeAttribute("hidden");
-    document.getElementById("botonCierraSesion").removeAttribute("hidden");
 
     let numeroVisitas = document.getElementById("numeroVisitas");
     let cookies = document.cookie.split(';');
@@ -26,10 +25,9 @@ function rechazaCookie() {
     // Se setea la cookie a false
     document.cookie = "permiteCookie=false";
 
-    // Se oculta el panel de las cookies
+    // Se oculta el panel de las cookies y el resultado
     document.getElementById("panelCookies").setAttribute("hidden", "");
     document.getElementById("resultado").setAttribute("hidden", "");
-    document.getElementById("botonCierraSesion").setAttribute("hidden", "");
 }
 
 function reestablecer() {
@@ -39,7 +37,6 @@ function reestablecer() {
     // Se oculta el panel de las cookies
     document.getElementById("panelCookies").removeAttribute("hidden");
     document.getElementById("resultado").setAttribute("hidden", "");
-    document.getElementById("botonCierraSesion").setAttribute("hidden", "");
 }
 
 function iniciaListeners(){
