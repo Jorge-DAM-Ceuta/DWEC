@@ -1,0 +1,18 @@
+body{
+    margin: 0;
+
+    & textarea{
+        width: 50vw;
+        height: 50vh;
+        margin: 5% 10%;
+        resize: none;
+        background-color: lightblue;
+        font-size: 1.3em;
+        text-align: start;
+    }
+
+    & button{
+        width: 50vw;
+        margin: 0 10%;
+    }
+}
