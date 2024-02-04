@@ -12,7 +12,7 @@ function crearCirculo(ev){
     circulo.style.backgroundColor = `${obtenerColorAleatorio()}`;
 
     //Creamos unas dimensiones aleatorias para el diametro y le añadimos el tamaño.
-    let diametro = (Math.random()*150)*2;
+    let diametro = (Math.random()*100)*2;
     circulo.style.width = `${diametro}px`;
     circulo.style.height = `${diametro}px`;
 
