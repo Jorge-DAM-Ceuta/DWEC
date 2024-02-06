@@ -1,4 +1,14 @@
 function generaInputsOperacion(){
+/*Intentamos obtener el elemento que se va a crear después, en caso de que ya exista devolverá true y terminará 
+con la ejecución para evitar crear los elementos de nuevo si se carga otro documento durante la ejecución.*/
+    let elementosActivos = document.getElementById("inputsOperacion");
+    
+    if(elementosActivos){
+        return true;
+    }
+
+//En caso de que no exista el contenedor se crean los elementos
+
     //Creamos un div con id "inputsOperacion" que contendrá los inputs number y los dos botones.
     let inputsOperacion = document.createElement("div");
     inputsOperacion.setAttribute("id", "inputsOperacion");
@@ -9,10 +19,18 @@ function generaInputsOperacion(){
 
     inputsOperacion.appendChild(primerParrafo);
 
-    //Creamos el primer input number con id "letras".
+    //Creamos el primer input number con id "letras" y el atributo min para restringir numeros negativos o 0.
     let primerInput = document.createElement("input");
     primerInput.setAttribute("type", "number");
     primerInput.setAttribute("id", "letras");
+    primerInput.setAttribute("min", "1");
+
+    //Evento que impide introducir el caracter "-" para evitar números negativos.
+    primerInput.addEventListener("keydown", function (ev){
+        if(ev.key === "-"){
+            ev.preventDefault();
+        }
+    });
 
     inputsOperacion.appendChild(primerInput);
 
@@ -22,10 +40,18 @@ function generaInputsOperacion(){
 
     inputsOperacion.appendChild(segundoParrafo);
 
-    //Creamos el segundo input number con id "columnas".
+    //Creamos el segundo input number con id "columnas" y el atributo min para restringir numeros negativos o 0.
     let segundoInput = document.createElement("input");
     segundoInput.setAttribute("type", "number");
     segundoInput.setAttribute("id", "columnas");
+    segundoInput.setAttribute("min", "1");
+
+    //Evento que impide introducir el caracter "-" para evitar números negativos.
+    segundoInput.addEventListener("keydown", function (ev){
+        if(ev.key === "-"){
+            ev.preventDefault();
+        }
+    });
 
     inputsOperacion.appendChild(segundoInput);
 
@@ -80,35 +106,35 @@ function muestraBotonGeneraPalabras(comprobacionCarga){
         let inputColumnas = document.getElementById("columnas");
 
         //Esta función servirá para ejecutarla en los eventos input de ambos input y en un setInterval().
-        function comprobarContenido(){
+        function comprobarResultado(){
             //Se obtiene el valor de ambos input en cada llamada.
-            let contenidoLetras = inputLetras.value;
+            let resultadoLetras = inputLetras.value;
             let contenidoColumnas = inputColumnas.value;
     
-            //Se comprueba que ambos input tengan contenido en la llamada al método actual.
-            let ambosTienenContenido = contenidoLetras != "" && contenidoColumnas.length != "";
+            //Se comprueba que ambos input tengan resultado en la llamada al método actual.
+            let ambosTienenresultado = resultadoLetras != "" && contenidoColumnas.length != "";
     
-            //Si ambos tienen contenido se detiene el intervalo y se activa el botón generar palabras. En caso contrario se desactiva el botón.
-            if(ambosTienenContenido == true){
+            //Si ambos tienen resultado se detiene el intervalo y se activa el botón generar palabras. En caso contrario se desactiva el botón.
+            if(ambosTienenresultado == true){
                 clearInterval(intervalo);
                 generarPalabras.disabled = false;
 
                 //Se añade el evento al botón generarPalabras.
                 generarPalabras.addEventListener("click", function(){
                     //Se usa la función cargarPalabras() que recibe el número de letras de las palabras y el número de columnas.
-                    cargarPalabras(contenidoLetras, contenidoColumnas);
+                    cargarPalabras(resultadoLetras, contenidoColumnas);
                 });
             }else{
                 generarPalabras.disabled = true;
             }
         }
 
-        //Se usa el evento input que detecta cualquier cambio en el contenido del input.
-        inputLetras.addEventListener("input", comprobarContenido);
-        inputColumnas.addEventListener("input", comprobarContenido);
+        //Se usa el evento input que detecta cualquier cambio en el resultado del input.
+        inputLetras.addEventListener("input", comprobarResultado);
+        inputColumnas.addEventListener("input", comprobarResultado);
     
-        //Usar un intervalo nos permite realizar la comprobación tantas veces como sea necesario hasta que ambos input tienen contenido.
-        let intervalo = setInterval(comprobarContenido, 1000);
+        //Usar un intervalo nos permite realizar la comprobación tantas veces como sea necesario hasta que ambos input tienen resultado.
+        let intervalo = setInterval(comprobarResultado, 1000);
     }
 }
 
@@ -116,6 +142,7 @@ function muestraBotonGeneraPalabras(comprobacionCarga){
 Se usa FileReader para leer y obtener las palabras del fichero, además, genera la tabla y 
 habilita el botón generaCSV y le asigna su addEventListener().*/
 function cargarPalabras(numeroLetras, numeroColumnas){
+    //Obtenemos el input que carga el archivo.
     var inputArchivo = document.getElementById("btnArchivo");
     
     //Se obtiene el archivo seleccionado en el input.
@@ -127,26 +154,29 @@ function cargarPalabras(numeroLetras, numeroColumnas){
         var fileReader = new FileReader();
         
         /*Este método realiza una lectura del texto del archivo, cuando lo lee se 
-        activa el evento anterior con el contenido del archivo que recibe como evt.*/
+        activa el evento anterior con el resultado del archivo que recibe como evt.*/
         fileReader.readAsText(archivoSeleccionado);
         
-        /*Este evento se activa cuando se ha cargado el contenido del archivo mediante readAsText(). 
+        /*Este evento se activa cuando se ha cargado el resultado del archivo mediante readAsText(). 
         Obtiene las palabras y las filtra según el número de letras que haya indicado el usuario.*/
         fileReader.onload = (ev) => {
-            //Obtenemos el contenido del fichero.
-            let contenido = ev.target.result;
+            //Obtenemos el resultado del fichero.
+            let resultado = ev.target.result;
 
             //Este array almacenará cada palabra del fichero.
             let arrayPalabras = [];
 
             //Obtenemos un array en el que cada valor será una línea del fichero dividiendo el string con split() indicando el salto de línea.
-            let arrayLineas = contenido.split("\n");
+            let arrayLineas = resultado.split("\n");
 
             //Se recorre el array de líneas del fichero.
-            for(let i = 0; i<arrayLineas.length; i++){
-                //Por cada línea se vuelve a dividir el string por espacios en blanco.
-                let palabrasLinea = arrayLineas[i].split(" ");
+            for(let i = 0; i < arrayLineas.length; i++){
+                //Por cada línea se vuelve a dividir el string por espacios en blanco, saltos de línea y retornos de carro.
+                let palabrasLinea = arrayLineas[i].split(/\s+/);
 
+                //Obtenemos de nuevo el array sin los elementos vacíos.
+                palabrasLinea = palabrasLinea.filter(palabra => palabra != "");
+                
                 //Concatenamos las palabras obtenidas al array de palabras. 
                 arrayPalabras = arrayPalabras.concat(palabrasLinea);
             }
@@ -155,34 +185,37 @@ function cargarPalabras(numeroLetras, numeroColumnas){
             let palabrasFiltradas = [];
 
             //Se recorre el array que contiene todas las palabras del fichero.
-            for(let j = 0; j<arrayPalabras.length; j++){
-                //Si la longitud de la palabra actual menos 1 (el índice empieza en 0) es igual al número de letras que queremos.
-                if(arrayPalabras[j].length-1 == numeroLetras){
+            for(let j = 0; j < arrayPalabras.length; j++){
+                //Si la longitud de la palabra actual es igual al número de letras que queremos.
+                if(arrayPalabras[j].length == numeroLetras){
                     //Añadimos la palabra al array de palabras filtradas.
                     palabrasFiltradas.push(arrayPalabras[j]);
                 }
             }
 
-            console.log("PALABRAS: " + palabrasFiltradas);
-            //Se llama a la función generarTabla() que recibe el array de palabras y el número de columnas.
-            generarTabla(palabrasFiltradas, numeroColumnas);
-
-            //Habilitamos el botón generar CSV.
-            let generaCSV = document.getElementById("generaCSV");
-            generaCSV.disabled = false;
-
-            //Asignamos el evento click al botón generar CSV.
-            generaCSV.addEventListener("click", function(){
-
-            });
+            //Si el array no está vacío se genera la tabla.
+            if(palabrasFiltradas.length > 0){
+                //Se llama a la función generarTabla() que recibe el array de palabras y el número de columnas.
+                generarTabla(palabrasFiltradas, numeroColumnas);
+            }            
         }
     }
 }
 
+/*Esta función genera una tabla HTML con tantas columnas como se le especifica hasta terminar de añadir todas 
+las palabras del array. Cuando ha terminado el proceso muestra el botón genera CSV y le aplica un evento click.*/
 function generarTabla(palabras, numeroColumnas){
-    console.log("NUMERO COLUMNAS: " + numeroColumnas);
-    //Creamos una tabla HTML.
+/*Obtenemos la tabla por su id y en caso de que la tabla ya exista la eliminamos antes de añadir la nueva.
+Esto se hace por si se cambia de fichero durante la ejecución del script*/
+    let tablaExistente = document.getElementById("tablaPalabras");
+    
+    if(tablaExistente){
+        tablaExistente.remove();
+    }
+
+    //Creamos una tabla HTML y le añadimos el id "tablaPalabras".
     let tabla = document.createElement("table");
+    tabla.setAttribute("id", "tablaPalabras");
 
     //Recorremos el array de palabras.
     for(let i = 0; i < palabras.length; i++){
@@ -210,8 +243,59 @@ function generarTabla(palabras, numeroColumnas){
 
     //Agregamos la tabla al body.
     document.body.appendChild(tabla);
+
+    //Habilitamos el botón generar CSV.
+    let generaCSV = document.getElementById("generaCSV");
+    generaCSV.disabled = false;
+
+    //Asignamos el evento click al botón generar CSV.
+    generaCSV.addEventListener("click", function(){
+        generarCSV(palabras[0].length);
+    });
 }
 
-function generarCSV(){
+function generarCSV(numeroLetras){
+    //Obtenemos la tabla con los datos.
+    let tabla = document.querySelector("table");
 
+    //Almacenaremos el contenido de la tabla.
+    let resultado = "";
+
+    //Recorremos cada fila de la tabla con la propiedad rows.
+    for(let i = 0; i < tabla.rows.length; i++){
+        //Obtenemos la fila actual.
+        let fila = tabla.rows[i];
+
+        //Recorremos cada columna de la fila con la propiedad cells.
+        for(let j = 0; j < fila.cells.length; j++){
+            //Obtenemos el resultado de la columna y fila actuales.
+            let contenidoColumna = fila.cells[j].textContent;
+
+            //Agregamos el contenido de la columna al resultado.
+            resultado += contenidoColumna;
+
+            //Si no es la última columna de la fila:
+            if(j < fila.cells.length - 1){
+                //Se agrega una coma a la palabra obtenida.
+                resultado += ",";
+            }
+        }
+
+        //Añadimos un salto de línea por cada fila.
+        resultado += "\n";
+    }
+
+    //Creamos un objeto Blob para almacenar el resultado. Le pasamos el string resultado y le indicamos el tipo CSV mediante la propiedad type: text/csv.
+    let blob = new Blob([resultado], { type: "text/csv;charset=utf-8" });
+
+    /*Creamos un elemento a y le añadimos al atributo href el enlace de descarga para el contenido generado por el 
+    Blob mediante un objeto URL y el método createObjectURL() que recibe el Blob del fichero como parámetro.*/
+    let generarFichero = document.createElement("a");
+    generarFichero.setAttribute("href", URL.createObjectURL(blob));
+
+    //Añadimos el atributo download con el nombre específico según el número de palabras obtenidas.
+    generarFichero.setAttribute("download", `palabras${numeroLetras}.csv`);
+
+    //Activamos la funcionalidad del elemento que hemos creado para iniciar la descarga.
+    generarFichero.click();
 }
