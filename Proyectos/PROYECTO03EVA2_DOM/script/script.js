@@ -112,7 +112,9 @@ function muestraBotonGeneraPalabras(comprobacionCarga){
     }
 }
 
-//Obtiene el numero de letras para obtener las palabras y el número de columnas para la tabla.
+/*Obtiene el numero de letras para obtener las palabras y el número de columnas para la tabla.
+Se usa FileReader para leer y obtener las palabras del fichero, además, genera la tabla y 
+habilita el botón generaCSV y le asigna su addEventListener().*/
 function cargarPalabras(numeroLetras, numeroColumnas){
     var inputArchivo = document.getElementById("btnArchivo");
     
@@ -143,15 +145,71 @@ function cargarPalabras(numeroLetras, numeroColumnas){
             //Se recorre el array de líneas del fichero.
             for(let i = 0; i<arrayLineas.length; i++){
                 //Por cada línea se vuelve a dividir el string por espacios en blanco.
-                let palabrasLinea = lineas[i].split(" ");
+                let palabrasLinea = arrayLineas[i].split(" ");
 
                 //Concatenamos las palabras obtenidas al array de palabras. 
                 arrayPalabras = arrayPalabras.concat(palabrasLinea);
             }
 
+            //Este array obtendrá las palabras cuya longitud sea igual a la indicada por parámetros.
+            let palabrasFiltradas = [];
 
+            //Se recorre el array que contiene todas las palabras del fichero.
+            for(let j = 0; j<arrayPalabras.length; j++){
+                //Si la longitud de la palabra actual menos 1 (el índice empieza en 0) es igual al número de letras que queremos.
+                if(arrayPalabras[j].length-1 == numeroLetras){
+                    //Añadimos la palabra al array de palabras filtradas.
+                    palabrasFiltradas.push(arrayPalabras[j]);
+                }
+            }
+
+            console.log("PALABRAS: " + palabrasFiltradas);
+            //Se llama a la función generarTabla() que recibe el array de palabras y el número de columnas.
+            generarTabla(palabrasFiltradas, numeroColumnas);
+
+            //Habilitamos el botón generar CSV.
+            let generaCSV = document.getElementById("generaCSV");
+            generaCSV.disabled = false;
+
+            //Asignamos el evento click al botón generar CSV.
+            generaCSV.addEventListener("click", function(){
+
+            });
         }
     }
+}
+
+function generarTabla(palabras, numeroColumnas){
+    console.log("NUMERO COLUMNAS: " + numeroColumnas);
+    //Creamos una tabla HTML.
+    let tabla = document.createElement("table");
+
+    //Recorremos el array de palabras.
+    for(let i = 0; i < palabras.length; i++){
+        let fila = document.createElement("tr");
+
+        //Recorremos otro array para las columnas.
+        for(let j = 0; j < numeroColumnas; j++){
+            //Se calcula la posición actual de la palabra correspondiente multiplicando el índice del array por las columnas sumado al número de columna que se genera actualmente.
+            let indicePalabra = i * numeroColumnas + j;
+
+            //Si aún hay palabras por insertar en la tabla: 
+            if(indicePalabra < palabras.length){
+                //Se crea la columna y se asigna el valor de la posición actual.
+                let columna = document.createElement("td");
+                columna.textContent = palabras[indicePalabra];
+
+                //Se añade la columna a la fila.
+                fila.appendChild(columna);
+            }
+        }
+
+        //Se añade la fila a la tabla.
+        tabla.appendChild(fila);
+    }
+
+    //Agregamos la tabla al body.
+    document.body.appendChild(tabla);
 }
 
 function generarCSV(){
