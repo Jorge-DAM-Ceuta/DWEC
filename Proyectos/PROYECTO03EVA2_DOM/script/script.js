@@ -76,7 +76,7 @@ function generaInputsOperacion(){
     //Creamos el botón para generar palabras con id "generaPalabras" y el atributo disabled.
     let generarPalabras = document.createElement("button");
     generarPalabras.setAttribute("id", "generaPalabras");
-    generarPalabras.setAttribute("disabled", true);
+    generarPalabras.disabled = true;
     generarPalabras.textContent = "Genera palabras";
 
     inputsOperacion.appendChild(generarPalabras);
@@ -84,7 +84,7 @@ function generaInputsOperacion(){
     //Creamos el botón para generar el archivo .csv con id generaCSV y el atributo disabled.
     let generarCSV = document.createElement("button");
     generarCSV.setAttribute("id", "generaCSV");
-    generarCSV.setAttribute("disabled", true);
+    generarCSV.disabled = true;
     generarCSV.textContent = "Genera CSV";
 
     inputsOperacion.appendChild(generarCSV);
@@ -96,22 +96,32 @@ function generaInputsOperacion(){
 }
 
 function muestraBotonGeneraPalabras(comprobacionElementos){
-
     if(comprobacionElementos == true){
+        var generarPalabras = document.getElementById("generaPalabras");
         let inputLetras = document.getElementById("letras");
         let inputColumnas = document.getElementById("columnas");
 
-        let contenidoLetras = inputLetras.value;
-        let contenidoColumnas = inputColumnas.value;
-
-        inputColumnas.addEventListener("input", function(){
-            if(contenidoLetras.length > 0 && contenidoColumnas.length > 0){
-                let generarPalabras = document.getElementById("generaPalabras");
-                generarPalabras.setAttribute("disabled", false);
+        function comprobarContenido(){
+            let contenidoLetras = inputLetras.value;
+            let contenidoColumnas = inputColumnas.value;
     
-                console.log("LOS DOS TIENEN CONTENIDO");
+            console.log("Se esta ejecutando");
+
+            let ambosTienenContenido = contenidoLetras != "" && contenidoColumnas.length != "";
+    
+            if(ambosTienenContenido == true){
+                console.log("Se ha detenido el intervalo, ambos input tienen contenido.");
+                clearInterval(intervalo);
+                generarPalabras.disabled = false;
+            }else{
+                generarPalabras.disabled = true;
             }
-        });
+        }
+
+        inputLetras.addEventListener("input", comprobarContenido);
+        inputColumnas.addEventListener("input", comprobarContenido);
+    
+        let intervalo = setInterval(comprobarContenido, 1000);
     }
 }
 
