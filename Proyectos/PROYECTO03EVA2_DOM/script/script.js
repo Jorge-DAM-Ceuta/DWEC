@@ -95,7 +95,8 @@ function muestraBotonGeneraPalabras(comprobacionCarga){
 
                 //Se añade el evento al botón generarPalabras.
                 generarPalabras.addEventListener("click", function(){
-                    cargarPalabras();
+                    //Se usa la función cargarPalabras() que recibe el número de letras de las palabras y el número de columnas.
+                    cargarPalabras(contenidoLetras, contenidoColumnas);
                 });
             }else{
                 generarPalabras.disabled = true;
@@ -111,8 +112,8 @@ function muestraBotonGeneraPalabras(comprobacionCarga){
     }
 }
 
-//Pendiente de implementación; referencia del proyecto 1.
-function cargarPalabras(){
+//Obtiene el numero de letras para obtener las palabras y el número de columnas para la tabla.
+function cargarPalabras(numeroLetras, numeroColumnas){
     var inputArchivo = document.getElementById("btnArchivo");
     
     //Se obtiene el archivo seleccionado en el input.
@@ -127,17 +128,28 @@ function cargarPalabras(){
         activa el evento anterior con el contenido del archivo que recibe como evt.*/
         fileReader.readAsText(archivoSeleccionado);
         
-        //Este evento se activa cuando se ha cargado el contenido del archivo mediante readAsText(). 
-        fileReader.onload = (evt) => {
-            //Creamos un elemento p para escribir el contenido del archivo:
-            let textoArchivo = document.createElement("p");
+        /*Este evento se activa cuando se ha cargado el contenido del archivo mediante readAsText(). 
+        Obtiene las palabras y las filtra según el número de letras que haya indicado el usuario.*/
+        fileReader.onload = (ev) => {
+            //Obtenemos el contenido del fichero.
+            let contenido = ev.target.result;
 
-            /*Con evt se obtienen las informaciones del evento, en este caso el contenido del archivo. 
-            Con las que se permite acceder al contenido del archivo mediante target.result*/
-            textoArchivo.textContent = `Contenido: ${evt.target.result}`;
+            //Este array almacenará cada palabra del fichero.
+            let arrayPalabras = [];
 
-            //Añadimos el elemento al body:
-            document.body.appendChild(textoArchivo);
+            //Obtenemos un array en el que cada valor será una línea del fichero dividiendo el string con split() indicando el salto de línea.
+            let arrayLineas = contenido.split("\n");
+
+            //Se recorre el array de líneas del fichero.
+            for(let i = 0; i<arrayLineas.length; i++){
+                //Por cada línea se vuelve a dividir el string por espacios en blanco.
+                let palabrasLinea = lineas[i].split(" ");
+
+                //Concatenamos las palabras obtenidas al array de palabras. 
+                arrayPalabras = arrayPalabras.concat(palabrasLinea);
+            }
+
+
         }
     }
 }
