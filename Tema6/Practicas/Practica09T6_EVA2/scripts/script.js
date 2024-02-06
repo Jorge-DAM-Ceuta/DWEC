@@ -1,18 +1,19 @@
 function permiteCookie(){
     // Se setea la cookie a true con visitas a 1
-    document.cookie = "permiteCookie=1; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/;";
+    document.cookie = "visitas=1; max-age=60*60*24*365; path=/;";
     
-    //Se oculta el panel de las cookies y se muestra el resultado y el botón de cerrar sesión
+    // Se oculta el panel de las cookies y se muestra el resultado y el botón de cerrar sesión
     document.getElementById("panelCookies").setAttribute("hidden", "");
     document.getElementById("resultado").removeAttribute("hidden");
 
-    let numeroVisitas = getCookieValue("permiteCookie");
+    let numeroVisitas = getCookieValue("visitas");
     let muestraVisitas = document.getElementById("numeroVisitas");
 
-    console.log(document.cookie);
+    // Se muestra el valor de la cookie en consola.
+    console.log(numeroVisitas);
 
+    // Se escribe el valor en el contador del resultado.
     muestraVisitas.textContent = numeroVisitas;
-    
 }
 
 function getCookieValue(nombre){
@@ -23,7 +24,8 @@ function getCookieValue(nombre){
         let cookie = cookies[i].trim(); 
 
         if(cookie.startsWith(nombre + "=")){
-            return cookie.substring(nombre.length + 1); 
+            let valor = cookie.substring(nombre.length + 1);
+            return valor;
         }
     }
 
@@ -31,22 +33,34 @@ function getCookieValue(nombre){
 }
 
 function rechazaCookie(){
-    // Se setea la cookie a false
-    document.cookie = "permiteCookie=0; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/;";
-
-    // Se oculta el panel de las cookies y el resultado
+    //Se oculta el panel de las cookies y se muestra el contenido.
     document.getElementById("panelCookies").setAttribute("hidden", "");
-    document.getElementById("resultado").setAttribute("hidden", "");
+    document.getElementById("resultado").removeAttribute("hidden");
+
+    //Se añade un mensaje en el contador.
+    let muestraVisitas = document.getElementById("numeroVisitas");
+    muestraVisitas.textContent = "No has aceptado las cookies";
 }
 
 function reestablecer(){
-    // Se setea la cookie a false
-    document.cookie = "permiteCookie=0; expires=Thu, 18 Dec 2025 12:00:00 UTC; path=/;";
-    
     // Se oculta el panel de las cookies
     document.getElementById("panelCookies").removeAttribute("hidden");
     document.getElementById("resultado").setAttribute("hidden", "");
 }
+
+function aumentarContadorVisitas(){
+    // Obtenemos el valor de la cookie.
+    let valorCookie = getCookieValue("visitas");
+ 
+    // Si la cookie existe y su valor es mayor que 0 y distinto de null se obtiene su valor y se le incrementa.
+    if(valorCookie != null && parseInt(valorCookie) > 0){
+        let nuevoValor = parseInt(valorCookie) + 1;
+       
+        // Se actualiza la cookie con el nuevo valor.
+        document.cookie = "visitas=" + nuevoValor + "; max-age=60*60*24*365; path=/;";
+    }
+ }
+ 
 
 function iniciaListeners(){
     // Agregamos eventos a los botones
@@ -54,6 +68,13 @@ function iniciaListeners(){
     document.getElementById("botonRechaza").addEventListener("click", rechazaCookie);
     document.getElementById("botonCierraSesion").addEventListener("click", reestablecer);
 
-    //Si la cookie es true y se carga el documento se suma la cookie visitas en 1.
-    //document.addEventListener("DOMContentLoaded", sumarVisita);
+    // Si al cargar el documento el valor de la cookie es mayor que 0, está seteada
+    document.addEventListener("DOMContentLoaded", function(){
+        // Ya no se muestra el panel de las cookies y se muestra el resultado.
+        document.getElementById("panelCookies").setAttribute("hidden", "");
+        document.getElementById("resultado").removeAttribute("hidden");
+
+        // Se le suma a uno la cantidad de visitas.
+        aumentarContadorVisitas();
+    });
 }
