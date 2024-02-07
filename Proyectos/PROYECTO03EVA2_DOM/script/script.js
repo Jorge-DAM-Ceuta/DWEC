@@ -94,7 +94,7 @@ elementos de nuevo. Esto se realiza para evitar errores por si hay un cambio de 
 }
 
 //Esta función inicia el primer listener: El del input file para cargar el archivo.
-function iniciarPrimerListener(){
+function iniciaListeners(){
     //Se obtiene el botón examinar y se le añade el evento change.
     let botonExaminar = document.getElementById("btnArchivo");
     botonExaminar.addEventListener("change", function(ev){
@@ -148,7 +148,7 @@ function muestraBotonGeneraPalabras(){
                 //Eliminamos el elemento de manera que sea visible al menos uno de ellos, aunque solo pueda conseguir visualizarse intermitentemente.
                 setTimeout(() => {
                     advertencia.remove();
-                }, 165);
+                }, 150);
             }
 
             //Se añade el evento al botón generarPalabras.
