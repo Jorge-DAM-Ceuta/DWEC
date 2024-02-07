@@ -1,5 +1,3 @@
-var tiempoMensaje = 0;
-
 function generaInputsOperacion(){
 /*Intentamos obtener el elemento que se va a crear después, en caso de que ya exista devolverá true y terminará 
 con la ejecución para evitar crear los elementos de nuevo si se carga otro documento durante la ejecución.
@@ -325,11 +323,19 @@ function generarCSV(numeroLetras){
     /*Creamos un elemento a y le añadimos al atributo href el enlace de descarga para el contenido generado por el 
     Blob mediante un objeto URL y el método createObjectURL() que recibe el Blob del fichero como parámetro.*/
     let generarFichero = document.createElement("a");
-    generarFichero.setAttribute("href", URL.createObjectURL(blob));
+    generarFichero.setAttribute("id", "urlDescarga");
+
+    let url = new URL();
+    url.createObjectURL(blob);
+    
+    generarFichero.setAttribute("href", url);
 
     //Añadimos el atributo download con el nombre específico según el número de palabras obtenidas.
     generarFichero.setAttribute("download", `palabras${numeroLetras}.csv`);
 
     //Activamos la funcionalidad del elemento que hemos creado para iniciar la descarga.
     generarFichero.click();
+
+    generarFichero.remove();
+    blob.remove();
 }
