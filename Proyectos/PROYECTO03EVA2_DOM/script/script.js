@@ -123,7 +123,7 @@ function muestraBotonGeneraPalabras(){
         let contenidoColumnas = inputColumnas.value;
 
         //Se comprueba que ambos input tengan resultado en la llamada al método actual.
-        let ambosTienenresultado = resultadoLetras != "" && contenidoColumnas.length != "";
+        let ambosTienenresultado = resultadoLetras != "" && contenidoColumnas != "";
 
         //Obtenemos el input que contiene el archivo.
         let ficheroCargado = document.getElementById("btnArchivo");
@@ -137,6 +137,12 @@ function muestraBotonGeneraPalabras(){
                 
                 //Se habilita el botón
                 generarPalabras.disabled = false;
+
+                //Se añade el evento al botón generarPalabras.
+                generarPalabras.addEventListener("click", function(){
+                    //Se usa la función cargarPalabras() que recibe el número de letras de las palabras y el número de columnas.
+                    cargarPalabras(resultadoLetras, contenidoColumnas);
+                });
             }else{
                 //Creamos un elemento y le añadimos el mensaje.
                 let advertencia = document.createElement("h3");
@@ -150,12 +156,6 @@ function muestraBotonGeneraPalabras(){
                     advertencia.remove();
                 }, 150);
             }
-
-            //Se añade el evento al botón generarPalabras.
-            generarPalabras.addEventListener("click", function(){
-                //Se usa la función cargarPalabras() que recibe el número de letras de las palabras y el número de columnas.
-                cargarPalabras(resultadoLetras, contenidoColumnas);
-            });
         }else{
             generarPalabras.disabled = true;
         }
