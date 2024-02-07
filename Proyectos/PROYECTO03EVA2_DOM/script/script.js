@@ -125,18 +125,36 @@ function muestraBotonGeneraPalabras(){
         //Se comprueba que ambos input tengan resultado en la llamada al método actual.
         let ambosTienenresultado = resultadoLetras != "" && contenidoColumnas.length != "";
 
-        //Si ambos tienen resultado se detiene el intervalo y se activa el botón generar palabras. En caso contrario se desactiva el botón.
+        //Obtenemos el input que contiene el archivo.
+        let ficheroCargado = document.getElementById("btnArchivo");
+
+        //Si ambos inputs tienen un valor se realiza la siguiente comprobación. En caso contrario se sigue desactivando el botón.
         if(ambosTienenresultado == true){
-            clearInterval(intervalo);
-            generarPalabras.disabled = false;
+            //Si se ha cargado algún fichero se detiene el intervalo y se habilita el botón. En caso contrario muestra un mensaje de alerta.
+            if(ficheroCargado.files.length > 0){
+                //Se detiene el intervalo.
+                clearInterval(intervalo);
+                
+                //Se habilita el botón
+                generarPalabras.disabled = false;
+            }else{
+                //Creamos un elemento y le añadimos el mensaje.
+                let advertencia = document.createElement("h3");
+                advertencia.textContent = "No se ha seleccionado ningún fichero";
+
+                //Se añade la advertencia al documento, al estar en un setInterval se añadirá una vez por segundo.
+                document.body.appendChild(advertencia);
+
+                //Eliminamos el elemento de manera que sea visible al menos uno de ellos, aunque solo pueda conseguir visualizarse intermitentemente.
+                setTimeout(() => {
+                    advertencia.remove();
+                }, 165);
+            }
 
             //Se añade el evento al botón generarPalabras.
             generarPalabras.addEventListener("click", function(){
-                //Se esperan dos segundos para obtener correctamente los valores.
-                setTimeout(() => {
-                    //Se usa la función cargarPalabras() que recibe el número de letras de las palabras y el número de columnas.
-                    cargarPalabras(resultadoLetras, contenidoColumnas);
-                }, 2000);
+                //Se usa la función cargarPalabras() que recibe el número de letras de las palabras y el número de columnas.
+                cargarPalabras(resultadoLetras, contenidoColumnas);
             });
         }else{
             generarPalabras.disabled = true;
