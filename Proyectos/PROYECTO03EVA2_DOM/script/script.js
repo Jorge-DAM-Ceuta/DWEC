@@ -1,13 +1,12 @@
 function generaInputsOperacion(){
 /*Intentamos obtener el elemento que se va a crear después, en caso de que ya exista devolverá true y terminará 
-con la ejecución para evitar crear los elementos de nuevo si se carga otro documento durante la ejecución.*/
+con la ejecución para evitar crear los elementos de nuevo si se carga otro documento durante la ejecución.
+En caso de que no exista se crean los elementos y se añaden al body.*/
     let elementosActivos = document.getElementById("inputsOperacion");
     
     if(elementosActivos){
         return true;
     }
-
-//En caso de que no exista el contenedor se crean los elementos
 
     //Creamos un div con id "inputsOperacion" que contendrá los inputs number y los dos botones.
     let inputsOperacion = document.createElement("div");
