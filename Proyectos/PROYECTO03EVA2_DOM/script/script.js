@@ -105,7 +105,7 @@ function iniciaListeners(){
         generaInputsOperacion();  
 
         //Llamamos la función para mostrar el botón generar palabras con el valor de comprobación.
-        muestraBotonGeneraPalabras(true); 
+        muestraBotonGeneraPalabras(); 
     });
 }
 
