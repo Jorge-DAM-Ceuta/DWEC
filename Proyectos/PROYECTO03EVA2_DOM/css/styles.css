@@ -11,6 +11,11 @@ body {
             margin-top: 15px;
         }
     }
+
+    & h3{
+        display: grid;
+        place-items: center;
+    }
   
     & div{
         display: grid;

@@ -1,3 +1,5 @@
+var tiempoMensaje = 0;
+
 function generaInputsOperacion(){
 /*Intentamos obtener el elemento que se va a crear después, en caso de que ya exista devolverá true y terminará 
 con la ejecución para evitar crear los elementos de nuevo si se carga otro documento durante la ejecución.
@@ -192,10 +194,43 @@ function cargarPalabras(numeroLetras, numeroColumnas){
                 }
             }
 
-            //Si el array no está vacío se genera la tabla.
+            //Si el array no está vacío se genera la tabla, en caso contrario se muestra un mensaje de error y se limpia la tabla.
             if(palabrasFiltradas.length > 0){
+                //Se obtiene el mensaje por id.
+                let existeMensaje = document.getElementById("mensaje");
+
+                //Si el mensaje existe se elimina ya que se va a realizar la operación.
+                if(existeMensaje){
+                    existeMensaje.remove();
+                }
+
                 //Se llama a la función generarTabla() que recibe el array de palabras y el número de columnas.
                 generarTabla(palabrasFiltradas, numeroColumnas);
+            }else{
+                //Se obtiene el mensaje por id.
+                let existeMensaje = document.getElementById("mensaje");
+
+                //Si el mensaje no existe.
+                if(!existeMensaje){
+                    //Se crea un elemento h3 con id "mensaje", se le añade un texto y se añade al body.
+                    let mensaje = document.createElement("h3");
+                    mensaje.setAttribute("id", "mensaje");
+                    mensaje.textContent = "No hay palabras con esa longitud en el fichero.";
+                    document.body.appendChild(mensaje);
+
+                    //Al pasar tres segundos el mensaje se eliminará.
+                    setTimeout(() => {
+                        mensaje.remove();
+                    }, 5000);
+
+                    //Obtenemos la tabla por su id.
+                    let tablaExistente = document.getElementById("tablaPalabras");
+    
+                    //Si la tabla existe se elimina para mostrar solo el mensaje.
+                    if(tablaExistente){
+                        tablaExistente.remove();
+                    }
+                }
             }            
         }
     }
