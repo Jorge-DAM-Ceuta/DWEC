@@ -1,11 +1,16 @@
 function generaInputsOperacion(){
-/*Intentamos obtener el elemento que se va a crear después, en caso de que ya exista devolverá true y terminará 
-con la ejecución para evitar crear los elementos de nuevo si se carga otro documento durante la ejecución.
-En caso de que no exista se crean los elementos y se añaden al body.*/
+/*Intentamos obtener los elementos que se va a crear después, en caso de que ya exista lo elimina antes de crear los 
+elementos de nuevo. Esto se realiza para evitar errores por si hay un cambio de fichero durante la ejecución.*/ 
     let elementosActivos = document.getElementById("inputsOperacion");
     
     if(elementosActivos){
-        return true;
+        elementosActivos.remove();
+    }
+
+    let tablaExistente = document.getElementById("tablaPalabras");
+        
+    if(tablaExistente){
+        tablaExistente.remove();
     }
 
     //Creamos un div con id "inputsOperacion" que contendrá los inputs number y los dos botones.
@@ -120,8 +125,11 @@ function muestraBotonGeneraPalabras(comprobacionCarga){
 
                 //Se añade el evento al botón generarPalabras.
                 generarPalabras.addEventListener("click", function(){
-                    //Se usa la función cargarPalabras() que recibe el número de letras de las palabras y el número de columnas.
-                    cargarPalabras(resultadoLetras, contenidoColumnas);
+                    //Se esperan dos segundos para obtener correctamente los valores.
+                    setTimeout(() => {
+                        //Se usa la función cargarPalabras() que recibe el número de letras de las palabras y el número de columnas.
+                        cargarPalabras(resultadoLetras, contenidoColumnas);
+                    }, 2000);
                 });
             }else{
                 generarPalabras.disabled = true;
@@ -141,6 +149,20 @@ function muestraBotonGeneraPalabras(comprobacionCarga){
 Se usa FileReader para leer y obtener las palabras del fichero, además, genera la tabla y 
 habilita el botón generaCSV y le asigna su addEventListener().*/
 function cargarPalabras(numeroLetras, numeroColumnas){
+    /*Obtenemos la tabla por su id y en caso de que la tabla ya exista la eliminamos antes de añadir la nueva.
+    Esto se hace por si se cambia de fichero durante la ejecución del script*/
+    let tablaExistente = document.getElementById("tablaPalabras");
+        
+    if(tablaExistente){
+        //Limpiamos la tabla anterior.
+        while(tablaExistente.firstChild){
+            tablaExistente.removeChild(tablaExistente.firstChild);
+        }
+
+        //Eliminamos la tabla.
+        tablaExistente.remove();
+    }
+
     //Obtenemos el input que carga el archivo.
     var inputArchivo = document.getElementById("btnArchivo");
     
@@ -202,6 +224,20 @@ function cargarPalabras(numeroLetras, numeroColumnas){
                     existeMensaje.remove();
                 }
 
+                //Obtenemos la tabla por su id.
+                let tablaExistente = document.getElementById("tablaPalabras");
+    
+                //Si la tabla existe se elimina para mostrar solo el mensaje.
+                if(tablaExistente){
+                    //Limpiamos la tabla anterior.
+                    while(tablaExistente.firstChild){
+                        tablaExistente.removeChild(tablaExistente.firstChild);
+                    }
+
+                    //Eliminamos la tabla.
+                    tablaExistente.remove();
+                }
+
                 //Se llama a la función generarTabla() que recibe el array de palabras y el número de columnas.
                 generarTabla(palabrasFiltradas, numeroColumnas);
             }else{
@@ -220,14 +256,6 @@ function cargarPalabras(numeroLetras, numeroColumnas){
                     setTimeout(() => {
                         mensaje.remove();
                     }, 5000);
-
-                    //Obtenemos la tabla por su id.
-                    let tablaExistente = document.getElementById("tablaPalabras");
-    
-                    //Si la tabla existe se elimina para mostrar solo el mensaje.
-                    if(tablaExistente){
-                        tablaExistente.remove();
-                    }
                 }
             }            
         }
@@ -237,13 +265,33 @@ function cargarPalabras(numeroLetras, numeroColumnas){
 /*Esta función genera una tabla HTML con tantas columnas como se le especifica hasta terminar de añadir todas 
 las palabras del array. Cuando ha terminado el proceso muestra el botón genera CSV y le aplica un evento click.*/
 function generarTabla(palabras, numeroColumnas){
-/*Obtenemos la tabla por su id y en caso de que la tabla ya exista la eliminamos antes de añadir la nueva.
-Esto se hace por si se cambia de fichero durante la ejecución del script*/
+    /*Obtenemos la tabla por su id y en caso de que la tabla ya exista la eliminamos antes de añadir la nueva.
+    Esto se hace por si se cambia de fichero durante la ejecución del script*/
     let tablaExistente = document.getElementById("tablaPalabras");
-    
+        
     if(tablaExistente){
+        //Limpiamos la tabla anterior.
+        while(tablaExistente.firstChild){
+            tablaExistente.removeChild(tablaExistente.firstChild);
+        }
+
+        //Eliminamos la tabla.
         tablaExistente.remove();
     }
+
+    //Se obtiene el mensaje por id.
+    let existeMensaje = document.getElementById("mensaje");
+
+    //Si el mensaje existe se elimina ya que se va a realizar la operación.
+    if(existeMensaje){
+        existeMensaje.remove();
+    }
+
+    //Se crea un elemento h3 con id "mensaje", se le añade un texto y se añade al body.
+    let mensaje = document.createElement("h3");
+    mensaje.setAttribute("id", "mensaje");
+    mensaje.textContent = "Cargando contenido...";
+    document.body.appendChild(mensaje);
 
     //Creamos una tabla HTML y le añadimos el id "tablaPalabras".
     let tabla = document.createElement("table");
@@ -273,6 +321,8 @@ Esto se hace por si se cambia de fichero durante la ejecución del script*/
         tabla.appendChild(fila);
     }
 
+    mensaje.remove();
+
     //Agregamos la tabla al body.
     document.body.appendChild(tabla);
 
@@ -284,9 +334,19 @@ Esto se hace por si se cambia de fichero durante la ejecución del script*/
     generaCSV.addEventListener("click", function(){
         generarCSV(palabras[0].length);
     });
+
 }
 
 function generarCSV(numeroLetras){
+    //Obtenemos el elemento a por si se ha vuelto a llamar a la función más de una vez.
+    let elementoURL = document.getElementById("urlDescarga");
+
+    //Si el elemento existe se elimina la URL con el Blob anterior y también el elemento.
+    if(elementoURL){
+        URL.revokeObjectURL(elementoURL.href);
+        elementoURL.remove();
+    }
+
     //Obtenemos la tabla con los datos.
     let tabla = document.querySelector("table");
 
@@ -329,11 +389,12 @@ function generarCSV(numeroLetras){
     //Añadimos el atributo download con el nombre específico según el número de palabras obtenidas.
     generarFichero.setAttribute("download", `palabras${numeroLetras}.csv`);
 
-    //Activamos la funcionalidad del elemento que hemos creado para iniciar la descarga.
-    generarFichero.click();
-
-    /*
-    generarFichero.remove();
-    document.URL.revokeObjectURL(blob);
-    */
+    //Añadimos el elemento al body para poder referenciarlo posteriormente.
+    document.body.appendChild(generarFichero);
+    
+    //Se establece un segundo de retraso para que le de tiempo a establecer el nuevo href con el URL y el Blob actuales.
+    setTimeout(() => {
+        //Activamos la funcionalidad del elemento que hemos creado para iniciar la descarga.
+        generarFichero.click();
+    }, 1000);
 }
