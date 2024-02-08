@@ -70,11 +70,13 @@ function iniciaListeners(){
 
     // Si al cargar el documento el valor de la cookie es mayor que 0, está seteada
     document.addEventListener("DOMContentLoaded", function(){
-        // Ya no se muestra el panel de las cookies y se muestra el resultado.
-        document.getElementById("panelCookies").setAttribute("hidden", "");
-        document.getElementById("resultado").removeAttribute("hidden");
+        if(getCookieValue("visitas").length > 0){
+            // Ya no se muestra el panel de las cookies y se muestra el resultado.
+            document.getElementById("panelCookies").setAttribute("hidden", "");
+            document.getElementById("resultado").removeAttribute("hidden");
 
-        // Se le suma a uno la cantidad de visitas.
-        aumentarContadorVisitas();
+            // Se le suma a uno la cantidad de visitas.
+            aumentarContadorVisitas();
+        }
     });
 }
