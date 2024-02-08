@@ -278,36 +278,47 @@ function generarTabla(palabras, numeroColumnas){
     let tabla = document.createElement("table");
     tabla.setAttribute("id", "tablaPalabras");
 
-    //Recorremos el array de palabras.
-    for(let i = 0; i < palabras.length; i++){
-        let fila = document.createElement("tr");
+    //Creamos y añadimos un mensaje de carga.
+    let mensajeCarga = document.createElement("h3");
+    mensajeCarga.textContent = "Cargando datos...";
+    document.body.appendChild(mensajeCarga);
 
-        //Recorremos otro array para las columnas.
-        for(let j = 0; j < numeroColumnas; j++){
-            //Se calcula la posición actual de la palabra correspondiente multiplicando el índice del array por las columnas sumado al número de columna que se genera actualmente.
-            let indicePalabra = i * numeroColumnas + j;
+    setTimeout(()=>{
+        //Recorremos el array de palabras.
+        for(let i = 0; i < palabras.length; i++){
+            let fila = document.createElement("tr");
 
-            //Si aún hay palabras por insertar en la tabla: 
-            if(indicePalabra < palabras.length){
-                //Se crea la columna y se asigna el valor de la posición actual.
-                let columna = document.createElement("td");
-                columna.textContent = palabras[indicePalabra];
+            //Recorremos otro array para las columnas.
+            for(let j = 0; j < numeroColumnas; j++){
+                //Se calcula la posición actual de la palabra correspondiente multiplicando el índice del array por las columnas sumado al número de columna que se genera actualmente.
+                let indicePalabra = i * numeroColumnas + j;
 
-                //Se añade la columna a la fila.
-                fila.appendChild(columna);
+                //Si aún hay palabras por insertar en la tabla: 
+                if(indicePalabra < palabras.length){
+                    //Se crea la columna y se asigna el valor de la posición actual.
+                    let columna = document.createElement("td");
+                    columna.textContent = palabras[indicePalabra];
+
+                    //Se añade la columna a la fila.
+                    fila.appendChild(columna);
+                }
             }
+
+            //Se añade la fila a la tabla.
+            tabla.appendChild(fila);
         }
+    
 
-        //Se añade la fila a la tabla.
-        tabla.appendChild(fila);
-    }
+        //Agregamos la tabla al body.
+        document.body.appendChild(tabla);
+        
+        //Eliminamos el mensaje de carga.
+        mensajeCarga.remove();
 
-    //Agregamos la tabla al body.
-    document.body.appendChild(tabla);
-
-    //Habilitamos el botón generar CSV.
-    let generaCSV = document.getElementById("generaCSV");
-    generaCSV.disabled = false;
+        //Habilitamos el botón generar CSV.
+        let generaCSV = document.getElementById("generaCSV");
+        generaCSV.disabled = false;
+    }, 1000);
 }
 
 function generaCSV(){
