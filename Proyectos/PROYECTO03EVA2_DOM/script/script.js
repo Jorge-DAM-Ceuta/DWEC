@@ -172,6 +172,7 @@ function cargarPalabras(numeroLetras, numeroColumnas){
     //Al hacer click en cargar palabras se vuelven a generar todos los elementos de nuevo para evitar repeticiones en la tabla e interferencias varias.
     generaInputsOperacion();
 
+    var start = window.performance.now();
     //Obtenemos el input que carga el archivo.
     var inputArchivo = document.getElementById("btnArchivo");
     
@@ -222,6 +223,9 @@ function cargarPalabras(numeroLetras, numeroColumnas){
                     palabrasFiltradas.push(arrayPalabras[j]);
                 }
             }
+
+            var end = window.performance.now();
+            console.log(`Execution time: ${end - start} ms`);
 
             //Si el array no está vacío se genera la tabla, en caso contrario se muestra un mensaje de error y se limpia la tabla.
             if(palabrasFiltradas.length > 0){
