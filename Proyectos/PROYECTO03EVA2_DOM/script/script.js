@@ -172,7 +172,9 @@ function cargarPalabras(numeroLetras, numeroColumnas){
     //Al hacer click en cargar palabras se vuelven a generar todos los elementos de nuevo para evitar repeticiones en la tabla e interferencias varias.
     generaInputsOperacion();
 
+    //----------------------CALCULO TIEMPO---------------------------
     var start = window.performance.now();
+
     //Obtenemos el input que carga el archivo.
     var inputArchivo = document.getElementById("btnArchivo");
     
@@ -224,7 +226,10 @@ function cargarPalabras(numeroLetras, numeroColumnas){
                 }
             }
 
+            //----------------------CALCULO TIEMPO---------------------------
             var end = window.performance.now();
+            
+            //----------------------MUESTRO TIEMPO---------------------------
             console.log(`Execution time: ${end - start} ms`);
 
             //Si el array no está vacío se genera la tabla, en caso contrario se muestra un mensaje de error y se limpia la tabla.
@@ -287,42 +292,40 @@ function generarTabla(palabras, numeroColumnas){
     mensajeCarga.textContent = "Cargando datos...";
     document.body.appendChild(mensajeCarga);
 
-    setTimeout(()=>{
-        //Recorremos el array de palabras.
-        for(let i = 0; i < palabras.length; i++){
-            let fila = document.createElement("tr");
+    //Recorremos el array de palabras.
+    for(let i = 0; i < palabras.length; i++){
+        let fila = document.createElement("tr");
 
-            //Recorremos otro array para las columnas.
-            for(let j = 0; j < numeroColumnas; j++){
-                //Se calcula la posición actual de la palabra correspondiente multiplicando el índice del array por las columnas sumado al número de columna que se genera actualmente.
-                let indicePalabra = i * numeroColumnas + j;
+        //Recorremos otro array para las columnas.
+        for(let j = 0; j < numeroColumnas; j++){
+            //Se calcula la posición actual de la palabra correspondiente multiplicando el índice del array por las columnas sumado al número de columna que se genera actualmente.
+            let indicePalabra = i * numeroColumnas + j;
 
-                //Si aún hay palabras por insertar en la tabla: 
-                if(indicePalabra < palabras.length){
-                    //Se crea la columna y se asigna el valor de la posición actual.
-                    let columna = document.createElement("td");
-                    columna.textContent = palabras[indicePalabra];
+            //Si aún hay palabras por insertar en la tabla: 
+            if(indicePalabra < palabras.length){
+                //Se crea la columna y se asigna el valor de la posición actual.
+                let columna = document.createElement("td");
+                columna.textContent = palabras[indicePalabra];
 
-                    //Se añade la columna a la fila.
-                    fila.appendChild(columna);
-                }
+                //Se añade la columna a la fila.
+                fila.appendChild(columna);
             }
-
-            //Se añade la fila a la tabla.
-            tabla.appendChild(fila);
         }
+
+        //Se añade la fila a la tabla.
+        tabla.appendChild(fila);
+    }
+
+
+    //Agregamos la tabla al body.
+    document.body.appendChild(tabla);
     
+    //Eliminamos el mensaje de carga.
+    mensajeCarga.remove();
 
-        //Agregamos la tabla al body.
-        document.body.appendChild(tabla);
-        
-        //Eliminamos el mensaje de carga.
-        mensajeCarga.remove();
-
-        //Habilitamos el botón generar CSV.
-        let generaCSV = document.getElementById("generaCSV");
-        generaCSV.disabled = false;
-    }, 1000);
+    //Habilitamos el botón generar CSV.
+    let generaCSV = document.getElementById("generaCSV");
+    generaCSV.disabled = false;
 }
 
 function generaCSV(){
