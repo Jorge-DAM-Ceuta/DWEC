@@ -172,9 +172,6 @@ function cargarPalabras(numeroLetras, numeroColumnas){
     //Al hacer click en cargar palabras se vuelven a generar todos los elementos de nuevo para evitar repeticiones en la tabla e interferencias varias.
     generaInputsOperacion();
 
-    //----------------------CALCULO TIEMPO---------------------------
-    var start = window.performance.now();
-
     //Obtenemos el input que carga el archivo.
     var inputArchivo = document.getElementById("btnArchivo");
     
@@ -196,41 +193,11 @@ function cargarPalabras(numeroLetras, numeroColumnas){
             //Obtenemos el resultado del fichero.
             let resultado = ev.target.result;
 
-            //Este array almacenará cada palabra del fichero.
-            let arrayPalabras = [];
+            //Este array almacenará cada palabra del fichero eliminando espacios en blanco, saltos de línea y retornos de carro, además de los elementos vacíos si los hay.
+            let arrayPalabras = resultado.split(/\s+/).filter(palabra => palabra != "");
 
-            //Obtenemos un array en el que cada valor será una línea del fichero dividiendo el string con split() indicando el salto de línea.
-            let arrayLineas = resultado.split("\n");
-
-            //Se recorre el array de líneas del fichero.
-            for(let i = 0; i < arrayLineas.length; i++){
-                //Por cada línea se vuelve a dividir el string por espacios en blanco, saltos de línea y retornos de carro.
-                let palabrasLinea = arrayLineas[i].split(/\s+/);
-
-                //Obtenemos de nuevo el array sin los elementos vacíos.
-                palabrasLinea = palabrasLinea.filter(palabra => palabra != "");
-                
-                //Concatenamos las palabras obtenidas al array de palabras. 
-                arrayPalabras = arrayPalabras.concat(palabrasLinea);
-            }
-
-            //Este array obtendrá las palabras cuya longitud sea igual a la indicada por parámetros.
-            let palabrasFiltradas = [];
-
-            //Se recorre el array que contiene todas las palabras del fichero.
-            for(let j = 0; j < arrayPalabras.length; j++){
-                //Si la longitud de la palabra actual es igual al número de letras que queremos.
-                if(arrayPalabras[j].length == numeroLetras){
-                    //Añadimos la palabra al array de palabras filtradas.
-                    palabrasFiltradas.push(arrayPalabras[j]);
-                }
-            }
-
-            //----------------------CALCULO TIEMPO---------------------------
-            var end = window.performance.now();
-            
-            //----------------------MUESTRO TIEMPO---------------------------
-            console.log(`Execution time: ${end - start} ms`);
+            //Este array obtendrá las palabras del primer array cuya longitud sea igual a la indicada por parámetros.
+            let palabrasFiltradas = arrayPalabras.filter(palabra => palabra.length == numeroLetras);
 
             //Si el array no está vacío se genera la tabla, en caso contrario se muestra un mensaje de error y se limpia la tabla.
             if(palabrasFiltradas.length > 0){
@@ -315,7 +282,6 @@ function generarTabla(palabras, numeroColumnas){
         //Se añade la fila a la tabla.
         tabla.appendChild(fila);
     }
-
 
     //Agregamos la tabla al body.
     document.body.appendChild(tabla);
