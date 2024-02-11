@@ -75,8 +75,9 @@ function iniciaJuego(){
                 //Obtenemos el valor de la pieza sobre la que hemos soltado la otra pieza.
                 let valorSoltado = ev.target.textContent;
     
-                let indicePiezaArrastrada = 0;
-                let indicePiezaSoltada = 0;
+                //Le asignamos -1 al principio para evitar que al hacer drop sobre la misma casilla se intercambie por la pieza de la primera casilla.
+                let indicePiezaArrastrada = -1;
+                let indicePiezaSoltada = -1;
     
                 //Recorremos el array de piezas.
                 for(let i = 0; i < piezas.length; i++){
