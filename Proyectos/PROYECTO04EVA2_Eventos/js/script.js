@@ -123,7 +123,7 @@ function iniciaJuego(){
                 //Llamaremos a esta función cada vez que se arrastre un elemento para actualizar los colores de cada pieza y comprobar si se ha terminado el puzzle.
                 comprobarPuzzle();
             });
-            
+
             //Añadimos la pieza al array de piezas.
             piezas.push(pieza);
     
@@ -187,6 +187,10 @@ function iniciaJuego(){
             //Asignamos menor margen entre las piezas para visualizar mejor la imagen. 
             contenedorPuzzle.style.columnGap = "1px";
             contenedorPuzzle.style.rowGap = "1px";
+            
+            //Centramos el contenedor.
+            contenedorPuzzle.style.marginBottom = "0vh";
+            contenedorPuzzle.style.marginTop = "1vh";
 
             //Creamos y mostramos un mensaje con el número de intentos.
             let resultadoIntentos = document.createElement("h2");
