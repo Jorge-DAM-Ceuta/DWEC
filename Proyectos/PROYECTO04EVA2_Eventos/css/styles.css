@@ -1,37 +1,73 @@
-#puzzle{
-    display: grid;
-    grid-template-columns: repeat(4, 100px);
-    gap: 20px;
-    margin-top: 70px;
-    place-content: center;
+body{
+    display: flex;
 }
 
-h1, h2{
-    text-align: center;
-    margin-top: 50px;
+img{
+    width: 30vw;
+    height: 85vh;
+    margin-top: 5.5vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+#puzzle{
+    margin-bottom: 5vh;
+    display: grid;
+    grid-template-columns: repeat(4, 9vw);
+    grid-template-rows: repeat(4, 22vh);
+    column-gap: 11px;
+    row-gap: 11px;
+    align-self: center;
 }
 
 .pieza{
-    width: 100px;
-    height: 100px;
-    font-size: 1.3em;
+    width: 100%;
+    height: 100%;
+    font-size: 0em;
+    margin: 20px;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    border: 7px solid black;
-    transition: background-color 0.3s;
+    transition: border 0.7s;
+    background-size: 100% 100%;
 }
 
 .pieza_verde{
-    border: 7px solid #8aff8a;
+    border: 5px solid #8aff8a;
 }
 
 .pieza_naranja{
-    border: 7px solid #f9a34d;
+    border: 5px solid #f9a34d;
 }
 
 .pieza_gris{
-    border: 7px solid #aeafae;
+    border: 5px solid #aeafae;
+}
+
+h2{
+    margin-top: 50vh;
+    margin-left: 3vw;
+    text-align: center;
+    animation: colorChange 3s infinite;
+}
+
+@keyframes colorChange {
+    0% {
+        color: red;
+    }
+
+    25% {
+        color: blue;
+    }
+
+    50% {
+        color: green;
+    }
+
+    75% {
+        color: orange;
+    }
+
+    100% {
+        color: red;
+    }
 }

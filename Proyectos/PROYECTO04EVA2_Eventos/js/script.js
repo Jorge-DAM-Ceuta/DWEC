@@ -9,29 +9,42 @@ function iniciaJuego(){
 
     //Esta función está dentro de la función iniciaJuego para poder acceder a sus variables y trabajar con el array piezas.
     function cargarPuzzle(){
-        //Array que contendrá los valores.
-        let imagenes = [];
+        //Array que contendrá los valores para cada pieza.
+        let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
         
-        //Rellenamos el array de números de números del 1 al 16.
-        for(let i = 0; i < 16; i++){
-            let filaActual = parseInt(i / 4) + 1;
-            let columnaActual = (i % 4) + 1;
-            
-            imagenes.push(`./images/fila-${filaActual}-columna-${columnaActual}.jpg`);
-        }
+        //Asociamos las imágenes con sus correspondientes valores.
+        let imagenes = {
+            1: "./images/fila-1-columna-1.jpg",
+            2: "./images/fila-1-columna-2.jpg",
+            3: "./images/fila-1-columna-3.jpg",
+            4: "./images/fila-1-columna-4.jpg",
+            5: "./images/fila-2-columna-1.jpg",
+            6: "./images/fila-2-columna-2.jpg",
+            7: "./images/fila-2-columna-3.jpg",
+            8: "./images/fila-2-columna-4.jpg",
+            9: "./images/fila-3-columna-1.jpg",
+            10: "./images/fila-3-columna-2.jpg",
+            11: "./images/fila-3-columna-3.jpg",
+            12: "./images/fila-3-columna-4.jpg",
+            13: "./images/fila-4-columna-1.jpg",
+            14: "./images/fila-4-columna-2.jpg",
+            15: "./images/fila-4-columna-3.jpg",
+            16: "./images/fila-4-columna-4.jpg"
+        };
     
         //Reemplazamos el array con las posiciones desordenadas.
-        imagenes = desordenarPiezas(imagenes);
+        numeros = desordenarPiezas(numeros);
     
         //Recorremos el array de numeros desordenados.
-        for(let j = 0; j < imagenes.length; j++){
+        for(let j = 0; j < numeros.length; j++){
             //Creamos un elemento div para la pieza con su valor y añadimos draggable y una clase css.
             let pieza = document.createElement("div");
+            pieza.textContent = numeros[j];
             pieza.draggable = true;
             pieza.className = "pieza";
 
-            //Añadimos a la pieza la imagen de fondo.
-            let imagen = imagenes[j];
+            //Añadimos a la pieza la imagen de fondo obtenida de la misma posición que del array números.
+            let imagen = imagenes[numeros[j]];
             pieza.style.backgroundImage = `url(${imagen})`;
     
         //Comprobamos la ubicación de la pieza para la primera carga de las piezas:
@@ -58,7 +71,7 @@ function iniciaJuego(){
     
         //Añadimos los eventos a las piezas.
 
-            //Cuando la pieza empìece a arrastrarse. 
+            //Cuando la pieza empiece a arrastrarse. 
             pieza.addEventListener("dragstart", function(ev){
                 //Mediante dataTransfer y su método setData obtendremos su valor para transferirlo a la nueva posición.
                 ev.dataTransfer.setData("text/plain", ev.target.textContent);
@@ -97,10 +110,15 @@ function iniciaJuego(){
                     }
                 }
     
-                //Realizamos el intercambio de piezas.
-                let respaldo = piezas[indicePiezaArrastrada].textContent;
+                //Reemplazamos el contenido y la imagen de fondo. 
+                let respaldoTexto = piezas[indicePiezaArrastrada].textContent;
+                let respaldoImagen = piezas[indicePiezaArrastrada].style.backgroundImage;
+
                 piezas[indicePiezaArrastrada].textContent = piezas[indicePiezaSoltada].textContent;
-                piezas[indicePiezaSoltada].textContent = respaldo;
+                piezas[indicePiezaArrastrada].style.backgroundImage = piezas[indicePiezaSoltada].style.backgroundImage;
+
+                piezas[indicePiezaSoltada].textContent = respaldoTexto;
+                piezas[indicePiezaSoltada].style.backgroundImage = respaldoImagen;
     
                 //Llamaremos a esta función cada vez que se arrastre un elemento para actualizar los colores de cada pieza y comprobar si se ha terminado el puzzle.
                 comprobarPuzzle();
@@ -159,10 +177,20 @@ function iniciaJuego(){
             }
         }
 
-        //Si todas las piezas están en su posición correspondiente se muestra un mensaje con el número de intentos.
+        //Si todas las piezas están en su posición correspondiente
         if(todasCorrectas == true){
+            //Eliminamos todos los bordes de colores de las piezas.
+            for(let i = 0; i < piezas.length; i++){
+                piezas[i].classList.remove("pieza_verde", "pieza_naranja", "pieza_gris");
+            }
+
+            //Asignamos menor margen entre las piezas para visualizar mejor la imagen. 
+            contenedorPuzzle.style.columnGap = "1px";
+            contenedorPuzzle.style.rowGap = "1px";
+
+            //Creamos y mostramos un mensaje con el número de intentos.
             let resultadoIntentos = document.createElement("h2");
-            resultadoIntentos.textContent = `!Has resuelto el puzzle en ${intentos} intentos!`;
+            resultadoIntentos.textContent = `!Has resuelto el puzzle en ${intentos} moviminentos!`;
 
             document.body.appendChild(resultadoIntentos);
         }
