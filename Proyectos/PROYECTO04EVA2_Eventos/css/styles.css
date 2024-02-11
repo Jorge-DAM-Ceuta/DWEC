@@ -2,4 +2,24 @@
     display: grid;
     grid-template-columns: repeat(4, 100px);
     gap: 5px;
+    margin: 0 auto;
+}
+
+.pieza{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pieza_verde{
+    background-color: green;
+}
+
+.pieza_naranja{
+    background-color: orange;
+}
+
+.pieza_gris{
+    background-color: grey;
 }
