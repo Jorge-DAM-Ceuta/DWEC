@@ -20,18 +20,18 @@ h1, h2{
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: 7px solid #d2b881;
+    border: 7px solid black;
     transition: background-color 0.3s;
 }
 
 .pieza_verde{
-    background-color: #8aff8a;
+    border: 7px solid #8aff8a;
 }
 
 .pieza_naranja{
-    background-color: #f9a34d;
+    border: 7px solid #f9a34d;
 }
 
 .pieza_gris{
-    background-color: #aeafae;
+    border: 7px solid #aeafae;
 }

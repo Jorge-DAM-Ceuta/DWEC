@@ -10,23 +10,29 @@ function iniciaJuego(){
     //Esta función está dentro de la función iniciaJuego para poder acceder a sus variables y trabajar con el array piezas.
     function cargarPuzzle(){
         //Array que contendrá los valores.
-        let numeros = [];
+        let imagenes = [];
         
         //Rellenamos el array de números de números del 1 al 16.
         for(let i = 0; i < 16; i++){
-            numeros[i] = i + 1;
+            let filaActual = parseInt(i / 4) + 1;
+            let columnaActual = (i % 4) + 1;
+            
+            imagenes.push(`./images/fila-${filaActual}-columna-${columnaActual}.jpg`);
         }
     
         //Reemplazamos el array con las posiciones desordenadas.
-        numeros = desordenarPiezas(numeros);
+        imagenes = desordenarPiezas(imagenes);
     
         //Recorremos el array de numeros desordenados.
-        for(let j = 0; j < numeros.length; j++){
+        for(let j = 0; j < imagenes.length; j++){
             //Creamos un elemento div para la pieza con su valor y añadimos draggable y una clase css.
             let pieza = document.createElement("div");
-            pieza.textContent = numeros[j];
             pieza.draggable = true;
             pieza.className = "pieza";
+
+            //Añadimos a la pieza la imagen de fondo.
+            let imagen = imagenes[j];
+            pieza.style.backgroundImage = `url(${imagen})`;
     
         //Comprobamos la ubicación de la pieza para la primera carga de las piezas:
     
