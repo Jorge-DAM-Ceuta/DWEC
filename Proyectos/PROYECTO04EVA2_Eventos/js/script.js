@@ -43,7 +43,7 @@ function iniciaJuego(){
             pieza.draggable = true;
             pieza.className = "pieza";
 
-            //Añadimos a la pieza la imagen de fondo obtenida de la misma posición que del array números.
+            //Añadimos a la pieza la imagen de fondo obtenida del valor de la misma posición del array números.
             let imagen = imagenes[numeros[j]];
             pieza.style.backgroundImage = `url(${imagen})`;
     
@@ -94,7 +94,7 @@ function iniciaJuego(){
                 //Obtenemos el valor de la pieza sobre la que hemos soltado la otra pieza.
                 let valorSoltado = ev.target.textContent;
     
-                //Le asignamos -1 al principio para evitar que al hacer drop sobre la misma casilla se intercambie por la pieza de la primera casilla.
+                //Le asignamos -1 al principio para evitar que al hacer drop sobre la misma casilla se intercambie por la pieza de otra casilla.
                 let indicePiezaArrastrada = -1;
                 let indicePiezaSoltada = -1;
     
@@ -202,18 +202,18 @@ function iniciaJuego(){
 }
 
 //Esta función intercambia posiciones en el array.
-function desordenarPiezas(piezas){
-    //Recorremos el array de piezas.
-    for(let posicionActual = 0; posicionActual < piezas.length; posicionActual++){
+function desordenarPiezas(numeros){
+    //Recorremos el array de números.
+    for(let posicionActual = 0; posicionActual < numeros.length; posicionActual++){
         //Obtenemos una posición aleatoria.
-        let posicionAleatoria = parseInt(Math.random() * piezas.length);
+        let posicionAleatoria = parseInt(Math.random() * numeros.length);
 
         //Intercambiamos la pieza actual por una aleatoria.
-        let respaldo = piezas[posicionActual];
-        piezas[posicionActual] = piezas[posicionAleatoria];
-        piezas[posicionAleatoria] = respaldo;
+        let respaldo = numeros[posicionActual];
+        numeros[posicionActual] = numeros[posicionAleatoria];
+        numeros[posicionAleatoria] = respaldo;
     }
 
-    //Devolvemos las piezas desordenadas.
-    return piezas;
+    //Devolvemos los números desordenadas.
+    return numeros;
 }
