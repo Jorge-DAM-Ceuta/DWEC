@@ -75,18 +75,41 @@ function iniciaJuego(){
             pieza.addEventListener("dragstart", function(ev){
                 //Mediante dataTransfer y su método setData obtendremos su valor para transferirlo a la nueva posición.
                 ev.dataTransfer.setData("text/plain", ev.target.textContent);
+                
+                //Se aplica transparencia a la pieza que se empieza a arrastrar.
+                ev.target.style.opacity = "0.25";
             });
     
             //Cuando la pieza esté sobre otra pieza válida para intercambio.
             pieza.addEventListener("dragover", function(ev){
                 //Eliminamos el comportamiento por defecto para poder soltarla en esa posición.
                 ev.preventDefault();
+
+                //Añadimos un resaltado azul sobre la pieza.
+                ev.target.style.boxShadow = "0 0 10px 5px blue";
+            });
+
+            //Cuando la pieza deja de hacer dragover sobre otra pieza válida para intercambio.
+            pieza.addEventListener("dragleave", function(ev){
+                //Eliminamos el comportamiento por defecto para poder soltarla en esa posición.
+                ev.preventDefault();
+
+                //Eliminamos el resaltado.
+                ev.target.style.boxShadow = "none";
             });
     
             //Cuando la pieza se suelta.
             pieza.addEventListener("drop", function(ev){
                 //Eliminamos el comportamiento por defecto para poder soltarla en esa posición.
                 ev.preventDefault();
+
+                //Eliminamos el resaltado.
+                ev.target.style.boxShadow = "none";
+
+                //Se devuelve el total de opacidad a todas las piezas.
+                for(let i = 0; i < piezas.length; i++){
+                   piezas[i].style.opacity = "1";
+                }
     
                 //Obtenemos el valor de la pieza que hemos arrastrado.
                 let valorArrastrado = ev.dataTransfer.getData("text/plain");
