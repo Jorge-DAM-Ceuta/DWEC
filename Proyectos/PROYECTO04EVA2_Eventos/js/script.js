@@ -98,6 +98,12 @@ function iniciaJuego(){
                 ev.target.style.boxShadow = "none";
             });
     
+            //Usamos dragend para poder restablecer el color de la pieza si se suelta sobre un punto que no es draggable.
+            pieza.addEventListener("dragend", function(ev) {
+                //Restablecemos la opacidad de la pieza.
+                ev.target.style.opacity = "1";
+            });
+
             //Cuando la pieza se suelta.
             pieza.addEventListener("drop", function(ev){
                 //Eliminamos el comportamiento por defecto para poder soltarla en esa posición.
@@ -176,6 +182,10 @@ function iniciaJuego(){
 
             //Eliminamos todas las clases css que pueda tener el elemento.
             pieza.classList.remove("pieza_verde", "pieza_naranja", "pieza_gris");
+
+            //Asignamos el margen entre las piezas por si después de completar el puzzle se vuelve a mover alguna pieza. 
+            contenedorPuzzle.style.columnGap = "15px";
+            contenedorPuzzle.style.rowGap = "15px";
             
             //Si el contenido de la pieza es igual al contador + 1 (para igualar los valores con el índice del array) está en su posición correcta.
             if(parseInt(pieza.textContent) == i + 1){
@@ -202,9 +212,18 @@ function iniciaJuego(){
 
         //Si todas las piezas están en su posición correspondiente
         if(todasCorrectas == true){
-            //Eliminamos todos los bordes de colores de las piezas.
+            //Recorremos el array de piezas
             for(let i = 0; i < piezas.length; i++){
+                //Eliminamos las clases css y el atributo draggable.
                 piezas[i].classList.remove("pieza_verde", "pieza_naranja", "pieza_gris");
+                piezas[i].setAttribute("draggable", "false");
+                piezas[i].style.cursor = "default";
+
+                //Creamos un clon de la pieza para anular los eventos asociados para no poder mover más las piezas y mantener el aspecto del puzzle terminado.
+                let piezaReemplazo = piezas[i].cloneNode(true);
+
+                //Reemplazamos la pieza por su clon.
+                contenedorPuzzle.replaceChild(piezaReemplazo, piezas[i]);
             }
 
             //Asignamos menor margen entre las piezas para visualizar mejor la imagen. 
@@ -219,6 +238,29 @@ function iniciaJuego(){
             let resultadoIntentos = document.createElement("h2");
             resultadoIntentos.textContent = `!Has resuelto el puzzle en ${intentos} moviminentos!`;
 
+            //Creamos un botón para reiniciar el puzzle.
+            let reiniciarBoton = document.createElement("button");
+            reiniciarBoton.textContent = "Volver a intentarlo";
+
+            //Con este evento al pulsar sobre el botón reiniciaremos el puzzle.
+            reiniciarBoton.addEventListener("click", function(){
+                //Eliminamos el contenedor, el mensaje y el botón.
+                contenedorPuzzle.remove();
+                resultadoIntentos.remove();
+                reiniciarBoton.remove();
+
+                //Creamos un nuevo contenedor con el mismo id.
+                let contenedorPuzzleNuevo = document.createElement("div");
+                contenedorPuzzleNuevo.setAttribute("id", "puzzle");
+                document.body.appendChild(contenedorPuzzleNuevo);
+
+                //Reiniciamos el juego.
+                iniciaJuego();
+            });
+
+
+            //Añadimos el botón al mensaje con el resultado y los añadimos al body.
+            resultadoIntentos.appendChild(reiniciarBoton);
             document.body.appendChild(resultadoIntentos);
         }
     }
