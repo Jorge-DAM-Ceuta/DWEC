@@ -183,10 +183,6 @@ function iniciaJuego(){
             //Eliminamos todas las clases css que pueda tener el elemento.
             pieza.classList.remove("pieza_verde", "pieza_naranja", "pieza_gris");
 
-            //Asignamos el margen entre las piezas por si después de completar el puzzle se vuelve a mover alguna pieza. 
-            contenedorPuzzle.style.columnGap = "15px";
-            contenedorPuzzle.style.rowGap = "15px";
-            
             //Si el contenido de la pieza es igual al contador + 1 (para igualar los valores con el índice del array) está en su posición correcta.
             if(parseInt(pieza.textContent) == i + 1){
                 //Añadimos un color verde a la pieza.
