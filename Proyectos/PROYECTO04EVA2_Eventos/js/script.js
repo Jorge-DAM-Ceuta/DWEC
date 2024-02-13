@@ -77,7 +77,7 @@ function iniciaJuego(){
                 ev.dataTransfer.setData("text/plain", ev.target.textContent);
                 
                 //Se aplica transparencia a la pieza que se empieza a arrastrar.
-                ev.target.style.opacity = "0.25";
+                ev.target.style.opacity = "0.5";
             });
     
             //Cuando la pieza esté sobre otra pieza válida para intercambio.
