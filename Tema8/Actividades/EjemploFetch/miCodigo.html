@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejemplo de Fetch</title>
+    </head>
+    <body>
+        <p id="demo"></p>
+
+        <script>
+            let parrafo = document.getElementById("demo");
+
+            fetch("http://localhost/EjemploFetch/index.php")
+                .then(respuesta => respuesta.text())
+
+                .then(texto => {
+                    parrafo.innerHTML = texto;
+                    console.log(texto);
+                })
+
+                .catch(error => {//No hace falta arg. reject
+                    console.log("Error: " + error);
+                });
+        </script>
+    </body>
+</html>
