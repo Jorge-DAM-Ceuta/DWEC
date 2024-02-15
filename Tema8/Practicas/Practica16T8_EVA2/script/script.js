@@ -66,7 +66,7 @@ function reestablecer(){
     document.getElementById("panelCookies").removeAttribute("hidden");
     document.getElementById("resultado").setAttribute("hidden", "");
 
-    // Se "destruye" la cookie.
+    //Se "destruye" la cookie.
     document.cookie = "visitas=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
