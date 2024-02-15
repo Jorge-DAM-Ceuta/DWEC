@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./styles/style.css">
+        <title>Práctica 16 Tema 8 EVA 2</title>
+    </head>
+    <body>
+        <h1>¡Bienvenido!</h1>
+        
+        <div id="panelCookies">
+            <p>Esta página usa una cookie para almacenar el número de visitas que hace cada usuario. Si está conforme con ello, pulse "Aceptar". De otro modo la página no realizará su labor y eliminará las cookies existentes.</p>
+            <button id="botonPermite">Aceptar</button>
+            <button id="botonRechaza">Rechazar</button>
+        </div>
+
+        <div id="resultado" hidden>
+            <p>Número de visitas: <span id="numeroVisitas"></span></p>
+            <button id="botonCierraSesion">Cerrar sesión</button>
+        </div>
+
+        <script type="module">
+            import * as listener from "./script/script.js";
+            listener.iniciaListeners();
+        </script>
+    </body>
+</html>
