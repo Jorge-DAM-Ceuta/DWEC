@@ -1,0 +1,8 @@
+.circulo{
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cuadrado{
+    position: absolute;
+}
