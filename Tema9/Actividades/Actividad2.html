@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad 2</title>
+    </head>
+    <body>
+        <script>
+            fetch("http://localhost/noexiste.com")
+                .then(respuesta => {
+                console.log(respuesta.status);
+                })
+
+                .catch(miError => {
+                console.log("Error: " + miError);
+                });
+        </script>
+    </body>
+</html>
