@@ -37,3 +37,12 @@ textarea{
     border: 1px solid black;
     border-radius: 4px;
 }
+
+button{
+    width: 150px;
+    margin: 50px;
+}
+
+h2{
+    text-align: center;
+}
