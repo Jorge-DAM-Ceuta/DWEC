@@ -105,7 +105,6 @@ export function crearFormulario(){
             // Creamos dos botones dentro de un div para navegar entre los datos obtenidos del fetch. 
             // Ambos harán uso de sus respectivas funciones mediante el evento click para trabajar con el valor del índice.
             let contenedorBotones = document.createElement("div");
-            contenedorBotones.style.textAlign = "center";
 
             let botonAnterior = document.createElement("button");
             botonAnterior.textContent = "Anterior";
