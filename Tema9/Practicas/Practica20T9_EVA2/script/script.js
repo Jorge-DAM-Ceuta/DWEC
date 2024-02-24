@@ -25,10 +25,19 @@ export function crearFormulario(){
             let label = document.createElement("label");
             label.textContent = nombre + ": ";
 
-            // Creamos un input con el valor de dicha clave y le asignamos el valor y el atributo readonly para no poder editar su valor.
-            let input = document.createElement("input");
-            input.setAttribute("value", registroActual[nombre]);
-            input.setAttribute("readonly", true);
+            // Creamos un input o un textarea con el valor de dicha clave y le asignamos el valor y el atributo readonly para no poder editar su valor.
+            let input = "";
+
+            if(nombre == "body"){
+                input = document.createElement("textarea")
+                input.textContent = registroActual[nombre];
+                input.setAttribute("readonly", true);
+            }else{
+                input = document.createElement("input");
+                input.setAttribute("value", registroActual[nombre]);
+                input.setAttribute("readonly", true);
+            }
+            
 
             // Añadimos el input al label y el label al formulario.
             label.appendChild(input);
