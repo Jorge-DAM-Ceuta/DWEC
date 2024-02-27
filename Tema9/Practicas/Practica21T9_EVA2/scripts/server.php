@@ -17,16 +17,22 @@
         )
     );
 
+    header("Allow-Cross-Origin: *");
 
-    if(isset($_GET["email"]) && isset($_GET["password"])){ 
+    $peticionCliente = file_get_contents('php://input');
+    $datos = json_decode($peticionCliente);
+
+    $email = $datos->email;
+    $password = $datos->password;
+
+    if($email != "" && $password != ""){ 
         // Creamos un array para almacenar la información del usuario.
         $usuarioEncontrado = array();
 
         // Recorremos la matriz de usuarios.
         foreach($usuarios as $usuario){
-
             // Si se ha encontrado el usuario se guarda toda su información en el nuevo array a devolver.
-            if(($usuario["email"] == $_GET["email"]) && ($usuario["password"] == $_GET["password"])){
+            if(($usuario["email"] == $email) && ($usuario["password"] == $password)){
                 $usuarioEncontrado = $usuario;
             }
         }
@@ -37,18 +43,18 @@
         // Tanto si es administrador o usuario se devuelve su informacion codificada en json.
         // En caso de no haber encontrado el usuario se crea un array específico para devolverlo también en json.
         if(count($usuarioEncontrado) > 0){
-            echo json_encode($usuarioEncontrado, true);
+            echo json_encode($usuarioEncontrado);
         }else{
             $usuarioNoReconocido = 
             array(
-                "email" => $_GET["email"],
+                "email" => $datos["email"],
                 "password" => "",
                 "role" => "Usuario_no_reconocido"
             );
 
-            echo json_encode($usuarioNoReconocido, true);
+            echo json_encode($usuarioNoReconocido);
         }
     }else{
-        echo "No se han obtenido los datos necesarios correctamente.";
+        echo json_encode("No se han obtenido los datos necesarios correctamente.");
     }
 ?>
