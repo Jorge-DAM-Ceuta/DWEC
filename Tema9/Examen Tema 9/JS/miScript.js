@@ -33,7 +33,8 @@ function iniciaListeners() {
   function eventoFormulario(){
     //Hacemos una petición fetch al servidor mediante el evento submit del formulario.
     formulario.addEventListener("submit", function(ev){ 
-
+      ev.preventDefault();
+      
       fetch(formulario.getAttribute("action"), {
         method: `${formulario.getAttribute("method")}`,
         mode: "cors",
