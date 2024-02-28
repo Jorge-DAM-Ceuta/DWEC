@@ -26,6 +26,7 @@ input{
     box-sizing: border-box;
     border: 1px solid black;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 textarea{
@@ -44,9 +45,17 @@ div{
     text-align: center;
 }
 
-button{
-    width: 150px;
-    margin: 50px;
+.boton{
+    cursor: pointer;
+}
+
+div{
+    margin: 0 auto;
+    margin-top: 40vh;
+
+    & button{
+        margin: 10px;
+    }
 }
 
 h2{

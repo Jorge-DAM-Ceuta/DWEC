@@ -1,60 +1,68 @@
 <?php
-    $usuarios = array(
-        array(
-            "email" => "jorgemugar12@hotmail.com",
-            "password" => "000000",
-            "role" => "Administrador"
-        ),
-        array(
-            "email" => "10113@cifpceuta.es",
-            "password" => "000000",
-            "role" => "Usuario_estandar"
-        ),
-        array(
-            "email" => "secretaria@cifpceuta.es",
-            "password" => "000000",
-            "role" => "Usuario_no_reconocido"
-        )
-    );
-
-    header("Allow-Cross-Origin: *");
-
-    $peticionCliente = file_get_contents('php://input');
-    $datos = json_decode($peticionCliente);
-
-    $email = $datos->email;
-    $password = $datos->password;
-
-    if($email != "" && $password != ""){ 
-        // Creamos un array para almacenar la información del usuario.
-        $usuarioEncontrado = array();
-
-        // Recorremos la matriz de usuarios.
-        foreach($usuarios as $usuario){
-            // Si se ha encontrado el usuario se guarda toda su información en el nuevo array a devolver.
-            if(($usuario["email"] == $email) && ($usuario["password"] == $password)){
-                $usuarioEncontrado = $usuario;
-            }
-        }
-
-        //Indicamos que se va a indicar un json en formato texto.
-        header("Content-Type: application/json");
-
-        // Tanto si es administrador o usuario se devuelve su informacion codificada en json.
-        // En caso de no haber encontrado el usuario se crea un array específico para devolverlo también en json.
-        if(count($usuarioEncontrado) > 0){
-            echo json_encode($usuarioEncontrado);
-        }else{
-            $usuarioNoReconocido = 
-            array(
-                "email" => $datos["email"],
-                "password" => "",
-                "role" => "Usuario_no_reconocido"
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        // Si se ha recogido algo, lo asignamos a sus variables, en otro caso asignamos la cadena vacía.
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
+        
+        // Verificar datos para cuenta de Administrador.
+        if($email === "admin@cifpceuta.es" && $password === "@Abc123"){
+            // Crear un array asociativo con los datos.
+            $datos = array(
+                "email" => $email,
+                "password" => $password,
+                "nombre" => "CIFP",
+                "apellidos" => "Ceuta",
+                "dni" => "44555666Z",
+                "rol" => "Administrador"
             );
 
-            echo json_encode($usuarioNoReconocido);
+            // Convertimos el array a formato JSON.
+            $json_data = json_encode($datos);
+
+            // Enviamos el JSON como respuesta.
+            header('Content-Type: application/json');
+            echo $json_data;
+
+        // Verificar datos para cuenta de Usuario.
+        }else if($email === "10113@cifpceuta.es" && $password === "@Abc123"){
+            // Crear un array asociativo con los datos.
+            $datos = array(
+                "email" => $email,
+                "password" => $password,
+                "nombre" => "Jorge",
+                "apellidos" => "Muñoz García",
+                "dni" => "55666777J",
+                "rol" => "Usuario"
+            );
+
+            // Convertimos el array a formato JSON.
+            $json_data = json_encode($datos);
+
+            // Enviamos el JSON como respuesta.
+            header('Content-Type: application/json');
+            echo $json_data;
+
+        // Si no es ni Administrador ni Usuario se crea un array específico con rol "invitado". 
+        }else{
+            // Crear un array asociativo con los datos.
+            $datos = array(
+                "email" => $email,
+                "password" => $password,
+                "nombre" => "Invitado",
+                "apellidos" => "Invitado",
+                "dni" => "55663456D",
+                "rol" => "Invitado"
+            );
+
+            // Convertimos el array a formato JSON.
+            $json_data = json_encode($datos);
+
+            // Enviamos el JSON como respuesta.
+            header('Content-Type: application/json');
+            echo $json_data;
         }
     }else{
-        echo json_encode("No se han obtenido los datos necesarios correctamente.");
+        // Enviar mensaje de error si no es una solicitud POST.
+        echo "Error en PHP: Método de solicitud no válido.";
     }
 ?>
