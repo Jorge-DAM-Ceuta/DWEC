@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es-es">
+  <head>
+    <meta
+      name="viewport"
+      charset="UTF-8"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Examen T9</title>
+    <link rel="stylesheet" href="./CSS/estilazo.css" />
+  </head>
+  <body>
+    <div id="capaDatos" class="capaDatos">
+      <form id="formulario" action="./PHP/respuesta.php" method="POST">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required/>
+
+        <label for="passwd">Contraseña:</label>
+        <input type="password" id="passwd" name="passwd" required/>
+
+        <div class="capaBotones">
+          <button id="submit" type="submit">Enviar</button>
+          <button id="reset" type="reset">Reset</button>
+          <button id="usuario">Usuario</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="resultado"></div>
+
+    <p id="errorP"></p>
+
+    <script src="./JS/miScript.js"></script>
+    
+    <script>
+      //El funcionamiento de la aplicación dependerá de los listeners.
+      iniciaListeners();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "banda": "Dethklok",
+  "miembros": [
+    {
+      "nombre": "Nathan Explosion",
+      "instrumento": "Voz gutural",
+      "edad": 34,
+      "nacionalidad": "Estadounidense",
+      "frases": ["¡Dethklok es el faking amo!", "Brutal!"]
+    },
+    {
+      "nombre": "Skwisgaar Skwigelf",
+      "instrumento": "Guitarra líder",
+      "edad": 35,
+      "nacionalidad": "Sueca",
+      "frases": ["¡Soy el guitarrista más rápido del mundo!", "Suecia es el país del Death Metal!!"]
+    },
+    {
+      "nombre": "Toki Wartooth",
+      "instrumento": "Guitarra rítmica",
+      "edad": 27,
+      "nacionalidad": "Noruega",
+      "frases": ["Dios es metal, el metal es Dios", "Solo los nórdicos entendemos el Black Metal"]
+    },
+    {
+      "nombre": "William Murderface",
+      "instrumento": "Bajo",
+      "edad": 38,
+      "nacionalidad": "Estadounidense",
+      "frases": ["¡Odio todo y a todos!", "La vida es miserable y sin sentido. Muy metal."]
+    },
+    {
+      "nombre": "Pickles",
+      "instrumento": "Batería",
+      "edad": 36,
+      "nacionalidad": "Estadounidense",
+      "frases": ["¡Vamos a rockear toda la noche!", "HarHar rajado Har!."]
+    }
+  ]
+}
