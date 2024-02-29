@@ -33,15 +33,11 @@ function iniciaListeners() {
   function eventoFormulario(){
     //Hacemos una petición fetch al servidor mediante el evento submit del formulario.
     formulario.addEventListener("submit", function(ev){ 
-      ev.preventDefault();
       
       fetch(formulario.getAttribute("action"), {
         method: `${formulario.getAttribute("method")}`,
         mode: "cors",
-        body: JSON.stringify({
-          email: emailInput.getAttribute("value"),
-          passwd: passwordInput.getAttribute("value")
-        })
+        body: new FormData(formulario)
       }) 
 
       //Si obtiene los datos los convierte a objeto json.
@@ -49,6 +45,8 @@ function iniciaListeners() {
 
       //Pasamos el objeto JSON.
       .then(respuestaJSON => {
+        console.log("HE ENTRADO");
+        console.log(respuestaJSON);
         //Pasamos la responsabilidad a la siguiente función.
         comprobarUsuario(respuestaJSON);
       })
@@ -198,16 +196,16 @@ function iniciaListeners() {
       let divResultado = document.getElementById("resultado");
 
       let inputEmail = document.createElement("input");
-      inputEmail.textContent = json.email;
+      inputEmail.value = json.email;
 
       let inputNombre = document.createElement("input");
-      inputNombre.textContent = json.nombre;      
+      inputNombre.value = json.nombre;      
 
       let inputApellidos = document.createElement("input");
-      inputApellidos.textContent = json.apellidos;
+      inputApellidos.value = json.apellidos;
 
       let inputDNI = document.createElement("input");
-      inputDNI.textContent = json.dni;
+      inputDNI.value = json.dni;
 
       divResultado.appendChild(inputEmail);
       divResultado.appendChild(inputNombre);
@@ -220,7 +218,6 @@ function iniciaListeners() {
       mensajeInvitado.textContent = "No nos gustan los invitados";
       mensajeInvitado.classList.add("mensajeInquietante");
 
-      document.body.insertBefore(formulario, mensajeInvitado);
     }
   }
 
